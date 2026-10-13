@@ -1,6 +1,6 @@
-# F2 Commerce Intelligence — Offline Starter 0.2
+# F2 Commerce Intelligence — Offline Preview 0.3
 
-A credit-free **offline prototype** for F2 Commerce Intelligence. Open `index.html` in a modern desktop or mobile browser. It has **no dependencies**, hosting requirement, Replit credits or Shopify credentials.
+A credit-free **offline prototype** for F2 Commerce Intelligence. Open `index.html` in a modern desktop or mobile browser (or deploy the static files on GitHub Pages). It has **no dependencies**, hosting requirement, Replit credits or Shopify credentials.
 
 ## What works now
 
@@ -9,7 +9,7 @@ A credit-free **offline prototype** for F2 Commerce Intelligence. Open `index.ht
 - Run 7-day and 30-day walk-forward baseline and challenger comparisons, with chronological validation / holdout separation.
 - View revenue trend, horizon forecasts, WAPE, bias and Learning Lab HOLD reasons.
 - Download an audit JSON summarizing tests and controls.
-- No imported data is uploaded anywhere: data lives in the browser's active session.
+- This app processes imported CSV locally in the browser session and has no server-side CSV upload. Never import personal or raw order data.
 
 ## What is not done
 
@@ -21,15 +21,24 @@ A credit-free **offline prototype** for F2 Commerce Intelligence. Open `index.ht
 
 ## Importing data from Shopify
 
-Use an approved **daily aggregated** Shopify analytics export, with at least `date,net_sales,orders`. Dates should be `YYYY-MM-DD`, and revenue numeric in store currency (demo displays USD). Include every calendar day, recording genuine zero-sales days as 0. Do **not** assume missing days equal zero. **Do not** upload a raw order-level CSV containing customer PII; pre-aggregate in an authorized tool first.
+Use an approved **daily aggregated** Shopify analytics export, with at least `date,net_sales,orders`. Dates must be valid `YYYY-MM-DD`; revenue should be in a verified store reporting currency (demo displays USD; imported currency is not assumed). Include every calendar day, recording genuine zero-sales days as 0. Do **not** assume missing days equal zero. **Do not** upload a raw order-level CSV containing customer PII; pre-aggregate in an authorized tool first.
 
-Note that a date and a value labeled `total_sales` can be imported, but the dashboard will flag missing net-sales reconciliation. Refund/tax/shipping definitions need to be verified separately. This prototype does not assert reconciliation merely because column headers match.
+A label of `net_sales` or `total_sales` does not independently verify financial reconciliation. Refund/tax/shipping definitions need to be verified separately. This prototype does not assert reconciliation merely because column headers match.
 
 For a store without sufficient verified transactions, the correct output is HOLD. This starter does not connect to or disclose any merchant's private store data.
 
 ## Tests
 
 If Node is installed, run `node tests/test_core.js`. All tests are offline and use no user data.
+
+
+## Free browser preview (GitHub Pages)
+
+This is a static demo, **not** a Shopify-connected app. In **Settings → Pages** choose **Deploy from a branch**, branch `main`, folder `/(root)`, then **Save**. See [GitHub Pages instructions](docs/GITHUB_PAGES.md). Until configured, source code in GitHub does not imply the website is deployed.
+
+## Shopify Phase 1
+
+See [the read-only integration plan](docs/SHOPIFY_READ_ONLY_PLAN.md). Never put Shopify credentials or real merchant/customer data in this public GitHub repository.
 
 ## Next production step
 
