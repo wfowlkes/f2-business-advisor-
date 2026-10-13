@@ -1,0 +1,26 @@
+name: F2 Commerce Learning Lab tests
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  offline-validation:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Syntax-check forecasting engine
+        run: node --check core.js
+      - name: Run offline Learning Lab test suite
+        run: node tests/test_core.js
