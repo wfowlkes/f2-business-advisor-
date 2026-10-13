@@ -15,4 +15,4 @@ Run: `npm test` and then `npm start` after setting secret environment variables 
 No Shopify mutations, order/customer PII queries, or automatic business actions are implemented. Forecast authority remains **HOLD**.
 
 
-For a development-only deployment, see the repository root [`render.yaml`](../render.yaml). This is **not** approved for hosting production merchant data.
+For a development-only deployment, see the repository root [`render.yaml`](../render.yaml). It starts in `F2_DEMO_MODE=true`, uses synthetic data, and requires **no Shopify credentials**. To connect Shopify on an appropriate, security-reviewed host, disable demo mode and configure merchant-authorized credentials privately. This template is **not** approved for hosting production merchant data.
