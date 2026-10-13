@@ -31,3 +31,7 @@ Build a low-cost, reproducible synthetic test environment to challenge data vali
 ## Release management
 
 Synthetic lab is browser-run; it does not write to Shopify, change merchant inventory, run recurring jobs, retain uploads, or hold access credentials. The production read-only Shopify bridge remains unchanged and separately secured. Developer proposals are code-reviewed and tested before merging, and the Render service uses manual deploys.
+
+## Scheduled review operation
+
+The synthetic review workflow `.github/workflows/synthetic-lab-daily.yml` runs on a best-effort daily UTC schedule and on manual dispatch. Its report includes seed, date, horizon-level baseline/challenger errors, underperformance flags and reproducibility fingerprints. Reports are stored as 30-day GitHub Action artifacts, not pushed to the live dashboard or automatically used to retrain. A failing validation test blocks report generation. Deployment to Render remains manual, and `F2_DEMO_MODE=true` is required for the public lab routes.
