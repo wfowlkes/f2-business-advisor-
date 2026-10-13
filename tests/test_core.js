@@ -7,12 +7,12 @@ assert.equal(F.parseCSV('a,b\n"a, b",4')[1][0],'a, b');
 let today=demo.daily.slice(0,100);let pred=F.forecast(today,7,'same weekday');assert.equal(pred.length,7);assert(pred.every(x=>x.value>=0));
 console.log('PASS: demo, 7/30-day HOLD, zero-sales HOLD, missing dates HOLD, malformed CSV, CSV quoting, seasonality forecasts');
 function mustThrow(csv,expected){let thrown=false;try{F.normalize(csv)}catch(e){thrown=true;if(expected&&!String(e.message).includes(expected))throw Error('Wrong error: '+e.message)}if(!thrown)throw Error('Expected rejection: '+csv.slice(0,80));}
-mustThrow('date,net_sales,orders\\n2026-10-11,,3\\n','No valid');
-mustThrow('date,net_sales,orders\\n2026-02-30,120,2\\n','No valid');
-mustThrow('date,net_sales,orders,email\\n2026-10-11,100,2,buyer@example.test\\n','customer or order-level');
-mustThrow('created_at,net_sales,orders\\n2026-10-11,100,2\\n','daily date');
-mustThrow('date,net_sales\\n2026-10-11,100\\n','orders');
-const quality=F.normalize('date,net_sales,orders\\n2026-10-10,100,2\\n2026-10-11,150,3\\n');
+mustThrow('date,net_sales,orders\n2026-10-11,,3\n','No valid');
+mustThrow('date,net_sales,orders\n2026-02-30,120,2\n','No valid');
+mustThrow('date,net_sales,orders,email\n2026-10-11,100,2,buyer@example.test\n','customer or order-level');
+mustThrow('created_at,net_sales,orders\n2026-10-11,100,2\n','daily date');
+mustThrow('date,net_sales\n2026-10-11,100\n','orders');
+const quality=F.normalize('date,net_sales,orders\n2026-10-10,100,2\n2026-10-11,150,3\n');
 if(quality.reconciled!==false)throw Error('CSV column labels must not imply verified reconciliation');
 if(!quality.warnings.some(w=>w.includes('NOT verified')))throw Error('Missing provenance warning');
 console.log('PASS: strict daily aggregates, blank amounts, real dates, PII rejection, reconciliation HOLD');
