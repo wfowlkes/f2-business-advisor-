@@ -1,0 +1,38 @@
+name: F2 supply availability research safety
+on:
+  push:
+    paths:
+      - 'lab/availability*'
+      - 'lab/supply-stress.js'
+      - 'server/**'
+      - 'tests/test_availability.js'
+      - 'docs/SUPPLY_AVAILABILITY_V15.md'
+      - '.github/workflows/availability-research.yml'
+  pull_request:
+    paths:
+      - 'lab/availability*'
+      - 'lab/supply-stress.js'
+      - 'server/**'
+      - 'tests/test_availability.js'
+      - 'docs/SUPPLY_AVAILABILITY_V15.md'
+      - '.github/workflows/availability-research.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  verification:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Parse all research source and browser scripts
+        run: node --check lab/availability_engine.js && node --check lab/availability_gate.js && node --check lab/availability_report.js && node --check lab/supply-stress.js && node --check lab/availability_ui.js
+      - name: Verify no future-data leakage, HOLD gates, reproducibility, demo-mode isolation
+        run: node --test server/test/availability.test.js
+      - name: Run existing F2 core safeguards
+        run: node tests/test_core.js
+      - name: Compare frozen reference results with new synthetic-generator results
+        run: node lab/availability_report.js && git diff --exit-code -- lab/availability-results.json lab/availability-results.md
