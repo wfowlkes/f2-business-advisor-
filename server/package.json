@@ -1,0 +1,11 @@
+{
+  "name": "f2-commerce-readonly-bridge",
+  "version": "0.1.0",
+  "private": true,
+  "description": "F2 Commerce secure read-only Shopify bridge and Learning Lab HOLD controls",
+  "engines": {"node": ">=22"},
+  "scripts": {
+    "start": "node app.js",
+    "test": "node --test test/*.test.js"
+  }
+}
