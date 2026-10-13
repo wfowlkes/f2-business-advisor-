@@ -1,0 +1,661 @@
+{
+  "version": "F2 Scenario Research 1.2",
+  "provenance": "SYNTHETIC shifted calendar, original generator",
+  "cutoff": "2027-04-17",
+  "seeds": [
+    787878,
+    898989,
+    909090
+  ],
+  "authority": "HOLD",
+  "businesses": [
+    {
+      "type": "stable",
+      "name": "Steady Retail",
+      "horizons": {
+        "7": {
+          "method": "regime reset",
+          "baseline": "28-day average",
+          "seedResults": [
+            {
+              "seed": 787878,
+              "methodWape": 4.54,
+              "baselineWape": 5.92,
+              "methodBias": -0.06,
+              "improvement": 23.31
+            },
+            {
+              "seed": 898989,
+              "methodWape": 4.35,
+              "baselineWape": 5.75,
+              "methodBias": -0.08,
+              "improvement": 24.35
+            },
+            {
+              "seed": 909090,
+              "methodWape": 4.34,
+              "baselineWape": 5.33,
+              "methodBias": -0.17,
+              "improvement": 18.57
+            }
+          ],
+          "meanImprovement": 22.08,
+          "meanWape": 4.41,
+          "meanBias": -0.1,
+          "positiveGroups": 3,
+          "negativeGroups": 0,
+          "productionStatus": "HOLD"
+        },
+        "30": {
+          "method": "yearly analogue",
+          "baseline": "28-day average",
+          "seedResults": [
+            {
+              "seed": 787878,
+              "methodWape": 3.22,
+              "baselineWape": 4.54,
+              "methodBias": 0.14,
+              "improvement": 29.07
+            },
+            {
+              "seed": 898989,
+              "methodWape": 2.65,
+              "baselineWape": 4.43,
+              "methodBias": -0.05,
+              "improvement": 40.18
+            },
+            {
+              "seed": 909090,
+              "methodWape": 1.77,
+              "baselineWape": 4.84,
+              "methodBias": -0.12,
+              "improvement": 63.43
+            }
+          ],
+          "meanImprovement": 44.23,
+          "meanWape": 2.55,
+          "meanBias": -0.01,
+          "positiveGroups": 3,
+          "negativeGroups": 0,
+          "productionStatus": "HOLD"
+        }
+      }
+    },
+    {
+      "type": "growth",
+      "name": "Rapid Growth",
+      "horizons": {
+        "7": {
+          "method": "yearly analogue",
+          "baseline": "7-day average",
+          "seedResults": [
+            {
+              "seed": 787878,
+              "methodWape": 2.99,
+              "baselineWape": 3.66,
+              "methodBias": 0.37,
+              "improvement": 18.31
+            },
+            {
+              "seed": 898989,
+              "methodWape": 3.17,
+              "baselineWape": 4,
+              "methodBias": 0.19,
+              "improvement": 20.75
+            },
+            {
+              "seed": 909090,
+              "methodWape": 3.88,
+              "baselineWape": 4.11,
+              "methodBias": 0.41,
+              "improvement": 5.6
+            }
+          ],
+          "meanImprovement": 14.89,
+          "meanWape": 3.35,
+          "meanBias": 0.32,
+          "positiveGroups": 3,
+          "negativeGroups": 0,
+          "productionStatus": "HOLD"
+        },
+        "30": {
+          "method": "yearly analogue",
+          "baseline": "7-day average",
+          "seedResults": [
+            {
+              "seed": 787878,
+              "methodWape": 2.42,
+              "baselineWape": 5.33,
+              "methodBias": 0.72,
+              "improvement": 54.6
+            },
+            {
+              "seed": 898989,
+              "methodWape": 1.84,
+              "baselineWape": 5.44,
+              "methodBias": 0.58,
+              "improvement": 66.18
+            },
+            {
+              "seed": 909090,
+              "methodWape": 1.5,
+              "baselineWape": 6.05,
+              "methodBias": 0.82,
+              "improvement": 75.21
+            }
+          ],
+          "meanImprovement": 65.33,
+          "meanWape": 1.92,
+          "meanBias": 0.71,
+          "positiveGroups": 3,
+          "negativeGroups": 0,
+          "productionStatus": "HOLD"
+        }
+      }
+    },
+    {
+      "type": "decline",
+      "name": "Struggling Store",
+      "horizons": {
+        "7": {
+          "method": "7-day average",
+          "baseline": "7-day average",
+          "seedResults": [
+            {
+              "seed": 787878,
+              "methodWape": 4.14,
+              "baselineWape": 4.14,
+              "methodBias": 1.38,
+              "improvement": 0
+            },
+            {
+              "seed": 898989,
+              "methodWape": 4.05,
+              "baselineWape": 4.05,
+              "methodBias": 1.2,
+              "improvement": 0
+            },
+            {
+              "seed": 909090,
+              "methodWape": 4.35,
+              "baselineWape": 4.35,
+              "methodBias": 1.38,
+              "improvement": 0
+            }
+          ],
+          "meanImprovement": 0,
+          "meanWape": 4.18,
+          "meanBias": 1.32,
+          "positiveGroups": 0,
+          "negativeGroups": 0,
+          "productionStatus": "HOLD"
+        },
+        "30": {
+          "method": "yearly analogue",
+          "baseline": "7-day average",
+          "seedResults": [
+            {
+              "seed": 787878,
+              "methodWape": 2.78,
+              "baselineWape": 6.92,
+              "methodBias": 2.04,
+              "improvement": 59.83
+            },
+            {
+              "seed": 898989,
+              "methodWape": 2.9,
+              "baselineWape": 4.99,
+              "methodBias": 2.15,
+              "improvement": 41.88
+            },
+            {
+              "seed": 909090,
+              "methodWape": 2.68,
+              "baselineWape": 5.81,
+              "methodBias": 2.1,
+              "improvement": 53.87
+            }
+          ],
+          "meanImprovement": 51.86,
+          "meanWape": 2.79,
+          "meanBias": 2.1,
+          "positiveGroups": 3,
+          "negativeGroups": 0,
+          "productionStatus": "HOLD"
+        }
+      }
+    },
+    {
+      "type": "seasonal",
+      "name": "Seasonal Store",
+      "horizons": {
+        "7": {
+          "method": "yearly analogue",
+          "baseline": "7-day average",
+          "seedResults": [
+            {
+              "seed": 787878,
+              "methodWape": 4.92,
+              "baselineWape": 9.56,
+              "methodBias": -0.61,
+              "improvement": 48.54
+            },
+            {
+              "seed": 898989,
+              "methodWape": 4.38,
+              "baselineWape": 9.82,
+              "methodBias": -0.45,
+              "improvement": 55.4
+            },
+            {
+              "seed": 909090,
+              "methodWape": 3.72,
+              "baselineWape": 9.12,
+              "methodBias": -0.66,
+              "improvement": 59.21
+            }
+          ],
+          "meanImprovement": 54.38,
+          "meanWape": 4.34,
+          "meanBias": -0.57,
+          "positiveGroups": 3,
+          "negativeGroups": 0,
+          "productionStatus": "HOLD"
+        },
+        "30": {
+          "method": "yearly analogue",
+          "baseline": "7-day average",
+          "seedResults": [
+            {
+              "seed": 787878,
+              "methodWape": 3.44,
+              "baselineWape": 19.59,
+              "methodBias": -0.1,
+              "improvement": 82.44
+            },
+            {
+              "seed": 898989,
+              "methodWape": 2.71,
+              "baselineWape": 21.11,
+              "methodBias": -0.49,
+              "improvement": 87.16
+            },
+            {
+              "seed": 909090,
+              "methodWape": 2.57,
+              "baselineWape": 19.41,
+              "methodBias": -0.35,
+              "improvement": 86.76
+            }
+          ],
+          "meanImprovement": 85.45,
+          "meanWape": 2.91,
+          "meanBias": -0.31,
+          "positiveGroups": 3,
+          "negativeGroups": 0,
+          "productionStatus": "HOLD"
+        }
+      }
+    },
+    {
+      "type": "volatile",
+      "name": "Unpredictable Store",
+      "horizons": {
+        "7": {
+          "method": "stockout-aware",
+          "baseline": "same weekday",
+          "seedResults": [
+            {
+              "seed": 787878,
+              "methodWape": 30.46,
+              "baselineWape": 31.93,
+              "methodBias": 6.89,
+              "improvement": 4.6
+            },
+            {
+              "seed": 898989,
+              "methodWape": 30.7,
+              "baselineWape": 32.28,
+              "methodBias": 7.96,
+              "improvement": 4.89
+            },
+            {
+              "seed": 909090,
+              "methodWape": 30.74,
+              "baselineWape": 33.11,
+              "methodBias": 5.74,
+              "improvement": 7.16
+            }
+          ],
+          "meanImprovement": 5.55,
+          "meanWape": 30.63,
+          "meanBias": 6.86,
+          "positiveGroups": 3,
+          "negativeGroups": 0,
+          "productionStatus": "HOLD"
+        },
+        "30": {
+          "method": "promotion pulse",
+          "baseline": "same weekday",
+          "seedResults": [
+            {
+              "seed": 787878,
+              "methodWape": 13.32,
+              "baselineWape": 15.27,
+              "methodBias": -0.51,
+              "improvement": 12.77
+            },
+            {
+              "seed": 898989,
+              "methodWape": 16.48,
+              "baselineWape": 17.72,
+              "methodBias": 1.37,
+              "improvement": 7
+            },
+            {
+              "seed": 909090,
+              "methodWape": 17.12,
+              "baselineWape": 19.42,
+              "methodBias": -1.2,
+              "improvement": 11.84
+            }
+          ],
+          "meanImprovement": 10.54,
+          "meanWape": 15.64,
+          "meanBias": -0.11,
+          "positiveGroups": 3,
+          "negativeGroups": 0,
+          "productionStatus": "HOLD"
+        }
+      }
+    },
+    {
+      "type": "stepchange",
+      "name": "Sudden Demand Drop",
+      "horizons": {
+        "7": {
+          "method": "yearly analogue",
+          "baseline": "28-day average",
+          "seedResults": [
+            {
+              "seed": 787878,
+              "methodWape": 8.44,
+              "baselineWape": 11.36,
+              "methodBias": 5.78,
+              "improvement": 25.7
+            },
+            {
+              "seed": 898989,
+              "methodWape": 7.7,
+              "baselineWape": 10.09,
+              "methodBias": 5.25,
+              "improvement": 23.69
+            },
+            {
+              "seed": 909090,
+              "methodWape": 8.01,
+              "baselineWape": 10.61,
+              "methodBias": 5.26,
+              "improvement": 24.51
+            }
+          ],
+          "meanImprovement": 24.63,
+          "meanWape": 8.05,
+          "meanBias": 5.43,
+          "positiveGroups": 3,
+          "negativeGroups": 0,
+          "productionStatus": "HOLD"
+        },
+        "30": {
+          "method": "yearly analogue",
+          "baseline": "7-day average",
+          "seedResults": [
+            {
+              "seed": 787878,
+              "methodWape": 10.55,
+              "baselineWape": 13.55,
+              "methodBias": 9.15,
+              "improvement": 22.14
+            },
+            {
+              "seed": 898989,
+              "methodWape": 8.76,
+              "baselineWape": 12.12,
+              "methodBias": 8,
+              "improvement": 27.72
+            },
+            {
+              "seed": 909090,
+              "methodWape": 10.02,
+              "baselineWape": 12.56,
+              "methodBias": 8.2,
+              "improvement": 20.22
+            }
+          ],
+          "meanImprovement": 23.36,
+          "meanWape": 9.78,
+          "meanBias": 8.45,
+          "positiveGroups": 3,
+          "negativeGroups": 0,
+          "productionStatus": "HOLD"
+        }
+      }
+    },
+    {
+      "type": "promotion",
+      "name": "Promotion Fatigue",
+      "horizons": {
+        "7": {
+          "method": "promotion pulse",
+          "baseline": "same weekday",
+          "seedResults": [
+            {
+              "seed": 787878,
+              "methodWape": 15.38,
+              "baselineWape": 15.02,
+              "methodBias": 9.64,
+              "improvement": -2.4
+            },
+            {
+              "seed": 898989,
+              "methodWape": 15.93,
+              "baselineWape": 15.28,
+              "methodBias": 9.42,
+              "improvement": -4.25
+            },
+            {
+              "seed": 909090,
+              "methodWape": 15.91,
+              "baselineWape": 15.09,
+              "methodBias": 9.44,
+              "improvement": -5.43
+            }
+          ],
+          "meanImprovement": -4.03,
+          "meanWape": 15.74,
+          "meanBias": 9.5,
+          "positiveGroups": 0,
+          "negativeGroups": 3,
+          "productionStatus": "HOLD"
+        },
+        "30": {
+          "method": "promotion pulse",
+          "baseline": "same weekday",
+          "seedResults": [
+            {
+              "seed": 787878,
+              "methodWape": 14.42,
+              "baselineWape": 11.68,
+              "methodBias": 12.05,
+              "improvement": -23.46
+            },
+            {
+              "seed": 898989,
+              "methodWape": 14.24,
+              "baselineWape": 11.39,
+              "methodBias": 11.84,
+              "improvement": -25.02
+            },
+            {
+              "seed": 909090,
+              "methodWape": 14.53,
+              "baselineWape": 11.64,
+              "methodBias": 11.8,
+              "improvement": -24.83
+            }
+          ],
+          "meanImprovement": -24.44,
+          "meanWape": 14.4,
+          "meanBias": 11.9,
+          "positiveGroups": 0,
+          "negativeGroups": 3,
+          "productionStatus": "HOLD"
+        }
+      }
+    },
+    {
+      "type": "supply",
+      "name": "Supply Disruption",
+      "horizons": {
+        "7": {
+          "method": "7-day average",
+          "baseline": "7-day average",
+          "seedResults": [
+            {
+              "seed": 787878,
+              "methodWape": 33.16,
+              "baselineWape": 33.16,
+              "methodBias": -0.1,
+              "improvement": 0
+            },
+            {
+              "seed": 898989,
+              "methodWape": 33.43,
+              "baselineWape": 33.43,
+              "methodBias": -0.18,
+              "improvement": 0
+            },
+            {
+              "seed": 909090,
+              "methodWape": 33.78,
+              "baselineWape": 33.78,
+              "methodBias": -0.18,
+              "improvement": 0
+            }
+          ],
+          "meanImprovement": 0,
+          "meanWape": 33.46,
+          "meanBias": -0.15,
+          "positiveGroups": 0,
+          "negativeGroups": 0,
+          "productionStatus": "HOLD"
+        },
+        "30": {
+          "method": "7-day average",
+          "baseline": "7-day average",
+          "seedResults": [
+            {
+              "seed": 787878,
+              "methodWape": 52.95,
+              "baselineWape": 52.95,
+              "methodBias": 6,
+              "improvement": 0
+            },
+            {
+              "seed": 898989,
+              "methodWape": 52.15,
+              "baselineWape": 52.15,
+              "methodBias": 4.65,
+              "improvement": 0
+            },
+            {
+              "seed": 909090,
+              "methodWape": 53.35,
+              "baselineWape": 53.35,
+              "methodBias": 6.05,
+              "improvement": 0
+            }
+          ],
+          "meanImprovement": 0,
+          "meanWape": 52.82,
+          "meanBias": 5.57,
+          "positiveGroups": 0,
+          "negativeGroups": 0,
+          "productionStatus": "HOLD"
+        }
+      }
+    },
+    {
+      "type": "weekdayshift",
+      "name": "Customer Behavior Shift",
+      "horizons": {
+        "7": {
+          "method": "regime reset",
+          "baseline": "28-day average",
+          "seedResults": [
+            {
+              "seed": 787878,
+              "methodWape": 4.91,
+              "baselineWape": 5.75,
+              "methodBias": 0.12,
+              "improvement": 14.61
+            },
+            {
+              "seed": 898989,
+              "methodWape": 4.7,
+              "baselineWape": 5.98,
+              "methodBias": 0.15,
+              "improvement": 21.4
+            },
+            {
+              "seed": 909090,
+              "methodWape": 4.57,
+              "baselineWape": 5.85,
+              "methodBias": 0.07,
+              "improvement": 21.88
+            }
+          ],
+          "meanImprovement": 19.3,
+          "meanWape": 4.73,
+          "meanBias": 0.11,
+          "positiveGroups": 3,
+          "negativeGroups": 0,
+          "productionStatus": "HOLD"
+        },
+        "30": {
+          "method": "yearly analogue",
+          "baseline": "28-day average",
+          "seedResults": [
+            {
+              "seed": 787878,
+              "methodWape": 1.4,
+              "baselineWape": 4.57,
+              "methodBias": -0.07,
+              "improvement": 69.37
+            },
+            {
+              "seed": 898989,
+              "methodWape": 4.19,
+              "baselineWape": 6.4,
+              "methodBias": 0.77,
+              "improvement": 34.53
+            },
+            {
+              "seed": 909090,
+              "methodWape": 2.74,
+              "baselineWape": 5.81,
+              "methodBias": 0.4,
+              "improvement": 52.84
+            }
+          ],
+          "meanImprovement": 52.25,
+          "meanWape": 2.78,
+          "meanBias": 0.37,
+          "positiveGroups": 3,
+          "negativeGroups": 0,
+          "productionStatus": "HOLD"
+        }
+      }
+    }
+  ]
+}

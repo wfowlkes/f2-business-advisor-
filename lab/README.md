@@ -43,3 +43,7 @@ See [Synthetic Baseline Report](../docs/SYNTHETIC_BASELINE_REPORT.md) for actual
 Nine synthetic regimes (five frozen original, four operational/demand shocks) now appear on the mobile testing dashboard. The separate *adaptive weekday* shadow result is displayed alongside unchanged original comparisons; negative as well as positive results are retained. No model is automatically promoted.
 
 The frozen experimental blend uses 70% of the last 28 days' same-weekday sales mean and 30% of the last 56 days' same-weekday mean. Research results from previously reserved seed groups are in [`docs/SYNTHETIC_V11_CHALLENGE_REPORT.md`](../docs/SYNTHETIC_V11_CHALLENGE_REPORT.md). All outcomes remain simulator-specific and unsuitable as proof of Shopify improvements.
+
+## v1.2: scenario-specific research
+
+Open `strategies.html` for fixed scenario-specific choices and full rankings across 12 methods. Reproduce from `node lab/scenario_report.js`. `selection-frozen.json` stores the development-validation-only mapping and `strategy-summary.json` stores separately tested evidence. The generator's known scenario ID is a simulator-only oracle, not a live-business classifier. No method changes are automatically deployed.
