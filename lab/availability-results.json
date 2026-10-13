@@ -1,0 +1,3819 @@
+{
+  "version": "F2 Availability Gate 1.5",
+  "baseline": "Frozen v1.4 Supply Bridge (ungated point forecast)",
+  "designSeeds": [
+    194807,
+    286431
+  ],
+  "unseenSeeds": [
+    591733,
+    618407,
+    729109
+  ],
+  "independentSeeds": [
+    1301,
+    2309,
+    3307
+  ],
+  "calendarShift": "2027-04-03",
+  "productionAuthority": "HOLD",
+  "note": "Independent generator means different synthetic source rules, not real retailer evidence. Legacy direct supply bridge WAPE differs from frozen v1.4 hybrid-router WAPE (~47.93%).",
+  "uncertainty": "Scenario envelopes are extreme hypothetical supply states, NOT calibrated prediction intervals.",
+  "cohorts": [
+    {
+      "group": "development",
+      "mode": "recurring-supply",
+      "seed": 194807,
+      "asOf": "2026-10-12",
+      "source": "SYNTHETIC",
+      "records": [
+        {
+          "cutoff": "2025-12-16",
+          "actual": 21767.94,
+          "frozen": 32264.57,
+          "simple": 37406.72,
+          "availability": 32654.64,
+          "gated": 32264.57,
+          "route": "FROZEN-V14",
+          "gate": "HOLD",
+          "band": {
+            "low": 6393.9,
+            "central": 32654.64,
+            "high": 34510.72,
+            "type": "Uncalibrated supply scenarios — NOT prediction intervals"
+          },
+          "highUncertainty": true,
+          "period": null
+        },
+        {
+          "cutoff": "2026-01-15",
+          "actual": 30836.9,
+          "frozen": 25187.18,
+          "simple": 20482.19,
+          "availability": 31461.23,
+          "gated": 25187.18,
+          "route": "FROZEN-V14",
+          "gate": "HOLD",
+          "band": {
+            "low": 6519.73,
+            "central": 31461.23,
+            "high": 34801.04,
+            "type": "Uncalibrated supply scenarios — NOT prediction intervals"
+          },
+          "highUncertainty": true,
+          "period": null
+        },
+        {
+          "cutoff": "2026-02-14",
+          "actual": 13449.8,
+          "frozen": 29484.27,
+          "simple": 30767.36,
+          "availability": 30615.09,
+          "gated": 30615.09,
+          "route": "AVAILABILITY-RESEARCH",
+          "gate": "QUALIFIED-SYNTHETIC",
+          "band": {
+            "low": 6493.37,
+            "central": 30615.09,
+            "high": 33858.91,
+            "type": "Uncalibrated supply scenarios — NOT prediction intervals"
+          },
+          "highUncertainty": true,
+          "period": null
+        },
+        {
+          "cutoff": "2026-03-16",
+          "actual": 30085.26,
+          "frozen": 17784.36,
+          "simple": 12081.36,
+          "availability": 28741.91,
+          "gated": 17784.36,
+          "route": "FROZEN-V14",
+          "gate": "HOLD",
+          "band": {
+            "low": 6436.47,
+            "central": 28741.91,
+            "high": 33598.22,
+            "type": "Uncalibrated supply scenarios — NOT prediction intervals"
+          },
+          "highUncertainty": true,
+          "period": 62
+        },
+        {
+          "cutoff": "2026-04-15",
+          "actual": 21929,
+          "frozen": 25922.43,
+          "simple": 31796.34,
+          "availability": 26115.46,
+          "gated": 26115.46,
+          "route": "AVAILABILITY-RESEARCH",
+          "gate": "QUALIFIED-SYNTHETIC",
+          "band": {
+            "low": 6367.44,
+            "central": 26115.46,
+            "high": 31386.29,
+            "type": "Uncalibrated supply scenarios — NOT prediction intervals"
+          },
+          "highUncertainty": true,
+          "period": null
+        },
+        {
+          "cutoff": "2026-05-15",
+          "actual": 20237.13,
+          "frozen": 22690.48,
+          "simple": 21233.12,
+          "availability": 26735.14,
+          "gated": 22690.48,
+          "route": "FROZEN-V14",
+          "gate": "HOLD",
+          "band": {
+            "low": 6452.97,
+            "central": 26735.14,
+            "high": 32759.65,
+            "type": "Uncalibrated supply scenarios — NOT prediction intervals"
+          },
+          "highUncertainty": true,
+          "period": 62
+        },
+        {
+          "cutoff": "2026-06-14",
+          "actual": 12171.32,
+          "frozen": 21211.12,
+          "simple": 18898.47,
+          "availability": 20513.76,
+          "gated": 21211.12,
+          "route": "FROZEN-V14",
+          "gate": "HOLD",
+          "band": {
+            "low": 6333.84,
+            "central": 20513.76,
+            "high": 33086.62,
+            "type": "Uncalibrated supply scenarios — NOT prediction intervals"
+          },
+          "highUncertainty": true,
+          "period": 62
+        },
+        {
+          "cutoff": "2026-07-14",
+          "actual": 34055.68,
+          "frozen": 14930.16,
+          "simple": 12621.39,
+          "availability": 24583.79,
+          "gated": 14930.16,
+          "route": "FROZEN-V14",
+          "gate": "HOLD",
+          "band": {
+            "low": 6311.57,
+            "central": 24583.79,
+            "high": 33030,
+            "type": "Uncalibrated supply scenarios — NOT prediction intervals"
+          },
+          "highUncertainty": true,
+          "period": null
+        },
+        {
+          "cutoff": "2026-08-13",
+          "actual": 20038.44,
+          "frozen": 26563.67,
+          "simple": 34106.01,
+          "availability": 25143.02,
+          "gated": 25143.02,
+          "route": "AVAILABILITY-RESEARCH",
+          "gate": "QUALIFIED-SYNTHETIC",
+          "band": {
+            "low": 6336.33,
+            "central": 25143.02,
+            "high": 33830.9,
+            "type": "Uncalibrated supply scenarios — NOT prediction intervals"
+          },
+          "highUncertainty": true,
+          "period": null
+        },
+        {
+          "cutoff": "2026-09-12",
+          "actual": 18252.29,
+          "frozen": 22521.49,
+          "simple": 18896.37,
+          "availability": 22135.71,
+          "gated": 22135.71,
+          "route": "AVAILABILITY-RESEARCH",
+          "gate": "QUALIFIED-SYNTHETIC",
+          "band": {
+            "low": 6231.87,
+            "central": 22135.71,
+            "high": 33690.47,
+            "type": "Uncalibrated supply scenarios — NOT prediction intervals"
+          },
+          "highUncertainty": true,
+          "period": 124
+        }
+      ],
+      "metrics": {
+        "simpleWape": 51.63,
+        "frozenWape": 40.34,
+        "availabilityWape": 30.3,
+        "gatedWape": 40.12,
+        "routed": 4,
+        "scenarioEnvelopeHits": 9,
+        "highUncertainty": 10,
+        "folds": 10
+      },
+      "authority": "HOLD"
+    },
+    {
+      "group": "development",
+      "mode": "recurring-supply",
+      "seed": 286431,
+      "asOf": "2026-10-12",
+      "source": "SYNTHETIC",
+      "records": [
+        {
+          "cutoff": "2025-12-16",
+          "actual": 22041.51,
+          "frozen": 32161.29,
+          "simple": 37323.73,
+          "availability": 32561.37,
+          "gated": 32161.29,
+          "route": "FROZEN-V14",
+          "gate": "HOLD",
+          "band": {
+            "low": 6177.9,
+            "central": 32561.37,
+            "high": 34427.03,
+            "type": "Uncalibrated supply scenarios — NOT prediction intervals"
+          },
+          "highUncertainty": true,
+          "period": null
+        },
+        {
+          "cutoff": "2026-01-15",
+          "actual": 30675.32,
+          "frozen": 25254.84,
+          "simple": 20943.48,
+          "availability": 31436.37,
+          "gated": 25254.84,
+          "route": "FROZEN-V14",
+          "gate": "HOLD",
+          "band": {
+            "low": 6602.38,
+            "central": 31436.37,
+            "high": 34760.65,
+            "type": "Uncalibrated supply scenarios — NOT prediction intervals"
+          },
+          "highUncertainty": true,
+          "period": null
+        },
+        {
+          "cutoff": "2026-02-14",
+          "actual": 13889.72,
+          "frozen": 29600.76,
+          "simple": 30903.74,
+          "availability": 30552.16,
+          "gated": 30552.16,
+          "route": "AVAILABILITY-RESEARCH",
+          "gate": "QUALIFIED-SYNTHETIC",
+          "band": {
+            "low": 6600.29,
+            "central": 30552.16,
+            "high": 33765.8,
+            "type": "Uncalibrated supply scenarios — NOT prediction intervals"
+          },
+          "highUncertainty": true,
+          "period": null
+        },
+        {
+          "cutoff": "2026-03-16",
+          "actual": 30535.56,
+          "frozen": 18030.46,
+          "simple": 12426.71,
+          "availability": 28942.59,
+          "gated": 18030.46,
+          "route": "FROZEN-V14",
+          "gate": "HOLD",
+          "band": {
+            "low": 6600.83,
+            "central": 28942.59,
+            "high": 33805.83,
+            "type": "Uncalibrated supply scenarios — NOT prediction intervals"
+          },
+          "highUncertainty": true,
+          "period": 62
+        },
+        {
+          "cutoff": "2026-04-15",
+          "actual": 21881.65,
+          "frozen": 26273.61,
+          "simple": 32262.64,
+          "availability": 26263.42,
+          "gated": 26263.42,
+          "route": "AVAILABILITY-RESEARCH",
+          "gate": "QUALIFIED-SYNTHETIC",
+          "band": {
+            "low": 6561.31,
+            "central": 26263.42,
+            "high": 31527.12,
+            "type": "Uncalibrated supply scenarios — NOT prediction intervals"
+          },
+          "highUncertainty": true,
+          "period": null
+        },
+        {
+          "cutoff": "2026-05-15",
+          "actual": 20040.63,
+          "frozen": 22791.84,
+          "simple": 21107.87,
+          "availability": 26994.9,
+          "gated": 22791.84,
+          "route": "FROZEN-V14",
+          "gate": "HOLD",
+          "band": {
+            "low": 6492.41,
+            "central": 26994.9,
+            "high": 33137.93,
+            "type": "Uncalibrated supply scenarios — NOT prediction intervals"
+          },
+          "highUncertainty": true,
+          "period": 62
+        },
+        {
+          "cutoff": "2026-06-14",
+          "actual": 12998.14,
+          "frozen": 21199.7,
+          "simple": 18932.27,
+          "availability": 20600.55,
+          "gated": 21199.7,
+          "route": "FROZEN-V14",
+          "gate": "HOLD",
+          "band": {
+            "low": 6298.95,
+            "central": 20600.55,
+            "high": 33192.8,
+            "type": "Uncalibrated supply scenarios — NOT prediction intervals"
+          },
+          "highUncertainty": true,
+          "period": 62
+        },
+        {
+          "cutoff": "2026-07-14",
+          "actual": 32786.08,
+          "frozen": 15246.93,
+          "simple": 13515.08,
+          "availability": 24846.27,
+          "gated": 15246.93,
+          "route": "FROZEN-V14",
+          "gate": "HOLD",
+          "band": {
+            "low": 6312.94,
+            "central": 24846.27,
+            "high": 33425.07,
+            "type": "Uncalibrated supply scenarios — NOT prediction intervals"
+          },
+          "highUncertainty": true,
+          "period": null
+        },
+        {
+          "cutoff": "2026-08-13",
+          "actual": 19421.42,
+          "frozen": 25989.75,
+          "simple": 32706.43,
+          "availability": 24870.48,
+          "gated": 24870.48,
+          "route": "AVAILABILITY-RESEARCH",
+          "gate": "QUALIFIED-SYNTHETIC",
+          "band": {
+            "low": 6340.91,
+            "central": 24870.48,
+            "high": 33423.45,
+            "type": "Uncalibrated supply scenarios — NOT prediction intervals"
+          },
+          "highUncertainty": true,
+          "period": null
+        },
+        {
+          "cutoff": "2026-09-12",
+          "actual": 17869.33,
+          "frozen": 22098.03,
+          "simple": 18500.23,
+          "availability": 21797.64,
+          "gated": 21797.64,
+          "route": "AVAILABILITY-RESEARCH",
+          "gate": "QUALIFIED-SYNTHETIC",
+          "band": {
+            "low": 6307.01,
+            "central": 21797.64,
+            "high": 33083.1,
+            "type": "Uncalibrated supply scenarios — NOT prediction intervals"
+          },
+          "highUncertainty": true,
+          "period": 124
+        }
+      ],
+      "metrics": {
+        "simpleWape": 49.84,
+        "frozenWape": 39.36,
+        "availabilityWape": 29.62,
+        "gatedWape": 39.15,
+        "routed": 4,
+        "scenarioEnvelopeHits": 10,
+        "highUncertainty": 10,
+        "folds": 10
+      },
+      "authority": "HOLD"
+    },
+    {
+      "group": "untouched_same_generator",
+      "mode": "recurring-supply",
+      "seed": 591733,
+      "asOf": "2026-10-12",
+      "source": "SYNTHETIC",
+      "records": [
+        {
+          "cutoff": "2025-12-16",
+          "actual": 21736.25,
+          "frozen": 32004.71,
+          "simple": 36966.55,
+          "availability": 32203.13,
+          "gated": 32004.71,
+          "route": "FROZEN-V14",
+          "gate": "HOLD",
+          "band": {
+            "low": 6317.4,
+            "central": 32203.13,
+            "high": 34032.48,
+            "type": "Uncalibrated supply scenarios — NOT prediction intervals"
+          },
+          "highUncertainty": true,
+          "period": null
+        },
+        {
+          "cutoff": "2026-01-15",
+          "actual": 30808.99,
+          "frozen": 25047.46,
+          "simple": 20617.02,
+          "availability": 31304.13,
+          "gated": 25047.46,
+          "route": "FROZEN-V14",
+          "gate": "HOLD",
+          "band": {
+            "low": 6586.37,
+            "central": 31304.13,
+            "high": 34611.73,
+            "type": "Uncalibrated supply scenarios — NOT prediction intervals"
+          },
+          "highUncertainty": true,
+          "period": null
+        },
+        {
+          "cutoff": "2026-02-14",
+          "actual": 13939.59,
+          "frozen": 29437.4,
+          "simple": 30927.83,
+          "availability": 30406.34,
+          "gated": 30406.34,
+          "route": "AVAILABILITY-RESEARCH",
+          "gate": "QUALIFIED-SYNTHETIC",
+          "band": {
+            "low": 6596,
+            "central": 30406.34,
+            "high": 33605.39,
+            "type": "Uncalibrated supply scenarios — NOT prediction intervals"
+          },
+          "highUncertainty": true,
+          "period": null
+        },
+        {
+          "cutoff": "2026-03-16",
+          "actual": 30479.71,
+          "frozen": 17999.59,
+          "simple": 12402.75,
+          "availability": 28711.19,
+          "gated": 17999.59,
+          "route": "FROZEN-V14",
+          "gate": "HOLD",
+          "band": {
+            "low": 6524.57,
+            "central": 28711.19,
+            "high": 33542.57,
+            "type": "Uncalibrated supply scenarios — NOT prediction intervals"
+          },
+          "highUncertainty": true,
+          "period": 62
+        },
+        {
+          "cutoff": "2026-04-15",
+          "actual": 21524.42,
+          "frozen": 26352.32,
+          "simple": 32243.66,
+          "availability": 26286.05,
+          "gated": 26286.05,
+          "route": "AVAILABILITY-RESEARCH",
+          "gate": "QUALIFIED-SYNTHETIC",
+          "band": {
+            "low": 6437.81,
+            "central": 26286.05,
+            "high": 31583.03,
+            "type": "Uncalibrated supply scenarios — NOT prediction intervals"
+          },
+          "highUncertainty": true,
+          "period": null
+        },
+        {
+          "cutoff": "2026-05-15",
+          "actual": 19957.72,
+          "frozen": 22660.63,
+          "simple": 20990.83,
+          "availability": 27007.01,
+          "gated": 22660.63,
+          "route": "FROZEN-V14",
+          "gate": "HOLD",
+          "band": {
+            "low": 6354.4,
+            "central": 27007.01,
+            "high": 33174.55,
+            "type": "Uncalibrated supply scenarios — NOT prediction intervals"
+          },
+          "highUncertainty": true,
+          "period": 62
+        },
+        {
+          "cutoff": "2026-06-14",
+          "actual": 12676.85,
+          "frozen": 20973.52,
+          "simple": 18580.56,
+          "availability": 20437.53,
+          "gated": 20973.52,
+          "route": "FROZEN-V14",
+          "gate": "HOLD",
+          "band": {
+            "low": 6233.11,
+            "central": 20437.53,
+            "high": 32973.91,
+            "type": "Uncalibrated supply scenarios — NOT prediction intervals"
+          },
+          "highUncertainty": true,
+          "period": 62
+        },
+        {
+          "cutoff": "2026-07-14",
+          "actual": 32943.23,
+          "frozen": 15050.15,
+          "simple": 13161.45,
+          "availability": 24601.58,
+          "gated": 15050.15,
+          "route": "FROZEN-V14",
+          "gate": "HOLD",
+          "band": {
+            "low": 6275.54,
+            "central": 24601.58,
+            "high": 33081.29,
+            "type": "Uncalibrated supply scenarios — NOT prediction intervals"
+          },
+          "highUncertainty": true,
+          "period": null
+        },
+        {
+          "cutoff": "2026-08-13",
+          "actual": 20010.98,
+          "frozen": 26023.97,
+          "simple": 33127.32,
+          "availability": 24741.3,
+          "gated": 24741.3,
+          "route": "AVAILABILITY-RESEARCH",
+          "gate": "QUALIFIED-SYNTHETIC",
+          "band": {
+            "low": 6312.56,
+            "central": 24741.3,
+            "high": 33255.71,
+            "type": "Uncalibrated supply scenarios — NOT prediction intervals"
+          },
+          "highUncertainty": true,
+          "period": null
+        },
+        {
+          "cutoff": "2026-09-12",
+          "actual": 17799.47,
+          "frozen": 22301.32,
+          "simple": 18814.46,
+          "availability": 21860.71,
+          "gated": 21860.71,
+          "route": "AVAILABILITY-RESEARCH",
+          "gate": "QUALIFIED-SYNTHETIC",
+          "band": {
+            "low": 6298.54,
+            "central": 21860.71,
+            "high": 33164.74,
+            "type": "Uncalibrated supply scenarios — NOT prediction intervals"
+          },
+          "highUncertainty": true,
+          "period": 124
+        }
+      ],
+      "metrics": {
+        "simpleWape": 50.5,
+        "frozenWape": 39.77,
+        "availabilityWape": 29.7,
+        "gatedWape": 39.4,
+        "routed": 4,
+        "scenarioEnvelopeHits": 10,
+        "highUncertainty": 10,
+        "folds": 10
+      },
+      "authority": "HOLD"
+    },
+    {
+      "group": "untouched_same_generator",
+      "mode": "recurring-supply",
+      "seed": 618407,
+      "asOf": "2026-10-12",
+      "source": "SYNTHETIC",
+      "records": [
+        {
+          "cutoff": "2025-12-16",
+          "actual": 21886.36,
+          "frozen": 32064.53,
+          "simple": 37258.6,
+          "availability": 32113.16,
+          "gated": 32064.53,
+          "route": "FROZEN-V14",
+          "gate": "HOLD",
+          "band": {
+            "low": 6105.6,
+            "central": 32113.16,
+            "high": 33951.64,
+            "type": "Uncalibrated supply scenarios — NOT prediction intervals"
+          },
+          "highUncertainty": true,
+          "period": null
+        },
+        {
+          "cutoff": "2026-01-15",
+          "actual": 30897.75,
+          "frozen": 25081.25,
+          "simple": 20614.65,
+          "availability": 31294.49,
+          "gated": 25081.25,
+          "route": "FROZEN-V14",
+          "gate": "HOLD",
+          "band": {
+            "low": 6395.72,
+            "central": 31294.49,
+            "high": 34628.07,
+            "type": "Uncalibrated supply scenarios — NOT prediction intervals"
+          },
+          "highUncertainty": true,
+          "period": null
+        },
+        {
+          "cutoff": "2026-02-14",
+          "actual": 13796.53,
+          "frozen": 29581.63,
+          "simple": 30891.21,
+          "availability": 30520.48,
+          "gated": 30520.48,
+          "route": "AVAILABILITY-RESEARCH",
+          "gate": "QUALIFIED-SYNTHETIC",
+          "band": {
+            "low": 6376.48,
+            "central": 30520.48,
+            "high": 33761.23,
+            "type": "Uncalibrated supply scenarios — NOT prediction intervals"
+          },
+          "highUncertainty": true,
+          "period": null
+        },
+        {
+          "cutoff": "2026-03-16",
+          "actual": 30511.69,
+          "frozen": 17972.54,
+          "simple": 12198.55,
+          "availability": 28909.35,
+          "gated": 17972.54,
+          "route": "FROZEN-V14",
+          "gate": "HOLD",
+          "band": {
+            "low": 6455.81,
+            "central": 28909.35,
+            "high": 33799.59,
+            "type": "Uncalibrated supply scenarios — NOT prediction intervals"
+          },
+          "highUncertainty": true,
+          "period": 62
+        },
+        {
+          "cutoff": "2026-04-15",
+          "actual": 22088.07,
+          "frozen": 26296.35,
+          "simple": 32264.19,
+          "availability": 26354.13,
+          "gated": 26354.13,
+          "route": "AVAILABILITY-RESEARCH",
+          "gate": "QUALIFIED-SYNTHETIC",
+          "band": {
+            "low": 6403.31,
+            "central": 26354.13,
+            "high": 31677.35,
+            "type": "Uncalibrated supply scenarios — NOT prediction intervals"
+          },
+          "highUncertainty": true,
+          "period": null
+        },
+        {
+          "cutoff": "2026-05-15",
+          "actual": 19709.95,
+          "frozen": 22905.95,
+          "simple": 21299.95,
+          "availability": 27052.51,
+          "gated": 22905.95,
+          "route": "FROZEN-V14",
+          "gate": "HOLD",
+          "band": {
+            "low": 6477.33,
+            "central": 27052.51,
+            "high": 33183.5,
+            "type": "Uncalibrated supply scenarios — NOT prediction intervals"
+          },
+          "highUncertainty": true,
+          "period": 62
+        },
+        {
+          "cutoff": "2026-06-14",
+          "actual": 12640.41,
+          "frozen": 21024.59,
+          "simple": 18323.22,
+          "availability": 20551.5,
+          "gated": 21024.59,
+          "route": "FROZEN-V14",
+          "gate": "HOLD",
+          "band": {
+            "low": 6342.22,
+            "central": 20551.5,
+            "high": 33075.18,
+            "type": "Uncalibrated supply scenarios — NOT prediction intervals"
+          },
+          "highUncertainty": true,
+          "period": 62
+        },
+        {
+          "cutoff": "2026-07-14",
+          "actual": 33449.94,
+          "frozen": 15058.76,
+          "simple": 13131.88,
+          "availability": 24718.7,
+          "gated": 15058.76,
+          "route": "FROZEN-V14",
+          "gate": "HOLD",
+          "band": {
+            "low": 6346.47,
+            "central": 24718.7,
+            "high": 33227.63,
+            "type": "Uncalibrated supply scenarios — NOT prediction intervals"
+          },
+          "highUncertainty": true,
+          "period": null
+        },
+        {
+          "cutoff": "2026-08-13",
+          "actual": 20000.7,
+          "frozen": 26258.39,
+          "simple": 33583.31,
+          "availability": 24919.9,
+          "gated": 24919.9,
+          "route": "AVAILABILITY-RESEARCH",
+          "gate": "QUALIFIED-SYNTHETIC",
+          "band": {
+            "low": 6387.04,
+            "central": 24919.9,
+            "high": 33481.96,
+            "type": "Uncalibrated supply scenarios — NOT prediction intervals"
+          },
+          "highUncertainty": true,
+          "period": null
+        },
+        {
+          "cutoff": "2026-09-12",
+          "actual": 17893.97,
+          "frozen": 22474.19,
+          "simple": 18921.54,
+          "availability": 21966.45,
+          "gated": 21966.45,
+          "route": "AVAILABILITY-RESEARCH",
+          "gate": "QUALIFIED-SYNTHETIC",
+          "band": {
+            "low": 6268.03,
+            "central": 21966.45,
+            "high": 33405.74,
+            "type": "Uncalibrated supply scenarios — NOT prediction intervals"
+          },
+          "highUncertainty": true,
+          "period": 124
+        }
+      ],
+      "metrics": {
+        "simpleWape": 50.9,
+        "frozenWape": 40.08,
+        "availabilityWape": 29.7,
+        "gatedWape": 39.7,
+        "routed": 4,
+        "scenarioEnvelopeHits": 9,
+        "highUncertainty": 10,
+        "folds": 10
+      },
+      "authority": "HOLD"
+    },
+    {
+      "group": "untouched_same_generator",
+      "mode": "recurring-supply",
+      "seed": 729109,
+      "asOf": "2026-10-12",
+      "source": "SYNTHETIC",
+      "records": [
+        {
+          "cutoff": "2025-12-16",
+          "actual": 21784.92,
+          "frozen": 31641.33,
+          "simple": 36411.73,
+          "availability": 32070.43,
+          "gated": 31641.33,
+          "route": "FROZEN-V14",
+          "gate": "HOLD",
+          "band": {
+            "low": 6038.4,
+            "central": 32070.43,
+            "high": 33911.72,
+            "type": "Uncalibrated supply scenarios — NOT prediction intervals"
+          },
+          "highUncertainty": true,
+          "period": null
+        },
+        {
+          "cutoff": "2026-01-15",
+          "actual": 31221.5,
+          "frozen": 24951.65,
+          "simple": 20669.05,
+          "availability": 31065.41,
+          "gated": 24951.65,
+          "route": "FROZEN-V14",
+          "gate": "HOLD",
+          "band": {
+            "low": 6426.62,
+            "central": 31065.41,
+            "high": 34364.45,
+            "type": "Uncalibrated supply scenarios — NOT prediction intervals"
+          },
+          "highUncertainty": true,
+          "period": null
+        },
+        {
+          "cutoff": "2026-02-14",
+          "actual": 13683.17,
+          "frozen": 29643.38,
+          "simple": 31459.34,
+          "availability": 30429.77,
+          "gated": 30429.77,
+          "route": "AVAILABILITY-RESEARCH",
+          "gate": "QUALIFIED-SYNTHETIC",
+          "band": {
+            "low": 6435.86,
+            "central": 30429.77,
+            "high": 33651.89,
+            "type": "Uncalibrated supply scenarios — NOT prediction intervals"
+          },
+          "highUncertainty": true,
+          "period": null
+        },
+        {
+          "cutoff": "2026-03-16",
+          "actual": 30388.77,
+          "frozen": 17971.1,
+          "simple": 12172.45,
+          "availability": 28718.55,
+          "gated": 17971.1,
+          "route": "FROZEN-V14",
+          "gate": "HOLD",
+          "band": {
+            "low": 6513.71,
+            "central": 28718.55,
+            "high": 33553.21,
+            "type": "Uncalibrated supply scenarios — NOT prediction intervals"
+          },
+          "highUncertainty": true,
+          "period": 62
+        },
+        {
+          "cutoff": "2026-04-15",
+          "actual": 21531.57,
+          "frozen": 26284.33,
+          "simple": 32150.06,
+          "availability": 26373.9,
+          "gated": 26373.9,
+          "route": "AVAILABILITY-RESEARCH",
+          "gate": "QUALIFIED-SYNTHETIC",
+          "band": {
+            "low": 6397.53,
+            "central": 26373.9,
+            "high": 31705.75,
+            "type": "Uncalibrated supply scenarios — NOT prediction intervals"
+          },
+          "highUncertainty": true,
+          "period": null
+        },
+        {
+          "cutoff": "2026-05-15",
+          "actual": 20136.57,
+          "frozen": 22600.57,
+          "simple": 20772.2,
+          "availability": 27016.8,
+          "gated": 22600.57,
+          "route": "FROZEN-V14",
+          "gate": "HOLD",
+          "band": {
+            "low": 6359.45,
+            "central": 27016.8,
+            "high": 33180.25,
+            "type": "Uncalibrated supply scenarios — NOT prediction intervals"
+          },
+          "highUncertainty": true,
+          "period": 62
+        },
+        {
+          "cutoff": "2026-06-14",
+          "actual": 12828.55,
+          "frozen": 21214.44,
+          "simple": 19028.01,
+          "availability": 20494.53,
+          "gated": 21214.44,
+          "route": "FROZEN-V14",
+          "gate": "HOLD",
+          "band": {
+            "low": 6233.77,
+            "central": 20494.53,
+            "high": 33106.73,
+            "type": "Uncalibrated supply scenarios — NOT prediction intervals"
+          },
+          "highUncertainty": true,
+          "period": 62
+        },
+        {
+          "cutoff": "2026-07-14",
+          "actual": 32408.91,
+          "frozen": 15187.94,
+          "simple": 13307.42,
+          "availability": 24756.44,
+          "gated": 15187.94,
+          "route": "FROZEN-V14",
+          "gate": "HOLD",
+          "band": {
+            "low": 6182.08,
+            "central": 24756.44,
+            "high": 33365.03,
+            "type": "Uncalibrated supply scenarios — NOT prediction intervals"
+          },
+          "highUncertainty": true,
+          "period": null
+        },
+        {
+          "cutoff": "2026-08-13",
+          "actual": 19459.04,
+          "frozen": 25831.44,
+          "simple": 32562.19,
+          "availability": 24754.72,
+          "gated": 24754.72,
+          "route": "AVAILABILITY-RESEARCH",
+          "gate": "QUALIFIED-SYNTHETIC",
+          "band": {
+            "low": 6223.26,
+            "central": 24754.72,
+            "high": 33302.52,
+            "type": "Uncalibrated supply scenarios — NOT prediction intervals"
+          },
+          "highUncertainty": true,
+          "period": null
+        },
+        {
+          "cutoff": "2026-09-12",
+          "actual": 17848.27,
+          "frozen": 21944.85,
+          "simple": 18390.54,
+          "availability": 21726.73,
+          "gated": 21726.73,
+          "route": "AVAILABILITY-RESEARCH",
+          "gate": "QUALIFIED-SYNTHETIC",
+          "band": {
+            "low": 6210.02,
+            "central": 21726.73,
+            "high": 33046.56,
+            "type": "Uncalibrated supply scenarios — NOT prediction intervals"
+          },
+          "highUncertainty": true,
+          "period": 124
+        }
+      ],
+      "metrics": {
+        "simpleWape": 50.33,
+        "frozenWape": 39.67,
+        "availabilityWape": 29.41,
+        "gatedWape": 39.49,
+        "routed": 4,
+        "scenarioEnvelopeHits": 10,
+        "highUncertainty": 10,
+        "folds": 10
+      },
+      "authority": "HOLD"
+    },
+    {
+      "group": "independent_generator",
+      "mode": "markov",
+      "seed": 1301,
+      "asOf": "2027-01-30",
+      "source": "SYNTHETIC",
+      "records": [
+        {
+          "cutoff": "2026-04-05",
+          "actual": 30191.81,
+          "frozen": 24117.37,
+          "simple": 27870.63,
+          "availability": 26246.05,
+          "gated": 24117.37,
+          "route": "FROZEN-V14",
+          "gate": "HOLD",
+          "band": {
+            "low": 11023.63,
+            "central": 26246.05,
+            "high": 37935.54,
+            "type": "Uncalibrated supply scenarios — NOT prediction intervals"
+          },
+          "highUncertainty": true,
+          "period": 32
+        },
+        {
+          "cutoff": "2026-05-05",
+          "actual": 31457.12,
+          "frozen": 29172.59,
+          "simple": 31645.34,
+          "availability": 25881.84,
+          "gated": 29172.59,
+          "route": "FROZEN-V14",
+          "gate": "HOLD",
+          "band": {
+            "low": 10183.7,
+            "central": 25881.84,
+            "high": 36793.86,
+            "type": "Uncalibrated supply scenarios — NOT prediction intervals"
+          },
+          "highUncertainty": true,
+          "period": null
+        },
+        {
+          "cutoff": "2026-06-04",
+          "actual": 21212.64,
+          "frozen": 30827.89,
+          "simple": 30823.76,
+          "availability": 25273.48,
+          "gated": 30827.89,
+          "route": "FROZEN-V14",
+          "gate": "HOLD",
+          "band": {
+            "low": 10578.38,
+            "central": 25273.48,
+            "high": 37366.02,
+            "type": "Uncalibrated supply scenarios — NOT prediction intervals"
+          },
+          "highUncertainty": true,
+          "period": null
+        },
+        {
+          "cutoff": "2026-07-04",
+          "actual": 15939.07,
+          "frozen": 24997.1,
+          "simple": 20212.19,
+          "availability": 25625.02,
+          "gated": 25625.02,
+          "route": "AVAILABILITY-RESEARCH",
+          "gate": "QUALIFIED-SYNTHETIC",
+          "band": {
+            "low": 10355.05,
+            "central": 25625.02,
+            "high": 36493.96,
+            "type": "Uncalibrated supply scenarios — NOT prediction intervals"
+          },
+          "highUncertainty": true,
+          "period": null
+        },
+        {
+          "cutoff": "2026-08-03",
+          "actual": 20607.85,
+          "frozen": 17950.93,
+          "simple": 14110.19,
+          "availability": 22111.01,
+          "gated": 22111.01,
+          "route": "AVAILABILITY-RESEARCH",
+          "gate": "QUALIFIED-SYNTHETIC",
+          "band": {
+            "low": 11536.85,
+            "central": 22111.01,
+            "high": 36163.01,
+            "type": "Uncalibrated supply scenarios — NOT prediction intervals"
+          },
+          "highUncertainty": true,
+          "period": null
+        },
+        {
+          "cutoff": "2026-09-02",
+          "actual": 23129.15,
+          "frozen": 19008.78,
+          "simple": 21604.85,
+          "availability": 22239.11,
+          "gated": 22239.11,
+          "route": "AVAILABILITY-RESEARCH",
+          "gate": "QUALIFIED-SYNTHETIC",
+          "band": {
+            "low": 11041.72,
+            "central": 22239.11,
+            "high": 35831.07,
+            "type": "Uncalibrated supply scenarios — NOT prediction intervals"
+          },
+          "highUncertainty": true,
+          "period": null
+        },
+        {
+          "cutoff": "2026-10-02",
+          "actual": 20679.06,
+          "frozen": 21885.03,
+          "simple": 24184.19,
+          "availability": 23415.83,
+          "gated": 23415.83,
+          "route": "AVAILABILITY-RESEARCH",
+          "gate": "QUALIFIED-SYNTHETIC",
+          "band": {
+            "low": 10932.79,
+            "central": 23415.83,
+            "high": 35681.21,
+            "type": "Uncalibrated supply scenarios — NOT prediction intervals"
+          },
+          "highUncertainty": true,
+          "period": 37
+        },
+        {
+          "cutoff": "2026-11-01",
+          "actual": 24289.3,
+          "frozen": 21349.48,
+          "simple": 21131.82,
+          "availability": 19642.74,
+          "gated": 21349.48,
+          "route": "FROZEN-V14",
+          "gate": "HOLD",
+          "band": {
+            "low": 10626.24,
+            "central": 19642.74,
+            "high": 35375.09,
+            "type": "Uncalibrated supply scenarios — NOT prediction intervals"
+          },
+          "highUncertainty": true,
+          "period": null
+        },
+        {
+          "cutoff": "2026-12-01",
+          "actual": 16558.22,
+          "frozen": 23310.38,
+          "simple": 24727.82,
+          "availability": 18766.17,
+          "gated": 23310.38,
+          "route": "FROZEN-V14",
+          "gate": "HOLD",
+          "band": {
+            "low": 10523.56,
+            "central": 18766.17,
+            "high": 35563.07,
+            "type": "Uncalibrated supply scenarios — NOT prediction intervals"
+          },
+          "highUncertainty": true,
+          "period": null
+        },
+        {
+          "cutoff": "2026-12-31",
+          "actual": 28703.03,
+          "frozen": 19672.29,
+          "simple": 16939.86,
+          "availability": 18597.2,
+          "gated": 18597.2,
+          "route": "AVAILABILITY-RESEARCH",
+          "gate": "QUALIFIED-SYNTHETIC",
+          "band": {
+            "low": 10693.99,
+            "central": 18597.2,
+            "high": 36130.46,
+            "type": "Uncalibrated supply scenarios — NOT prediction intervals"
+          },
+          "highUncertainty": true,
+          "period": null
+        }
+      ],
+      "metrics": {
+        "simpleWape": 21.92,
+        "frozenWape": 23.09,
+        "availabilityWape": 19.49,
+        "gatedWape": 22.59,
+        "routed": 5,
+        "scenarioEnvelopeHits": 10,
+        "highUncertainty": 10,
+        "folds": 10
+      },
+      "authority": "HOLD"
+    },
+    {
+      "group": "independent_generator",
+      "mode": "markov",
+      "seed": 2309,
+      "asOf": "2027-01-30",
+      "source": "SYNTHETIC",
+      "records": [
+        {
+          "cutoff": "2026-04-05",
+          "actual": 19138.86,
+          "frozen": 32562.83,
+          "simple": 34775.33,
+          "availability": 30976.64,
+          "gated": 30976.64,
+          "route": "AVAILABILITY-RESEARCH",
+          "gate": "QUALIFIED-SYNTHETIC",
+          "band": {
+            "low": 10977.74,
+            "central": 30976.64,
+            "high": 35290.98,
+            "type": "Uncalibrated supply scenarios — NOT prediction intervals"
+          },
+          "highUncertainty": true,
+          "period": null
+        },
+        {
+          "cutoff": "2026-05-05",
+          "actual": 22837.29,
+          "frozen": 24051.5,
+          "simple": 18098.31,
+          "availability": 29254.57,
+          "gated": 29254.57,
+          "route": "AVAILABILITY-RESEARCH",
+          "gate": "QUALIFIED-SYNTHETIC",
+          "band": {
+            "low": 11112.92,
+            "central": 29254.57,
+            "high": 35580.94,
+            "type": "Uncalibrated supply scenarios — NOT prediction intervals"
+          },
+          "highUncertainty": true,
+          "period": null
+        },
+        {
+          "cutoff": "2026-06-04",
+          "actual": 14783.55,
+          "frozen": 22878.36,
+          "simple": 21968.05,
+          "availability": 23034.08,
+          "gated": 22878.36,
+          "route": "FROZEN-V14",
+          "gate": "HOLD",
+          "band": {
+            "low": 11775.36,
+            "central": 23034.08,
+            "high": 35971.37,
+            "type": "Uncalibrated supply scenarios — NOT prediction intervals"
+          },
+          "highUncertainty": true,
+          "period": null
+        },
+        {
+          "cutoff": "2026-07-04",
+          "actual": 15898.55,
+          "frozen": 17241.36,
+          "simple": 15324.04,
+          "availability": 21325.55,
+          "gated": 17241.36,
+          "route": "FROZEN-V14",
+          "gate": "HOLD",
+          "band": {
+            "low": 11249.78,
+            "central": 21325.55,
+            "high": 36119.62,
+            "type": "Uncalibrated supply scenarios — NOT prediction intervals"
+          },
+          "highUncertainty": true,
+          "period": null
+        },
+        {
+          "cutoff": "2026-08-03",
+          "actual": 26240.23,
+          "frozen": 17320.61,
+          "simple": 16412.93,
+          "availability": 17318.9,
+          "gated": 17320.61,
+          "route": "FROZEN-V14",
+          "gate": "HOLD",
+          "band": {
+            "low": 11429.96,
+            "central": 17318.9,
+            "high": 36576.15,
+            "type": "Uncalibrated supply scenarios — NOT prediction intervals"
+          },
+          "highUncertainty": true,
+          "period": 58
+        },
+        {
+          "cutoff": "2026-09-02",
+          "actual": 21631.97,
+          "frozen": 22812.9,
+          "simple": 27293.57,
+          "availability": 19234.47,
+          "gated": 22812.9,
+          "route": "FROZEN-V14",
+          "gate": "HOLD",
+          "band": {
+            "low": 11238.16,
+            "central": 19234.47,
+            "high": 36917.88,
+            "type": "Uncalibrated supply scenarios — NOT prediction intervals"
+          },
+          "highUncertainty": true,
+          "period": 58
+        },
+        {
+          "cutoff": "2026-10-02",
+          "actual": 22088.89,
+          "frozen": 22224.16,
+          "simple": 20300.23,
+          "availability": 18851.18,
+          "gated": 22224.16,
+          "route": "FROZEN-V14",
+          "gate": "HOLD",
+          "band": {
+            "low": 11472.18,
+            "central": 18851.18,
+            "high": 38074.11,
+            "type": "Uncalibrated supply scenarios — NOT prediction intervals"
+          },
+          "highUncertainty": true,
+          "period": null
+        },
+        {
+          "cutoff": "2026-11-01",
+          "actual": 33897.8,
+          "frozen": 22369.9,
+          "simple": 22894.51,
+          "availability": 22494.48,
+          "gated": 22369.9,
+          "route": "FROZEN-V14",
+          "gate": "HOLD",
+          "band": {
+            "low": 11602.31,
+            "central": 22494.48,
+            "high": 37168.99,
+            "type": "Uncalibrated supply scenarios — NOT prediction intervals"
+          },
+          "highUncertainty": true,
+          "period": null
+        },
+        {
+          "cutoff": "2026-12-01",
+          "actual": 20353.45,
+          "frozen": 29332.84,
+          "simple": 34563.6,
+          "availability": 25264.92,
+          "gated": 29332.84,
+          "route": "FROZEN-V14",
+          "gate": "HOLD",
+          "band": {
+            "low": 11709.57,
+            "central": 25264.92,
+            "high": 37364.08,
+            "type": "Uncalibrated supply scenarios — NOT prediction intervals"
+          },
+          "highUncertainty": true,
+          "period": null
+        },
+        {
+          "cutoff": "2026-12-31",
+          "actual": 31561.17,
+          "frozen": 24004.81,
+          "simple": 19092.96,
+          "availability": 25804.37,
+          "gated": 24004.81,
+          "route": "FROZEN-V14",
+          "gate": "HOLD",
+          "band": {
+            "low": 12738.08,
+            "central": 25804.37,
+            "high": 36882.73,
+            "type": "Uncalibrated supply scenarios — NOT prediction intervals"
+          },
+          "highUncertainty": true,
+          "period": null
+        }
+      ],
+      "metrics": {
+        "simpleWape": 36.38,
+        "frozenWape": 27.31,
+        "availabilityWape": 30.01,
+        "gatedWape": 28.89,
+        "routed": 2,
+        "scenarioEnvelopeHits": 10,
+        "highUncertainty": 10,
+        "folds": 10
+      },
+      "authority": "HOLD"
+    },
+    {
+      "group": "independent_generator",
+      "mode": "markov",
+      "seed": 3307,
+      "asOf": "2027-01-30",
+      "source": "SYNTHETIC",
+      "records": [
+        {
+          "cutoff": "2026-04-05",
+          "actual": 20404.05,
+          "frozen": 25555.77,
+          "simple": 22953.6,
+          "availability": 23436.12,
+          "gated": 23436.12,
+          "route": "AVAILABILITY-RESEARCH",
+          "gate": "QUALIFIED-SYNTHETIC",
+          "band": {
+            "low": 10525.29,
+            "central": 23436.12,
+            "high": 35330.41,
+            "type": "Uncalibrated supply scenarios — NOT prediction intervals"
+          },
+          "highUncertainty": true,
+          "period": null
+        },
+        {
+          "cutoff": "2026-05-05",
+          "actual": 29671.79,
+          "frozen": 22517.75,
+          "simple": 21375.41,
+          "availability": 26648.93,
+          "gated": 26648.93,
+          "route": "AVAILABILITY-RESEARCH",
+          "gate": "QUALIFIED-SYNTHETIC",
+          "band": {
+            "low": 11294.52,
+            "central": 26648.93,
+            "high": 35835.4,
+            "type": "Uncalibrated supply scenarios — NOT prediction intervals"
+          },
+          "highUncertainty": true,
+          "period": null
+        },
+        {
+          "cutoff": "2026-06-04",
+          "actual": 28529.73,
+          "frozen": 26767.01,
+          "simple": 29331.51,
+          "availability": 26595.48,
+          "gated": 26595.48,
+          "route": "AVAILABILITY-RESEARCH",
+          "gate": "QUALIFIED-SYNTHETIC",
+          "band": {
+            "low": 10649.34,
+            "central": 26595.48,
+            "high": 36064.04,
+            "type": "Uncalibrated supply scenarios — NOT prediction intervals"
+          },
+          "highUncertainty": true,
+          "period": null
+        },
+        {
+          "cutoff": "2026-07-04",
+          "actual": 33103.51,
+          "frozen": 27899.48,
+          "simple": 27772.17,
+          "availability": 28566.76,
+          "gated": 28566.76,
+          "route": "AVAILABILITY-RESEARCH",
+          "gate": "QUALIFIED-SYNTHETIC",
+          "band": {
+            "low": 10583.93,
+            "central": 28566.76,
+            "high": 36298.12,
+            "type": "Uncalibrated supply scenarios — NOT prediction intervals"
+          },
+          "highUncertainty": true,
+          "period": null
+        },
+        {
+          "cutoff": "2026-08-03",
+          "actual": 29577.6,
+          "frozen": 31437.15,
+          "simple": 32862.64,
+          "availability": 27408.69,
+          "gated": 27408.69,
+          "route": "AVAILABILITY-RESEARCH",
+          "gate": "QUALIFIED-SYNTHETIC",
+          "band": {
+            "low": 11326.33,
+            "central": 27408.69,
+            "high": 36769.86,
+            "type": "Uncalibrated supply scenarios — NOT prediction intervals"
+          },
+          "highUncertainty": true,
+          "period": 95
+        },
+        {
+          "cutoff": "2026-09-02",
+          "actual": 27507.68,
+          "frozen": 31007.82,
+          "simple": 31126.41,
+          "availability": 29532.25,
+          "gated": 29532.25,
+          "route": "AVAILABILITY-RESEARCH",
+          "gate": "QUALIFIED-SYNTHETIC",
+          "band": {
+            "low": 10720.37,
+            "central": 29532.25,
+            "high": 36291.98,
+            "type": "Uncalibrated supply scenarios — NOT prediction intervals"
+          },
+          "highUncertainty": true,
+          "period": null
+        },
+        {
+          "cutoff": "2026-10-02",
+          "actual": 23973.25,
+          "frozen": 29084.63,
+          "simple": 27086.63,
+          "availability": 25960.5,
+          "gated": 25960.5,
+          "route": "AVAILABILITY-RESEARCH",
+          "gate": "QUALIFIED-SYNTHETIC",
+          "band": {
+            "low": 12314.47,
+            "central": 25960.5,
+            "high": 36795.33,
+            "type": "Uncalibrated supply scenarios — NOT prediction intervals"
+          },
+          "highUncertainty": true,
+          "period": null
+        },
+        {
+          "cutoff": "2026-11-01",
+          "actual": 26638.32,
+          "frozen": 25979.69,
+          "simple": 24750.39,
+          "availability": 25510.44,
+          "gated": 25510.44,
+          "route": "AVAILABILITY-RESEARCH",
+          "gate": "QUALIFIED-SYNTHETIC",
+          "band": {
+            "low": 10986.85,
+            "central": 25510.44,
+            "high": 36107,
+            "type": "Uncalibrated supply scenarios — NOT prediction intervals"
+          },
+          "highUncertainty": true,
+          "period": null
+        },
+        {
+          "cutoff": "2026-12-01",
+          "actual": 28417.11,
+          "frozen": 26189.98,
+          "simple": 27105.62,
+          "availability": 25591.05,
+          "gated": 26189.98,
+          "route": "FROZEN-V14",
+          "gate": "HOLD",
+          "band": {
+            "low": 12036.94,
+            "central": 25591.05,
+            "high": 36056.22,
+            "type": "Uncalibrated supply scenarios — NOT prediction intervals"
+          },
+          "highUncertainty": true,
+          "period": null
+        },
+        {
+          "cutoff": "2026-12-31",
+          "actual": 28411.8,
+          "frozen": 27750.24,
+          "simple": 29833.44,
+          "availability": 25540.38,
+          "gated": 27750.24,
+          "route": "FROZEN-V14",
+          "gate": "HOLD",
+          "band": {
+            "low": 11434.94,
+            "central": 25540.38,
+            "high": 36524.47,
+            "type": "Uncalibrated supply scenarios — NOT prediction intervals"
+          },
+          "highUncertainty": true,
+          "period": null
+        }
+      ],
+      "metrics": {
+        "simpleWape": 11.45,
+        "frozenWape": 12.05,
+        "availabilityWape": 9.24,
+        "gatedWape": 8.23,
+        "routed": 8,
+        "scenarioEnvelopeHits": 10,
+        "highUncertainty": 10,
+        "folds": 10
+      },
+      "authority": "HOLD"
+    },
+    {
+      "group": "independent_generator",
+      "mode": "supplier",
+      "seed": 1301,
+      "asOf": "2027-01-30",
+      "source": "SYNTHETIC",
+      "records": [
+        {
+          "cutoff": "2026-04-05",
+          "actual": 28151.03,
+          "frozen": 23193.77,
+          "simple": 21449.6,
+          "availability": 19077.42,
+          "gated": 23193.77,
+          "route": "FROZEN-V14",
+          "gate": "HOLD",
+          "band": {
+            "low": 11091.19,
+            "central": 19077.42,
+            "high": 35725.82,
+            "type": "Uncalibrated supply scenarios — NOT prediction intervals"
+          },
+          "highUncertainty": true,
+          "period": null
+        },
+        {
+          "cutoff": "2026-05-05",
+          "actual": 24841.95,
+          "frozen": 27787.12,
+          "simple": 29560.97,
+          "availability": 27476.85,
+          "gated": 27787.12,
+          "route": "FROZEN-V14",
+          "gate": "HOLD",
+          "band": {
+            "low": 10201.6,
+            "central": 27476.85,
+            "high": 35533.59,
+            "type": "Uncalibrated supply scenarios — NOT prediction intervals"
+          },
+          "highUncertainty": true,
+          "period": null
+        },
+        {
+          "cutoff": "2026-06-04",
+          "actual": 24204.5,
+          "frozen": 25293.44,
+          "simple": 23945.74,
+          "availability": 25712.33,
+          "gated": 25293.44,
+          "route": "FROZEN-V14",
+          "gate": "HOLD",
+          "band": {
+            "low": 10318.12,
+            "central": 25712.33,
+            "high": 36099.51,
+            "type": "Uncalibrated supply scenarios — NOT prediction intervals"
+          },
+          "highUncertainty": true,
+          "period": null
+        },
+        {
+          "cutoff": "2026-07-04",
+          "actual": 28995,
+          "frozen": 24608.84,
+          "simple": 23021.59,
+          "availability": 19140.31,
+          "gated": 24608.84,
+          "route": "FROZEN-V14",
+          "gate": "HOLD",
+          "band": {
+            "low": 10436.98,
+            "central": 19140.31,
+            "high": 36618.17,
+            "type": "Uncalibrated supply scenarios — NOT prediction intervals"
+          },
+          "highUncertainty": true,
+          "period": null
+        },
+        {
+          "cutoff": "2026-08-03",
+          "actual": 34649.86,
+          "frozen": 26923.2,
+          "simple": 29933.66,
+          "availability": 30216.68,
+          "gated": 26923.2,
+          "route": "FROZEN-V14",
+          "gate": "HOLD",
+          "band": {
+            "low": 11110.2,
+            "central": 30216.68,
+            "high": 36301.23,
+            "type": "Uncalibrated supply scenarios — NOT prediction intervals"
+          },
+          "highUncertainty": true,
+          "period": null
+        },
+        {
+          "cutoff": "2026-09-02",
+          "actual": 31152.75,
+          "frozen": 31997.77,
+          "simple": 34756.25,
+          "availability": 29611.01,
+          "gated": 31997.77,
+          "route": "FROZEN-V14",
+          "gate": "HOLD",
+          "band": {
+            "low": 10963.31,
+            "central": 29611.01,
+            "high": 35657.7,
+            "type": "Uncalibrated supply scenarios — NOT prediction intervals"
+          },
+          "highUncertainty": true,
+          "period": null
+        },
+        {
+          "cutoff": "2026-10-02",
+          "actual": 23186.13,
+          "frozen": 32245.92,
+          "simple": 30652.28,
+          "availability": 24069.92,
+          "gated": 32245.92,
+          "route": "FROZEN-V14",
+          "gate": "HOLD",
+          "band": {
+            "low": 11291.12,
+            "central": 24069.92,
+            "high": 35853.19,
+            "type": "Uncalibrated supply scenarios — NOT prediction intervals"
+          },
+          "highUncertainty": true,
+          "period": null
+        },
+        {
+          "cutoff": "2026-11-01",
+          "actual": 19944.37,
+          "frozen": 26409.69,
+          "simple": 23777.83,
+          "availability": 21890.19,
+          "gated": 26409.69,
+          "route": "FROZEN-V14",
+          "gate": "HOLD",
+          "band": {
+            "low": 10788.31,
+            "central": 21890.19,
+            "high": 35452.55,
+            "type": "Uncalibrated supply scenarios — NOT prediction intervals"
+          },
+          "highUncertainty": true,
+          "period": null
+        },
+        {
+          "cutoff": "2026-12-01",
+          "actual": 30740.61,
+          "frozen": 22392.75,
+          "simple": 20899.84,
+          "availability": 28246.49,
+          "gated": 28246.49,
+          "route": "AVAILABILITY-RESEARCH",
+          "gate": "QUALIFIED-SYNTHETIC",
+          "band": {
+            "low": 10786.83,
+            "central": 28246.49,
+            "high": 35467.36,
+            "type": "Uncalibrated supply scenarios — NOT prediction intervals"
+          },
+          "highUncertainty": true,
+          "period": 91
+        },
+        {
+          "cutoff": "2026-12-31",
+          "actual": 30132.2,
+          "frozen": 28074.81,
+          "simple": 32116.79,
+          "availability": 31229.36,
+          "gated": 31229.36,
+          "route": "AVAILABILITY-RESEARCH",
+          "gate": "QUALIFIED-SYNTHETIC",
+          "band": {
+            "low": 10611.28,
+            "central": 31229.36,
+            "high": 36634.1,
+            "type": "Uncalibrated supply scenarios — NOT prediction intervals"
+          },
+          "highUncertainty": true,
+          "period": null
+        }
+      ],
+      "metrics": {
+        "simpleWape": 17.79,
+        "frozenWape": 17.35,
+        "availabilityWape": 12.85,
+        "gatedWape": 14.88,
+        "routed": 2,
+        "scenarioEnvelopeHits": 10,
+        "highUncertainty": 10,
+        "folds": 10
+      },
+      "authority": "HOLD"
+    },
+    {
+      "group": "independent_generator",
+      "mode": "supplier",
+      "seed": 2309,
+      "asOf": "2027-01-30",
+      "source": "SYNTHETIC",
+      "records": [
+        {
+          "cutoff": "2026-04-05",
+          "actual": 20072.69,
+          "frozen": 21093.84,
+          "simple": 24525.55,
+          "availability": 22916.38,
+          "gated": 22916.38,
+          "route": "AVAILABILITY-RESEARCH",
+          "gate": "QUALIFIED-SYNTHETIC",
+          "band": {
+            "low": 11123.57,
+            "central": 22916.38,
+            "high": 37859.72,
+            "type": "Uncalibrated supply scenarios — NOT prediction intervals"
+          },
+          "highUncertainty": true,
+          "period": 36
+        },
+        {
+          "cutoff": "2026-05-05",
+          "actual": 18547.99,
+          "frozen": 20907.29,
+          "simple": 20747.15,
+          "availability": 16447.72,
+          "gated": 20907.29,
+          "route": "FROZEN-V14",
+          "gate": "HOLD",
+          "band": {
+            "low": 10919.32,
+            "central": 16447.72,
+            "high": 36557.3,
+            "type": "Uncalibrated supply scenarios — NOT prediction intervals"
+          },
+          "highUncertainty": true,
+          "period": 39
+        },
+        {
+          "cutoff": "2026-06-04",
+          "actual": 12691.93,
+          "frozen": 19577.7,
+          "simple": 16875.94,
+          "availability": 16632.27,
+          "gated": 19577.7,
+          "route": "FROZEN-V14",
+          "gate": "HOLD",
+          "band": {
+            "low": 11200.2,
+            "central": 16632.27,
+            "high": 36725.89,
+            "type": "Uncalibrated supply scenarios — NOT prediction intervals"
+          },
+          "highUncertainty": true,
+          "period": null
+        },
+        {
+          "cutoff": "2026-07-04",
+          "actual": 16506.15,
+          "frozen": 15608.82,
+          "simple": 12425.93,
+          "availability": 16421.24,
+          "gated": 16421.24,
+          "route": "AVAILABILITY-RESEARCH",
+          "gate": "QUALIFIED-SYNTHETIC",
+          "band": {
+            "low": 11130.37,
+            "central": 16421.24,
+            "high": 36394.44,
+            "type": "Uncalibrated supply scenarios — NOT prediction intervals"
+          },
+          "highUncertainty": true,
+          "period": null
+        },
+        {
+          "cutoff": "2026-08-03",
+          "actual": 12758.73,
+          "frozen": 16994.22,
+          "simple": 16544.23,
+          "availability": 23007.26,
+          "gated": 23007.26,
+          "route": "AVAILABILITY-RESEARCH",
+          "gate": "QUALIFIED-SYNTHETIC",
+          "band": {
+            "low": 11174.78,
+            "central": 23007.26,
+            "high": 36599.77,
+            "type": "Uncalibrated supply scenarios — NOT prediction intervals"
+          },
+          "highUncertainty": true,
+          "period": null
+        },
+        {
+          "cutoff": "2026-09-02",
+          "actual": 34067.82,
+          "frozen": 15687.51,
+          "simple": 12112.26,
+          "availability": null,
+          "gated": null,
+          "route": "NO_FORECAST",
+          "gate": "HOLD",
+          "band": null,
+          "highUncertainty": true,
+          "period": null
+        },
+        {
+          "cutoff": "2026-10-02",
+          "actual": 37047.36,
+          "frozen": 27152.56,
+          "simple": 35478.54,
+          "availability": 24879,
+          "gated": 27152.56,
+          "route": "FROZEN-V14",
+          "gate": "HOLD",
+          "band": {
+            "low": 11781.1,
+            "central": 24879,
+            "high": 36559.82,
+            "type": "Uncalibrated supply scenarios — NOT prediction intervals"
+          },
+          "highUncertainty": true,
+          "period": null
+        },
+        {
+          "cutoff": "2026-11-01",
+          "actual": 17333.97,
+          "frozen": 33383.27,
+          "simple": 36577.57,
+          "availability": 26451.06,
+          "gated": 33383.27,
+          "route": "FROZEN-V14",
+          "gate": "HOLD",
+          "band": {
+            "low": 11864.46,
+            "central": 26451.06,
+            "high": 36240.89,
+            "type": "Uncalibrated supply scenarios — NOT prediction intervals"
+          },
+          "highUncertainty": true,
+          "period": null
+        },
+        {
+          "cutoff": "2026-12-01",
+          "actual": 19987.77,
+          "frozen": 24217.79,
+          "simple": 16279.98,
+          "availability": 19805.28,
+          "gated": 24217.79,
+          "route": "FROZEN-V14",
+          "gate": "HOLD",
+          "band": {
+            "low": 12457.68,
+            "central": 19805.28,
+            "high": 36560.19,
+            "type": "Uncalibrated supply scenarios — NOT prediction intervals"
+          },
+          "highUncertainty": true,
+          "period": null
+        },
+        {
+          "cutoff": "2026-12-31",
+          "actual": 20436.68,
+          "frozen": 21508.59,
+          "simple": 20701.34,
+          "availability": 20042.88,
+          "gated": 21508.59,
+          "route": "FROZEN-V14",
+          "gate": "HOLD",
+          "band": {
+            "low": 11523.86,
+            "central": 20042.88,
+            "high": 37016.5,
+            "type": "Uncalibrated supply scenarios — NOT prediction intervals"
+          },
+          "highUncertainty": true,
+          "period": null
+        }
+      ],
+      "metrics": {
+        "simpleWape": 31.24,
+        "frozenWape": 31.05,
+        "availabilityWape": 28.39,
+        "gatedWape": 34.4,
+        "routed": 3,
+        "scenarioEnvelopeHits": 8,
+        "highUncertainty": 10,
+        "folds": 10
+      },
+      "authority": "HOLD"
+    },
+    {
+      "group": "independent_generator",
+      "mode": "supplier",
+      "seed": 3307,
+      "asOf": "2027-01-30",
+      "source": "SYNTHETIC",
+      "records": [
+        {
+          "cutoff": "2026-04-05",
+          "actual": 26250.45,
+          "frozen": 20289.35,
+          "simple": 17852.73,
+          "availability": 26746.05,
+          "gated": 20289.35,
+          "route": "FROZEN-V14",
+          "gate": "HOLD",
+          "band": {
+            "low": 11043.59,
+            "central": 26746.05,
+            "high": 35503.55,
+            "type": "Uncalibrated supply scenarios — NOT prediction intervals"
+          },
+          "highUncertainty": true,
+          "period": null
+        },
+        {
+          "cutoff": "2026-05-05",
+          "actual": 17920.89,
+          "frozen": 23825.3,
+          "simple": 25564.96,
+          "availability": 18970.91,
+          "gated": 23825.3,
+          "route": "FROZEN-V14",
+          "gate": "HOLD",
+          "band": {
+            "low": 11378.22,
+            "central": 18970.91,
+            "high": 35054.68,
+            "type": "Uncalibrated supply scenarios — NOT prediction intervals"
+          },
+          "highUncertainty": true,
+          "period": null
+        },
+        {
+          "cutoff": "2026-06-04",
+          "actual": 21904.63,
+          "frozen": 19698.53,
+          "simple": 18300.27,
+          "availability": 24304.1,
+          "gated": 24304.1,
+          "route": "AVAILABILITY-RESEARCH",
+          "gate": "QUALIFIED-SYNTHETIC",
+          "band": {
+            "low": 11697.82,
+            "central": 24304.1,
+            "high": 35334.43,
+            "type": "Uncalibrated supply scenarios — NOT prediction intervals"
+          },
+          "highUncertainty": true,
+          "period": null
+        },
+        {
+          "cutoff": "2026-07-04",
+          "actual": 23028.01,
+          "frozen": 20755.64,
+          "simple": 20942.7,
+          "availability": 18751.84,
+          "gated": 18751.84,
+          "route": "AVAILABILITY-RESEARCH",
+          "gate": "QUALIFIED-SYNTHETIC",
+          "band": {
+            "low": 11298.58,
+            "central": 18751.84,
+            "high": 35117.61,
+            "type": "Uncalibrated supply scenarios — NOT prediction intervals"
+          },
+          "highUncertainty": true,
+          "period": null
+        },
+        {
+          "cutoff": "2026-08-03",
+          "actual": 37160.81,
+          "frozen": 22390.42,
+          "simple": 23799.81,
+          "availability": 16344.77,
+          "gated": 22390.42,
+          "route": "FROZEN-V14",
+          "gate": "HOLD",
+          "band": {
+            "low": 11731.1,
+            "central": 16344.77,
+            "high": 35189.22,
+            "type": "Uncalibrated supply scenarios — NOT prediction intervals"
+          },
+          "highUncertainty": true,
+          "period": 46
+        },
+        {
+          "cutoff": "2026-09-02",
+          "actual": 14585.24,
+          "frozen": 31575.09,
+          "simple": 37300.62,
+          "availability": 28406.19,
+          "gated": 31575.09,
+          "route": "FROZEN-V14",
+          "gate": "HOLD",
+          "band": {
+            "low": 11831.47,
+            "central": 28406.19,
+            "high": 36371.61,
+            "type": "Uncalibrated supply scenarios — NOT prediction intervals"
+          },
+          "highUncertainty": true,
+          "period": null
+        },
+        {
+          "cutoff": "2026-10-02",
+          "actual": 24200.81,
+          "frozen": 21309.85,
+          "simple": 13006.35,
+          "availability": 18335.2,
+          "gated": 21309.85,
+          "route": "FROZEN-V14",
+          "gate": "HOLD",
+          "band": {
+            "low": 11702.37,
+            "central": 18335.2,
+            "high": 36897.67,
+            "type": "Uncalibrated supply scenarios — NOT prediction intervals"
+          },
+          "highUncertainty": true,
+          "period": null
+        },
+        {
+          "cutoff": "2026-11-01",
+          "actual": 24811.47,
+          "frozen": 23329.23,
+          "simple": 25047.74,
+          "availability": 19614.99,
+          "gated": 23329.23,
+          "route": "FROZEN-V14",
+          "gate": "HOLD",
+          "band": {
+            "low": 11933.53,
+            "central": 19614.99,
+            "high": 36216.79,
+            "type": "Uncalibrated supply scenarios — NOT prediction intervals"
+          },
+          "highUncertainty": true,
+          "period": null
+        },
+        {
+          "cutoff": "2026-12-01",
+          "actual": 17319.9,
+          "frozen": 23627.71,
+          "simple": 25783.24,
+          "availability": 27818.9,
+          "gated": 23627.71,
+          "route": "FROZEN-V14",
+          "gate": "HOLD",
+          "band": {
+            "low": 11703.67,
+            "central": 27818.9,
+            "high": 37141.94,
+            "type": "Uncalibrated supply scenarios — NOT prediction intervals"
+          },
+          "highUncertainty": true,
+          "period": null
+        },
+        {
+          "cutoff": "2026-12-31",
+          "actual": 23397.52,
+          "frozen": 19942.22,
+          "simple": 16845.12,
+          "availability": 27592.61,
+          "gated": 19942.22,
+          "route": "FROZEN-V14",
+          "gate": "HOLD",
+          "band": {
+            "low": 11029.77,
+            "central": 27592.61,
+            "high": 37024.74,
+            "type": "Uncalibrated supply scenarios — NOT prediction intervals"
+          },
+          "highUncertainty": true,
+          "period": null
+        }
+      ],
+      "metrics": {
+        "simpleWape": 36.54,
+        "frozenWape": 26.99,
+        "availabilityWape": 29.76,
+        "gatedWape": 27.95,
+        "routed": 2,
+        "scenarioEnvelopeHits": 9,
+        "highUncertainty": 10,
+        "folds": 10
+      },
+      "authority": "HOLD"
+    },
+    {
+      "group": "independent_generator",
+      "mode": "seasonal",
+      "seed": 1301,
+      "asOf": "2027-01-30",
+      "source": "SYNTHETIC",
+      "records": [
+        {
+          "cutoff": "2026-04-05",
+          "actual": 28867.13,
+          "frozen": 32650.87,
+          "simple": 34189.98,
+          "availability": 31215.1,
+          "gated": 32650.87,
+          "route": "FROZEN-V14",
+          "gate": "HOLD",
+          "band": {
+            "low": 13678.07,
+            "central": 31215.1,
+            "high": 35500.31,
+            "type": "Uncalibrated supply scenarios — NOT prediction intervals"
+          },
+          "highUncertainty": true,
+          "period": null
+        },
+        {
+          "cutoff": "2026-05-05",
+          "actual": 30795.35,
+          "frozen": 30914.76,
+          "simple": 28472.36,
+          "availability": 23657.44,
+          "gated": 30914.76,
+          "route": "FROZEN-V14",
+          "gate": "HOLD",
+          "band": {
+            "low": 9844.51,
+            "central": 23657.44,
+            "high": 35059.03,
+            "type": "Uncalibrated supply scenarios — NOT prediction intervals"
+          },
+          "highUncertainty": true,
+          "period": null
+        },
+        {
+          "cutoff": "2026-06-04",
+          "actual": 29313.06,
+          "frozen": 30813.13,
+          "simple": 31980.55,
+          "availability": 23974.94,
+          "gated": 30813.13,
+          "route": "FROZEN-V14",
+          "gate": "HOLD",
+          "band": {
+            "low": 10808.72,
+            "central": 23974.94,
+            "high": 35446.37,
+            "type": "Uncalibrated supply scenarios — NOT prediction intervals"
+          },
+          "highUncertainty": true,
+          "period": null
+        },
+        {
+          "cutoff": "2026-07-04",
+          "actual": 35771.15,
+          "frozen": 30104.08,
+          "simple": 30945.41,
+          "availability": 30838.66,
+          "gated": 30104.08,
+          "route": "FROZEN-V14",
+          "gate": "HOLD",
+          "band": {
+            "low": 10735.2,
+            "central": 30838.66,
+            "high": 35847,
+            "type": "Uncalibrated supply scenarios — NOT prediction intervals"
+          },
+          "highUncertainty": true,
+          "period": null
+        },
+        {
+          "cutoff": "2026-08-03",
+          "actual": 23789.28,
+          "frozen": 33939.13,
+          "simple": 35866.35,
+          "availability": 33820.02,
+          "gated": 33939.13,
+          "route": "FROZEN-V14",
+          "gate": "HOLD",
+          "band": {
+            "low": 10782.14,
+            "central": 33820.02,
+            "high": 36269.06,
+            "type": "Uncalibrated supply scenarios — NOT prediction intervals"
+          },
+          "highUncertainty": true,
+          "period": null
+        },
+        {
+          "cutoff": "2026-09-02",
+          "actual": 30103.14,
+          "frozen": 27909.37,
+          "simple": 23204.7,
+          "availability": 31877.62,
+          "gated": 27909.37,
+          "route": "FROZEN-V14",
+          "gate": "HOLD",
+          "band": {
+            "low": 10283.48,
+            "central": 31877.62,
+            "high": 36257.17,
+            "type": "Uncalibrated supply scenarios — NOT prediction intervals"
+          },
+          "highUncertainty": true,
+          "period": null
+        },
+        {
+          "cutoff": "2026-10-02",
+          "actual": 17957.93,
+          "frozen": 28850.18,
+          "simple": 29951.51,
+          "availability": 31340.79,
+          "gated": 28850.18,
+          "route": "FROZEN-V14",
+          "gate": "HOLD",
+          "band": {
+            "low": 9841.29,
+            "central": 31340.79,
+            "high": 37028.33,
+            "type": "Uncalibrated supply scenarios — NOT prediction intervals"
+          },
+          "highUncertainty": true,
+          "period": null
+        },
+        {
+          "cutoff": "2026-11-01",
+          "actual": 26291.8,
+          "frozen": 20976.62,
+          "simple": 16305.3,
+          "availability": 24355.06,
+          "gated": 20976.62,
+          "route": "FROZEN-V14",
+          "gate": "HOLD",
+          "band": {
+            "low": 10609.16,
+            "central": 24355.06,
+            "high": 35704.46,
+            "type": "Uncalibrated supply scenarios — NOT prediction intervals"
+          },
+          "highUncertainty": true,
+          "period": null
+        },
+        {
+          "cutoff": "2026-12-01",
+          "actual": 36722.31,
+          "frozen": 25210.07,
+          "simple": 27688.24,
+          "availability": 29996.01,
+          "gated": 25210.07,
+          "route": "FROZEN-V14",
+          "gate": "HOLD",
+          "band": {
+            "low": 10689.07,
+            "central": 29996.01,
+            "high": 37360.12,
+            "type": "Uncalibrated supply scenarios — NOT prediction intervals"
+          },
+          "highUncertainty": true,
+          "period": null
+        },
+        {
+          "cutoff": "2026-12-31",
+          "actual": 30774.63,
+          "frozen": 31160.77,
+          "simple": 36065.59,
+          "availability": 32284.01,
+          "gated": 32284.01,
+          "route": "AVAILABILITY-RESEARCH",
+          "gate": "QUALIFIED-SYNTHETIC",
+          "band": {
+            "low": 13782.14,
+            "central": 32284.01,
+            "high": 41349.05,
+            "type": "Uncalibrated supply scenarios — NOT prediction intervals"
+          },
+          "highUncertainty": true,
+          "period": null
+        }
+      ],
+      "metrics": {
+        "simpleWape": 24.25,
+        "frozenWape": 17.74,
+        "availabilityWape": 18.98,
+        "gatedWape": 18.13,
+        "routed": 1,
+        "scenarioEnvelopeHits": 10,
+        "highUncertainty": 10,
+        "folds": 10
+      },
+      "authority": "HOLD"
+    },
+    {
+      "group": "independent_generator",
+      "mode": "seasonal",
+      "seed": 2309,
+      "asOf": "2027-01-30",
+      "source": "SYNTHETIC",
+      "records": [
+        {
+          "cutoff": "2026-04-05",
+          "actual": 26270.9,
+          "frozen": 28229.31,
+          "simple": 27326.34,
+          "availability": 25608.19,
+          "gated": 25608.19,
+          "route": "AVAILABILITY-RESEARCH",
+          "gate": "QUALIFIED-SYNTHETIC",
+          "band": {
+            "low": 13668.39,
+            "central": 25608.19,
+            "high": 36279.28,
+            "type": "Uncalibrated supply scenarios — NOT prediction intervals"
+          },
+          "highUncertainty": true,
+          "period": null
+        },
+        {
+          "cutoff": "2026-05-05",
+          "actual": 31881.93,
+          "frozen": 26865.04,
+          "simple": 26356.44,
+          "availability": 29431.7,
+          "gated": 29431.7,
+          "route": "AVAILABILITY-RESEARCH",
+          "gate": "QUALIFIED-SYNTHETIC",
+          "band": {
+            "low": 11834.13,
+            "central": 29431.7,
+            "high": 35786.36,
+            "type": "Uncalibrated supply scenarios — NOT prediction intervals"
+          },
+          "highUncertainty": true,
+          "period": null
+        },
+        {
+          "cutoff": "2026-06-04",
+          "actual": 23860.46,
+          "frozen": 30030.65,
+          "simple": 31455.87,
+          "availability": 30032.3,
+          "gated": 30032.3,
+          "route": "AVAILABILITY-RESEARCH",
+          "gate": "QUALIFIED-SYNTHETIC",
+          "band": {
+            "low": 11935.61,
+            "central": 30032.3,
+            "high": 36255.51,
+            "type": "Uncalibrated supply scenarios — NOT prediction intervals"
+          },
+          "highUncertainty": true,
+          "period": null
+        },
+        {
+          "cutoff": "2026-07-04",
+          "actual": 35937.04,
+          "frozen": 25862.47,
+          "simple": 23295.22,
+          "availability": 24363.71,
+          "gated": 24363.71,
+          "route": "AVAILABILITY-RESEARCH",
+          "gate": "QUALIFIED-SYNTHETIC",
+          "band": {
+            "low": 11531.27,
+            "central": 24363.71,
+            "high": 36096.95,
+            "type": "Uncalibrated supply scenarios — NOT prediction intervals"
+          },
+          "highUncertainty": true,
+          "period": 109
+        },
+        {
+          "cutoff": "2026-08-03",
+          "actual": 36227.07,
+          "frozen": 32173.94,
+          "simple": 36120.92,
+          "availability": 29754.39,
+          "gated": 29754.39,
+          "route": "AVAILABILITY-RESEARCH",
+          "gate": "QUALIFIED-SYNTHETIC",
+          "band": {
+            "low": 10497.49,
+            "central": 29754.39,
+            "high": 36060.3,
+            "type": "Uncalibrated supply scenarios — NOT prediction intervals"
+          },
+          "highUncertainty": true,
+          "period": null
+        },
+        {
+          "cutoff": "2026-09-02",
+          "actual": 23607.71,
+          "frozen": 34463,
+          "simple": 35927.7,
+          "availability": 31760.97,
+          "gated": 34463,
+          "route": "FROZEN-V14",
+          "gate": "HOLD",
+          "band": {
+            "low": 11147.86,
+            "central": 31760.97,
+            "high": 36346.75,
+            "type": "Uncalibrated supply scenarios — NOT prediction intervals"
+          },
+          "highUncertainty": true,
+          "period": null
+        },
+        {
+          "cutoff": "2026-10-02",
+          "actual": 18411.11,
+          "frozen": 28203.32,
+          "simple": 22643.41,
+          "availability": 31673.42,
+          "gated": 28203.32,
+          "route": "FROZEN-V14",
+          "gate": "HOLD",
+          "band": {
+            "low": 12723.72,
+            "central": 31673.42,
+            "high": 36738.55,
+            "type": "Uncalibrated supply scenarios — NOT prediction intervals"
+          },
+          "highUncertainty": true,
+          "period": null
+        },
+        {
+          "cutoff": "2026-11-01",
+          "actual": 30326.94,
+          "frozen": 20691.84,
+          "simple": 16520.57,
+          "availability": 29566.04,
+          "gated": 20691.84,
+          "route": "FROZEN-V14",
+          "gate": "HOLD",
+          "band": {
+            "low": 12248.53,
+            "central": 29566.04,
+            "high": 36120.81,
+            "type": "Uncalibrated supply scenarios — NOT prediction intervals"
+          },
+          "highUncertainty": true,
+          "period": null
+        },
+        {
+          "cutoff": "2026-12-01",
+          "actual": 42094.95,
+          "frozen": 26174.5,
+          "simple": 30127.12,
+          "availability": 29885.23,
+          "gated": 26174.5,
+          "route": "FROZEN-V14",
+          "gate": "HOLD",
+          "band": {
+            "low": 12566.16,
+            "central": 29885.23,
+            "high": 36805.51,
+            "type": "Uncalibrated supply scenarios — NOT prediction intervals"
+          },
+          "highUncertainty": true,
+          "period": null
+        },
+        {
+          "cutoff": "2026-12-31",
+          "actual": 20906.62,
+          "frozen": 35502.52,
+          "simple": 41376.56,
+          "availability": 28800.82,
+          "gated": 28800.82,
+          "route": "AVAILABILITY-RESEARCH",
+          "gate": "QUALIFIED-SYNTHETIC",
+          "band": {
+            "low": 12638.23,
+            "central": 28800.82,
+            "high": 41876.24,
+            "type": "Uncalibrated supply scenarios — NOT prediction intervals"
+          },
+          "highUncertainty": true,
+          "period": null
+        }
+      ],
+      "metrics": {
+        "simpleWape": 30.99,
+        "frozenWape": 30.42,
+        "availabilityWape": 24.04,
+        "gatedWape": 28.12,
+        "routed": 6,
+        "scenarioEnvelopeHits": 8,
+        "highUncertainty": 10,
+        "folds": 10
+      },
+      "authority": "HOLD"
+    },
+    {
+      "group": "independent_generator",
+      "mode": "seasonal",
+      "seed": 3307,
+      "asOf": "2027-01-30",
+      "source": "SYNTHETIC",
+      "records": [
+        {
+          "cutoff": "2026-04-05",
+          "actual": 35074.43,
+          "frozen": 22489.76,
+          "simple": 22061.98,
+          "availability": 27258.59,
+          "gated": 22489.76,
+          "route": "FROZEN-V14",
+          "gate": "HOLD",
+          "band": {
+            "low": 11385.96,
+            "central": 27258.59,
+            "high": 36130.82,
+            "type": "Uncalibrated supply scenarios — NOT prediction intervals"
+          },
+          "highUncertainty": true,
+          "period": null
+        },
+        {
+          "cutoff": "2026-05-05",
+          "actual": 34768.83,
+          "frozen": 30538.94,
+          "simple": 35554.81,
+          "availability": 26734.07,
+          "gated": 30538.94,
+          "route": "FROZEN-V14",
+          "gate": "HOLD",
+          "band": {
+            "low": 11078.23,
+            "central": 26734.07,
+            "high": 35484.31,
+            "type": "Uncalibrated supply scenarios — NOT prediction intervals"
+          },
+          "highUncertainty": true,
+          "period": null
+        },
+        {
+          "cutoff": "2026-06-04",
+          "actual": 27430.88,
+          "frozen": 33276.7,
+          "simple": 35124.61,
+          "availability": 22947.82,
+          "gated": 33276.7,
+          "route": "FROZEN-V14",
+          "gate": "HOLD",
+          "band": {
+            "low": 11159.6,
+            "central": 22947.82,
+            "high": 35902.46,
+            "type": "Uncalibrated supply scenarios — NOT prediction intervals"
+          },
+          "highUncertainty": true,
+          "period": null
+        },
+        {
+          "cutoff": "2026-07-04",
+          "actual": 27440.35,
+          "frozen": 30627.87,
+          "simple": 28800.39,
+          "availability": 29096.89,
+          "gated": 30627.87,
+          "route": "FROZEN-V14",
+          "gate": "HOLD",
+          "band": {
+            "low": 10801.84,
+            "central": 29096.89,
+            "high": 36105.23,
+            "type": "Uncalibrated supply scenarios — NOT prediction intervals"
+          },
+          "highUncertainty": true,
+          "period": null
+        },
+        {
+          "cutoff": "2026-08-03",
+          "actual": 35625.1,
+          "frozen": 28409.57,
+          "simple": 26911.15,
+          "availability": 29325.53,
+          "gated": 28409.57,
+          "route": "FROZEN-V14",
+          "gate": "HOLD",
+          "band": {
+            "low": 10458.87,
+            "central": 29325.53,
+            "high": 36096.31,
+            "type": "Uncalibrated supply scenarios — NOT prediction intervals"
+          },
+          "highUncertainty": true,
+          "period": null
+        },
+        {
+          "cutoff": "2026-09-02",
+          "actual": 19326.69,
+          "frozen": 33016.03,
+          "simple": 35466.42,
+          "availability": 31526.7,
+          "gated": 31526.7,
+          "route": "AVAILABILITY-RESEARCH",
+          "gate": "QUALIFIED-SYNTHETIC",
+          "band": {
+            "low": 10791.29,
+            "central": 31526.7,
+            "high": 36002.05,
+            "type": "Uncalibrated supply scenarios — NOT prediction intervals"
+          },
+          "highUncertainty": true,
+          "period": null
+        },
+        {
+          "cutoff": "2026-10-02",
+          "actual": 25293.01,
+          "frozen": 23855.72,
+          "simple": 18238.05,
+          "availability": 25095.89,
+          "gated": 23855.72,
+          "route": "FROZEN-V14",
+          "gate": "HOLD",
+          "band": {
+            "low": 11341.96,
+            "central": 25095.89,
+            "high": 36173,
+            "type": "Uncalibrated supply scenarios — NOT prediction intervals"
+          },
+          "highUncertainty": true,
+          "period": null
+        },
+        {
+          "cutoff": "2026-11-01",
+          "actual": 21292.64,
+          "frozen": 24750.07,
+          "simple": 26123.39,
+          "availability": 24306.69,
+          "gated": 24306.69,
+          "route": "AVAILABILITY-RESEARCH",
+          "gate": "QUALIFIED-SYNTHETIC",
+          "band": {
+            "low": 10527.72,
+            "central": 24306.69,
+            "high": 35607.73,
+            "type": "Uncalibrated supply scenarios — NOT prediction intervals"
+          },
+          "highUncertainty": true,
+          "period": null
+        },
+        {
+          "cutoff": "2026-12-01",
+          "actual": 38402.44,
+          "frozen": 21694.84,
+          "simple": 21378.11,
+          "availability": 23894.11,
+          "gated": 23894.11,
+          "route": "AVAILABILITY-RESEARCH",
+          "gate": "QUALIFIED-SYNTHETIC",
+          "band": {
+            "low": 11576.7,
+            "central": 23894.11,
+            "high": 35639.45,
+            "type": "Uncalibrated supply scenarios — NOT prediction intervals"
+          },
+          "highUncertainty": true,
+          "period": null
+        },
+        {
+          "cutoff": "2026-12-31",
+          "actual": 23651.37,
+          "frozen": 32106.38,
+          "simple": 40010.07,
+          "availability": 26941.85,
+          "gated": 26941.85,
+          "route": "AVAILABILITY-RESEARCH",
+          "gate": "QUALIFIED-SYNTHETIC",
+          "band": {
+            "low": 12314.8,
+            "central": 26941.85,
+            "high": 42152.43,
+            "type": "Uncalibrated supply scenarios — NOT prediction intervals"
+          },
+          "highUncertainty": true,
+          "period": null
+        }
+      ],
+      "metrics": {
+        "simpleWape": 32.25,
+        "frozenWape": 26.64,
+        "availabilityWape": 21.33,
+        "gatedWape": 23.42,
+        "routed": 4,
+        "scenarioEnvelopeHits": 9,
+        "highUncertainty": 10,
+        "folds": 10
+      },
+      "authority": "HOLD"
+    },
+    {
+      "group": "independent_generator",
+      "mode": "intermittent",
+      "seed": 1301,
+      "asOf": "2027-01-30",
+      "source": "SYNTHETIC",
+      "records": [
+        {
+          "cutoff": "2026-04-05",
+          "actual": 32258.7,
+          "frozen": 31616.38,
+          "simple": 32125.37,
+          "availability": 31030.6,
+          "gated": 31030.6,
+          "route": "AVAILABILITY-RESEARCH",
+          "gate": "QUALIFIED-SYNTHETIC",
+          "band": {
+            "low": 10710.5,
+            "central": 31030.6,
+            "high": 35294.08,
+            "type": "Uncalibrated supply scenarios — NOT prediction intervals"
+          },
+          "highUncertainty": true,
+          "period": null
+        },
+        {
+          "cutoff": "2026-05-05",
+          "actual": 27315.4,
+          "frozen": 31978.03,
+          "simple": 31883.21,
+          "availability": 30670.9,
+          "gated": 31978.03,
+          "route": "FROZEN-V14",
+          "gate": "HOLD",
+          "band": {
+            "low": 9786.9,
+            "central": 30670.9,
+            "high": 36062.89,
+            "type": "Uncalibrated supply scenarios — NOT prediction intervals"
+          },
+          "highUncertainty": true,
+          "period": null
+        },
+        {
+          "cutoff": "2026-06-04",
+          "actual": 30049.47,
+          "frozen": 28752.66,
+          "simple": 26413.91,
+          "availability": 29729.63,
+          "gated": 29729.63,
+          "route": "AVAILABILITY-RESEARCH",
+          "gate": "QUALIFIED-SYNTHETIC",
+          "band": {
+            "low": 10997.16,
+            "central": 29729.63,
+            "high": 36202.89,
+            "type": "Uncalibrated supply scenarios — NOT prediction intervals"
+          },
+          "highUncertainty": true,
+          "period": null
+        },
+        {
+          "cutoff": "2026-07-04",
+          "actual": 30476.65,
+          "frozen": 29310.3,
+          "simple": 29645.8,
+          "availability": 31189.03,
+          "gated": 31189.03,
+          "route": "AVAILABILITY-RESEARCH",
+          "gate": "QUALIFIED-SYNTHETIC",
+          "band": {
+            "low": 11594.76,
+            "central": 31189.03,
+            "high": 36343.42,
+            "type": "Uncalibrated supply scenarios — NOT prediction intervals"
+          },
+          "highUncertainty": true,
+          "period": null
+        },
+        {
+          "cutoff": "2026-08-03",
+          "actual": 31345.73,
+          "frozen": 29845.47,
+          "simple": 30259.19,
+          "availability": 30815.12,
+          "gated": 30815.12,
+          "route": "AVAILABILITY-RESEARCH",
+          "gate": "QUALIFIED-SYNTHETIC",
+          "band": {
+            "low": 11284.89,
+            "central": 30815.12,
+            "high": 35759.66,
+            "type": "Uncalibrated supply scenarios — NOT prediction intervals"
+          },
+          "highUncertainty": true,
+          "period": null
+        },
+        {
+          "cutoff": "2026-09-02",
+          "actual": 27442.38,
+          "frozen": 32063.49,
+          "simple": 33171.73,
+          "availability": 30455.84,
+          "gated": 30455.84,
+          "route": "AVAILABILITY-RESEARCH",
+          "gate": "QUALIFIED-SYNTHETIC",
+          "band": {
+            "low": 10885,
+            "central": 30455.84,
+            "high": 35568.28,
+            "type": "Uncalibrated supply scenarios — NOT prediction intervals"
+          },
+          "highUncertainty": true,
+          "period": null
+        },
+        {
+          "cutoff": "2026-10-02",
+          "actual": 31643.09,
+          "frozen": 29613,
+          "simple": 28016.52,
+          "availability": 29971.9,
+          "gated": 29971.9,
+          "route": "AVAILABILITY-RESEARCH",
+          "gate": "QUALIFIED-SYNTHETIC",
+          "band": {
+            "low": 10580.18,
+            "central": 29971.9,
+            "high": 36155.41,
+            "type": "Uncalibrated supply scenarios — NOT prediction intervals"
+          },
+          "highUncertainty": true,
+          "period": null
+        },
+        {
+          "cutoff": "2026-11-01",
+          "actual": 29139.34,
+          "frozen": 31228.48,
+          "simple": 31907.71,
+          "availability": 29891.77,
+          "gated": 29891.77,
+          "route": "AVAILABILITY-RESEARCH",
+          "gate": "QUALIFIED-SYNTHETIC",
+          "band": {
+            "low": 10762.13,
+            "central": 29891.77,
+            "high": 36177.53,
+            "type": "Uncalibrated supply scenarios — NOT prediction intervals"
+          },
+          "highUncertainty": true,
+          "period": null
+        },
+        {
+          "cutoff": "2026-12-01",
+          "actual": 31618.59,
+          "frozen": 29649.69,
+          "simple": 28643.09,
+          "availability": 30962.55,
+          "gated": 30962.55,
+          "route": "AVAILABILITY-RESEARCH",
+          "gate": "QUALIFIED-SYNTHETIC",
+          "band": {
+            "low": 13253.56,
+            "central": 30962.55,
+            "high": 36847.44,
+            "type": "Uncalibrated supply scenarios — NOT prediction intervals"
+          },
+          "highUncertainty": true,
+          "period": null
+        },
+        {
+          "cutoff": "2026-12-31",
+          "actual": 29933.26,
+          "frozen": 30959.35,
+          "simple": 31246.06,
+          "availability": 31225.7,
+          "gated": 31225.7,
+          "route": "AVAILABILITY-RESEARCH",
+          "gate": "QUALIFIED-SYNTHETIC",
+          "band": {
+            "low": 11354.15,
+            "central": 31225.7,
+            "high": 37586.43,
+            "type": "Uncalibrated supply scenarios — NOT prediction intervals"
+          },
+          "highUncertainty": true,
+          "period": null
+        }
+      ],
+      "metrics": {
+        "simpleWape": 8.85,
+        "frozenWape": 6.97,
+        "availabilityWape": 4.49,
+        "gatedWape": 4.93,
+        "routed": 9,
+        "scenarioEnvelopeHits": 10,
+        "highUncertainty": 10,
+        "folds": 10
+      },
+      "authority": "HOLD"
+    },
+    {
+      "group": "independent_generator",
+      "mode": "intermittent",
+      "seed": 2309,
+      "asOf": "2027-01-30",
+      "source": "SYNTHETIC",
+      "records": [
+        {
+          "cutoff": "2026-04-05",
+          "actual": 26996.59,
+          "frozen": 32315.8,
+          "simple": 31966.9,
+          "availability": 31145.71,
+          "gated": 32315.8,
+          "route": "FROZEN-V14",
+          "gate": "HOLD",
+          "band": {
+            "low": 12501.14,
+            "central": 31145.71,
+            "high": 35072.03,
+            "type": "Uncalibrated supply scenarios — NOT prediction intervals"
+          },
+          "highUncertainty": true,
+          "period": null
+        },
+        {
+          "cutoff": "2026-05-05",
+          "actual": 28221.18,
+          "frozen": 29129.62,
+          "simple": 26421.33,
+          "availability": 30298.92,
+          "gated": 29129.62,
+          "route": "FROZEN-V14",
+          "gate": "HOLD",
+          "band": {
+            "low": 11988.5,
+            "central": 30298.92,
+            "high": 35705.77,
+            "type": "Uncalibrated supply scenarios — NOT prediction intervals"
+          },
+          "highUncertainty": true,
+          "period": null
+        },
+        {
+          "cutoff": "2026-06-04",
+          "actual": 24253.73,
+          "frozen": 27890.21,
+          "simple": 27698.86,
+          "availability": 27907.39,
+          "gated": 27890.21,
+          "route": "FROZEN-V14",
+          "gate": "HOLD",
+          "band": {
+            "low": 10729.81,
+            "central": 27907.39,
+            "high": 36123.71,
+            "type": "Uncalibrated supply scenarios — NOT prediction intervals"
+          },
+          "highUncertainty": true,
+          "period": null
+        },
+        {
+          "cutoff": "2026-07-04",
+          "actual": 30287.44,
+          "frozen": 25358.42,
+          "simple": 24780.15,
+          "availability": 27719.17,
+          "gated": 25358.42,
+          "route": "FROZEN-V14",
+          "gate": "HOLD",
+          "band": {
+            "low": 10680.29,
+            "central": 27719.17,
+            "high": 36204.19,
+            "type": "Uncalibrated supply scenarios — NOT prediction intervals"
+          },
+          "highUncertainty": true,
+          "period": null
+        },
+        {
+          "cutoff": "2026-08-03",
+          "actual": 31126.86,
+          "frozen": 28108.5,
+          "simple": 29571.15,
+          "availability": 30049.04,
+          "gated": 28108.5,
+          "route": "FROZEN-V14",
+          "gate": "HOLD",
+          "band": {
+            "low": 11807.12,
+            "central": 30049.04,
+            "high": 36314.22,
+            "type": "Uncalibrated supply scenarios — NOT prediction intervals"
+          },
+          "highUncertainty": true,
+          "period": null
+        },
+        {
+          "cutoff": "2026-09-02",
+          "actual": 28965.98,
+          "frozen": 30379.31,
+          "simple": 31717.09,
+          "availability": 29526.75,
+          "gated": 29526.75,
+          "route": "AVAILABILITY-RESEARCH",
+          "gate": "QUALIFIED-SYNTHETIC",
+          "band": {
+            "low": 12682.35,
+            "central": 29526.75,
+            "high": 36692.45,
+            "type": "Uncalibrated supply scenarios — NOT prediction intervals"
+          },
+          "highUncertainty": true,
+          "period": null
+        },
+        {
+          "cutoff": "2026-10-02",
+          "actual": 32445.07,
+          "frozen": 30111.77,
+          "simple": 28391.2,
+          "availability": 29505.98,
+          "gated": 29505.98,
+          "route": "AVAILABILITY-RESEARCH",
+          "gate": "QUALIFIED-SYNTHETIC",
+          "band": {
+            "low": 13149.29,
+            "central": 29505.98,
+            "high": 37486.9,
+            "type": "Uncalibrated supply scenarios — NOT prediction intervals"
+          },
+          "highUncertainty": true,
+          "period": null
+        },
+        {
+          "cutoff": "2026-11-01",
+          "actual": 32749.86,
+          "frozen": 31317.09,
+          "simple": 31831.06,
+          "availability": 30105.78,
+          "gated": 30105.78,
+          "route": "AVAILABILITY-RESEARCH",
+          "gate": "QUALIFIED-SYNTHETIC",
+          "band": {
+            "low": 14089.21,
+            "central": 30105.78,
+            "high": 37116.78,
+            "type": "Uncalibrated supply scenarios — NOT prediction intervals"
+          },
+          "highUncertainty": true,
+          "period": null
+        },
+        {
+          "cutoff": "2026-12-01",
+          "actual": 27335.43,
+          "frozen": 31945.54,
+          "simple": 32735.61,
+          "availability": 28943.56,
+          "gated": 31945.54,
+          "route": "FROZEN-V14",
+          "gate": "HOLD",
+          "band": {
+            "low": 12219.66,
+            "central": 28943.56,
+            "high": 36698.38,
+            "type": "Uncalibrated supply scenarios — NOT prediction intervals"
+          },
+          "highUncertainty": true,
+          "period": null
+        },
+        {
+          "cutoff": "2026-12-31",
+          "actual": 38651.79,
+          "frozen": 29536.77,
+          "simple": 28271.72,
+          "availability": 30541.64,
+          "gated": 30541.64,
+          "route": "AVAILABILITY-RESEARCH",
+          "gate": "QUALIFIED-SYNTHETIC",
+          "band": {
+            "low": 12803.45,
+            "central": 30541.64,
+            "high": 36939.5,
+            "type": "Uncalibrated supply scenarios — NOT prediction intervals"
+          },
+          "highUncertainty": true,
+          "period": null
+        }
+      ],
+      "metrics": {
+        "simpleWape": 13.55,
+        "frozenWape": 12.2,
+        "availabilityWape": 9.76,
+        "gatedWape": 12.18,
+        "routed": 4,
+        "scenarioEnvelopeHits": 9,
+        "highUncertainty": 10,
+        "folds": 10
+      },
+      "authority": "HOLD"
+    },
+    {
+      "group": "independent_generator",
+      "mode": "intermittent",
+      "seed": 3307,
+      "asOf": "2027-01-30",
+      "source": "SYNTHETIC",
+      "records": [
+        {
+          "cutoff": "2026-04-05",
+          "actual": 29143.15,
+          "frozen": 30546.67,
+          "simple": 30535.41,
+          "availability": 31486.84,
+          "gated": 30546.67,
+          "route": "FROZEN-V14",
+          "gate": "HOLD",
+          "band": {
+            "low": 9957.19,
+            "central": 31486.84,
+            "high": 35295.23,
+            "type": "Uncalibrated supply scenarios — NOT prediction intervals"
+          },
+          "highUncertainty": true,
+          "period": null
+        },
+        {
+          "cutoff": "2026-05-05",
+          "actual": 31292.52,
+          "frozen": 29471.14,
+          "simple": 28671.33,
+          "availability": 29268.48,
+          "gated": 29471.14,
+          "route": "FROZEN-V14",
+          "gate": "HOLD",
+          "band": {
+            "low": 10795.08,
+            "central": 29268.48,
+            "high": 35755.8,
+            "type": "Uncalibrated supply scenarios — NOT prediction intervals"
+          },
+          "highUncertainty": true,
+          "period": null
+        },
+        {
+          "cutoff": "2026-06-04",
+          "actual": 30823.46,
+          "frozen": 31078.07,
+          "simple": 32940.99,
+          "availability": 30466.05,
+          "gated": 31078.07,
+          "route": "FROZEN-V14",
+          "gate": "HOLD",
+          "band": {
+            "low": 10046.08,
+            "central": 30466.05,
+            "high": 35568.34,
+            "type": "Uncalibrated supply scenarios — NOT prediction intervals"
+          },
+          "highUncertainty": true,
+          "period": null
+        },
+        {
+          "cutoff": "2026-07-04",
+          "actual": 24527.98,
+          "frozen": 30525.52,
+          "simple": 30434.7,
+          "availability": 30230.92,
+          "gated": 30525.52,
+          "route": "FROZEN-V14",
+          "gate": "HOLD",
+          "band": {
+            "low": 10775.99,
+            "central": 30230.92,
+            "high": 35145.66,
+            "type": "Uncalibrated supply scenarios — NOT prediction intervals"
+          },
+          "highUncertainty": true,
+          "period": null
+        },
+        {
+          "cutoff": "2026-08-03",
+          "actual": 28646.16,
+          "frozen": 26614.51,
+          "simple": 24296.58,
+          "availability": 29679.94,
+          "gated": 26614.51,
+          "route": "FROZEN-V14",
+          "gate": "HOLD",
+          "band": {
+            "low": 11318.29,
+            "central": 29679.94,
+            "high": 35400.48,
+            "type": "Uncalibrated supply scenarios — NOT prediction intervals"
+          },
+          "highUncertainty": true,
+          "period": null
+        },
+        {
+          "cutoff": "2026-09-02",
+          "actual": 24574.53,
+          "frozen": 27283.8,
+          "simple": 28364.59,
+          "availability": 28070.5,
+          "gated": 27283.8,
+          "route": "FROZEN-V14",
+          "gate": "HOLD",
+          "band": {
+            "low": 12133.78,
+            "central": 28070.5,
+            "high": 35437.92,
+            "type": "Uncalibrated supply scenarios — NOT prediction intervals"
+          },
+          "highUncertainty": true,
+          "period": null
+        },
+        {
+          "cutoff": "2026-10-02",
+          "actual": 29926.44,
+          "frozen": 25561.67,
+          "simple": 24616.3,
+          "availability": 28228.16,
+          "gated": 25561.67,
+          "route": "FROZEN-V14",
+          "gate": "HOLD",
+          "band": {
+            "low": 11256.92,
+            "central": 28228.16,
+            "high": 35782.42,
+            "type": "Uncalibrated supply scenarios — NOT prediction intervals"
+          },
+          "highUncertainty": true,
+          "period": null
+        },
+        {
+          "cutoff": "2026-11-01",
+          "actual": 31482.39,
+          "frozen": 27812.87,
+          "simple": 29277.77,
+          "availability": 28654.82,
+          "gated": 28654.82,
+          "route": "AVAILABILITY-RESEARCH",
+          "gate": "QUALIFIED-SYNTHETIC",
+          "band": {
+            "low": 12170.69,
+            "central": 28654.82,
+            "high": 35747.29,
+            "type": "Uncalibrated supply scenarios — NOT prediction intervals"
+          },
+          "highUncertainty": true,
+          "period": null
+        },
+        {
+          "cutoff": "2026-12-01",
+          "actual": 32790.42,
+          "frozen": 29859.54,
+          "simple": 31365.83,
+          "availability": 28112.58,
+          "gated": 28112.58,
+          "route": "AVAILABILITY-RESEARCH",
+          "gate": "QUALIFIED-SYNTHETIC",
+          "band": {
+            "low": 10712.62,
+            "central": 28112.58,
+            "high": 35952.52,
+            "type": "Uncalibrated supply scenarios — NOT prediction intervals"
+          },
+          "highUncertainty": true,
+          "period": null
+        },
+        {
+          "cutoff": "2026-12-31",
+          "actual": 29892.82,
+          "frozen": 31966.71,
+          "simple": 32556.87,
+          "availability": 28614.89,
+          "gated": 31966.71,
+          "route": "FROZEN-V14",
+          "gate": "HOLD",
+          "band": {
+            "low": 11304.87,
+            "central": 28614.89,
+            "high": 36356.7,
+            "type": "Uncalibrated supply scenarios — NOT prediction intervals"
+          },
+          "highUncertainty": true,
+          "period": null
+        }
+      ],
+      "metrics": {
+        "simpleWape": 10.84,
+        "frozenWape": 9.3,
+        "availabilityWape": 8.68,
+        "gatedWape": 9.61,
+        "routed": 2,
+        "scenarioEnvelopeHits": 10,
+        "highUncertainty": 10,
+        "folds": 10
+      },
+      "authority": "HOLD"
+    },
+    {
+      "group": "shifted_calendar",
+      "mode": "recurring-supply",
+      "seed": 591733,
+      "asOf": "2027-04-03",
+      "source": "SYNTHETIC",
+      "records": [
+        {
+          "cutoff": "2026-06-07",
+          "actual": 21267.59,
+          "frozen": 29677.45,
+          "simple": 32868.93,
+          "availability": 30996.88,
+          "gated": 29677.45,
+          "route": "FROZEN-V14",
+          "gate": "HOLD",
+          "band": {
+            "low": 6352.8,
+            "central": 30996.88,
+            "high": 32748.81,
+            "type": "Uncalibrated supply scenarios — NOT prediction intervals"
+          },
+          "highUncertainty": true,
+          "period": null
+        },
+        {
+          "cutoff": "2026-07-07",
+          "actual": 32886.69,
+          "frozen": 23920.62,
+          "simple": 20694.88,
+          "availability": 29808.76,
+          "gated": 23920.62,
+          "route": "FROZEN-V14",
+          "gate": "HOLD",
+          "band": {
+            "low": 6261.34,
+            "central": 29808.76,
+            "high": 32968.12,
+            "type": "Uncalibrated supply scenarios — NOT prediction intervals"
+          },
+          "highUncertainty": true,
+          "period": null
+        },
+        {
+          "cutoff": "2026-08-06",
+          "actual": 13790.14,
+          "frozen": 29733.76,
+          "simple": 33056.73,
+          "availability": 29889.47,
+          "gated": 29889.47,
+          "route": "AVAILABILITY-RESEARCH",
+          "gate": "QUALIFIED-SYNTHETIC",
+          "band": {
+            "low": 6308.59,
+            "central": 29889.47,
+            "high": 33050.58,
+            "type": "Uncalibrated supply scenarios — NOT prediction intervals"
+          },
+          "highUncertainty": true,
+          "period": null
+        },
+        {
+          "cutoff": "2026-09-05",
+          "actual": 30514.73,
+          "frozen": 18702.55,
+          "simple": 12135.38,
+          "availability": 28166.91,
+          "gated": 18702.55,
+          "route": "FROZEN-V14",
+          "gate": "HOLD",
+          "band": {
+            "low": 6328.26,
+            "central": 28166.91,
+            "high": 32924.92,
+            "type": "Uncalibrated supply scenarios — NOT prediction intervals"
+          },
+          "highUncertainty": true,
+          "period": 62
+        },
+        {
+          "cutoff": "2026-10-05",
+          "actual": 21314.25,
+          "frozen": 26693.65,
+          "simple": 32262.33,
+          "availability": 27400.66,
+          "gated": 27400.66,
+          "route": "AVAILABILITY-RESEARCH",
+          "gate": "QUALIFIED-SYNTHETIC",
+          "band": {
+            "low": 6285.76,
+            "central": 27400.66,
+            "high": 33059.25,
+            "type": "Uncalibrated supply scenarios — NOT prediction intervals"
+          },
+          "highUncertainty": true,
+          "period": null
+        },
+        {
+          "cutoff": "2026-11-04",
+          "actual": 19821.82,
+          "frozen": 22426.75,
+          "simple": 20765.65,
+          "availability": 26997.63,
+          "gated": 22426.75,
+          "route": "FROZEN-V14",
+          "gate": "HOLD",
+          "band": {
+            "low": 6274.23,
+            "central": 26997.63,
+            "high": 33233.79,
+            "type": "Uncalibrated supply scenarios — NOT prediction intervals"
+          },
+          "highUncertainty": true,
+          "period": 62
+        },
+        {
+          "cutoff": "2026-12-04",
+          "actual": 14220.08,
+          "frozen": 21300.89,
+          "simple": 18882.45,
+          "availability": 20751.94,
+          "gated": 21300.89,
+          "route": "FROZEN-V14",
+          "gate": "HOLD",
+          "band": {
+            "low": 6428.6,
+            "central": 20751.94,
+            "high": 33410.97,
+            "type": "Uncalibrated supply scenarios — NOT prediction intervals"
+          },
+          "highUncertainty": true,
+          "period": 62
+        },
+        {
+          "cutoff": "2027-01-03",
+          "actual": 28827.4,
+          "frozen": 15908.46,
+          "simple": 14594.46,
+          "availability": 24832.09,
+          "gated": 15908.46,
+          "route": "FROZEN-V14",
+          "gate": "HOLD",
+          "band": {
+            "low": 6989.35,
+            "central": 24832.09,
+            "high": 33139.78,
+            "type": "Uncalibrated supply scenarios — NOT prediction intervals"
+          },
+          "highUncertainty": true,
+          "period": null
+        },
+        {
+          "cutoff": "2027-02-02",
+          "actual": 19917.91,
+          "frozen": 23895.6,
+          "simple": 29079.89,
+          "availability": 23585.71,
+          "gated": 23585.71,
+          "route": "AVAILABILITY-RESEARCH",
+          "gate": "QUALIFIED-SYNTHETIC",
+          "band": {
+            "low": 7008.69,
+            "central": 23585.71,
+            "high": 31261.61,
+            "type": "Uncalibrated supply scenarios — NOT prediction intervals"
+          },
+          "highUncertainty": true,
+          "period": null
+        },
+        {
+          "cutoff": "2027-03-04",
+          "actual": 17704.66,
+          "frozen": 21596.95,
+          "simple": 18945.44,
+          "availability": 21131.36,
+          "gated": 21131.36,
+          "route": "AVAILABILITY-RESEARCH",
+          "gate": "QUALIFIED-SYNTHETIC",
+          "band": {
+            "low": 7030.37,
+            "central": 21131.36,
+            "high": 31294.99,
+            "type": "Uncalibrated supply scenarios — NOT prediction intervals"
+          },
+          "highUncertainty": true,
+          "period": 124
+        }
+      ],
+      "metrics": {
+        "simpleWape": 46.59,
+        "frozenWape": 36.77,
+        "availabilityWape": 28.21,
+        "gatedWape": 36.81,
+        "routed": 4,
+        "scenarioEnvelopeHits": 10,
+        "highUncertainty": 10,
+        "folds": 10
+      },
+      "authority": "HOLD"
+    },
+    {
+      "group": "shifted_calendar",
+      "mode": "recurring-supply",
+      "seed": 618407,
+      "asOf": "2027-04-03",
+      "source": "SYNTHETIC",
+      "records": [
+        {
+          "cutoff": "2026-06-07",
+          "actual": 21473.63,
+          "frozen": 29717.26,
+          "simple": 33125.13,
+          "availability": 30936.89,
+          "gated": 29717.26,
+          "route": "FROZEN-V14",
+          "gate": "HOLD",
+          "band": {
+            "low": 6142.2,
+            "central": 30936.89,
+            "high": 32699.95,
+            "type": "Uncalibrated supply scenarios — NOT prediction intervals"
+          },
+          "highUncertainty": true,
+          "period": null
+        },
+        {
+          "cutoff": "2026-07-07",
+          "actual": 32972.39,
+          "frozen": 23982.29,
+          "simple": 20780.82,
+          "availability": 29799.84,
+          "gated": 23982.29,
+          "route": "FROZEN-V14",
+          "gate": "HOLD",
+          "band": {
+            "low": 6089.86,
+            "central": 29799.84,
+            "high": 32982.52,
+            "type": "Uncalibrated supply scenarios — NOT prediction intervals"
+          },
+          "highUncertainty": true,
+          "period": null
+        },
+        {
+          "cutoff": "2026-08-06",
+          "actual": 13658.63,
+          "frozen": 29863.76,
+          "simple": 32996.59,
+          "availability": 29981.22,
+          "gated": 29981.22,
+          "route": "AVAILABILITY-RESEARCH",
+          "gate": "QUALIFIED-SYNTHETIC",
+          "band": {
+            "low": 6111.27,
+            "central": 29981.22,
+            "high": 33178.52,
+            "type": "Uncalibrated supply scenarios — NOT prediction intervals"
+          },
+          "highUncertainty": true,
+          "period": null
+        },
+        {
+          "cutoff": "2026-09-05",
+          "actual": 30569.37,
+          "frozen": 18680.7,
+          "simple": 11938.86,
+          "availability": 28366.03,
+          "gated": 18680.7,
+          "route": "FROZEN-V14",
+          "gate": "HOLD",
+          "band": {
+            "low": 6277.61,
+            "central": 28366.03,
+            "high": 33179.61,
+            "type": "Uncalibrated supply scenarios — NOT prediction intervals"
+          },
+          "highUncertainty": true,
+          "period": 62
+        },
+        {
+          "cutoff": "2026-10-05",
+          "actual": 21890.21,
+          "frozen": 26653.26,
+          "simple": 32304.16,
+          "availability": 27476.08,
+          "gated": 27476.08,
+          "route": "AVAILABILITY-RESEARCH",
+          "gate": "QUALIFIED-SYNTHETIC",
+          "band": {
+            "low": 6269.11,
+            "central": 27476.08,
+            "high": 33158.21,
+            "type": "Uncalibrated supply scenarios — NOT prediction intervals"
+          },
+          "highUncertainty": true,
+          "period": null
+        },
+        {
+          "cutoff": "2026-11-04",
+          "actual": 19610.3,
+          "frozen": 22689.24,
+          "simple": 21087.95,
+          "availability": 27054.2,
+          "gated": 22689.24,
+          "route": "FROZEN-V14",
+          "gate": "HOLD",
+          "band": {
+            "low": 6408.57,
+            "central": 27054.2,
+            "high": 33254.33,
+            "type": "Uncalibrated supply scenarios — NOT prediction intervals"
+          },
+          "highUncertainty": true,
+          "period": 62
+        },
+        {
+          "cutoff": "2026-12-04",
+          "actual": 14197.75,
+          "frozen": 21376.2,
+          "simple": 18662.65,
+          "availability": 20893.48,
+          "gated": 21376.2,
+          "route": "FROZEN-V14",
+          "gate": "HOLD",
+          "band": {
+            "low": 6542.6,
+            "central": 20893.48,
+            "high": 33559.21,
+            "type": "Uncalibrated supply scenarios — NOT prediction intervals"
+          },
+          "highUncertainty": true,
+          "period": 62
+        },
+        {
+          "cutoff": "2027-01-03",
+          "actual": 29342.53,
+          "frozen": 15942.6,
+          "simple": 14587.72,
+          "availability": 24964.56,
+          "gated": 15942.6,
+          "route": "FROZEN-V14",
+          "gate": "HOLD",
+          "band": {
+            "low": 7058.99,
+            "central": 24964.56,
+            "high": 33309.25,
+            "type": "Uncalibrated supply scenarios — NOT prediction intervals"
+          },
+          "highUncertainty": true,
+          "period": null
+        },
+        {
+          "cutoff": "2027-02-02",
+          "actual": 19966.34,
+          "frozen": 24142.3,
+          "simple": 29564.97,
+          "availability": 23794.77,
+          "gated": 23794.77,
+          "route": "AVAILABILITY-RESEARCH",
+          "gate": "QUALIFIED-SYNTHETIC",
+          "band": {
+            "low": 7080.08,
+            "central": 23794.77,
+            "high": 31532.88,
+            "type": "Uncalibrated supply scenarios — NOT prediction intervals"
+          },
+          "highUncertainty": true,
+          "period": null
+        },
+        {
+          "cutoff": "2027-03-04",
+          "actual": 17808.96,
+          "frozen": 21810.31,
+          "simple": 19104.65,
+          "availability": 21257.19,
+          "gated": 21257.19,
+          "route": "AVAILABILITY-RESEARCH",
+          "gate": "QUALIFIED-SYNTHETIC",
+          "band": {
+            "low": 6985.95,
+            "central": 21257.19,
+            "high": 31583.8,
+            "type": "Uncalibrated supply scenarios — NOT prediction intervals"
+          },
+          "highUncertainty": true,
+          "period": 124
+        }
+      ],
+      "metrics": {
+        "simpleWape": 46.87,
+        "frozenWape": 36.99,
+        "availabilityWape": 28.24,
+        "gatedWape": 37.01,
+        "routed": 4,
+        "scenarioEnvelopeHits": 10,
+        "highUncertainty": 10,
+        "folds": 10
+      },
+      "authority": "HOLD"
+    }
+  ]
+}
