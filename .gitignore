@@ -1,0 +1,10 @@
+# Keep private merchant data, credentials, and local audit exports out of GitHub
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*secret*
+node_modules/
+.DS_Store
+f2-commerce-*-audit.json
