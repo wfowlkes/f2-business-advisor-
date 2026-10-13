@@ -1,0 +1,33 @@
+name: Scenario-specific forecasting regression
+on:
+  push:
+    paths:
+      - 'lab/**'
+      - 'tests/**'
+      - 'server/**'
+      - 'core.js'
+      - '.github/workflows/scenario-methods.yml'
+  pull_request:
+    paths:
+      - 'lab/**'
+      - 'tests/**'
+      - 'server/**'
+      - 'core.js'
+      - '.github/workflows/scenario-methods.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  simulation-regression:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: node --check lab/scenario_methods.js
+      - run: node --check lab/scenario_report.js
+      - run: node --test tests/test_scenario_methods.js
+      - run: node --test server/test/*.test.js tests/test_report.js
+      - run: node tests/test_core.js
