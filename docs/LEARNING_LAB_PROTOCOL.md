@@ -39,3 +39,11 @@ Synthetic lab is browser-run; it does not write to Shopify, change merchant inve
 - Scenario-specific HOLD remains mandatory for any negative candidate outcome or incomplete prospective stress-test coverage; no averaging across regimes can hide a meaningful failure.
 - Document all adverse results including the original v1.0 volatile weakness. See [v1.1 challenge findings](SYNTHETIC_V11_CHALLENGE_REPORT.md).
 - AC-09/LL-08–10 opportunity control ledger: log cause hypothesis and adversarial alternatives; do not declare generalized improvement or apply new predictive weights without later independent chronological real-business trials.
+
+
+## LL-09 through LL-12 — v1.2 scenario-specific governance
+
+- LL-09: Select one method per **synthetic generator type** and horizon only from development validation seeds; keep fixed before untouched seed-group challenges. Never re-select on holdout.
+- LL-10: Publish all 12 method WAPE/bias rankings, losses, baseline comparisons and failure reasons for each scenario, not only winners.
+- LL-11: Synthetic `type` is an oracle label available only to the simulator; the merchant-facing app cannot know the correct regime. Research will require a causal regime detector with held-out classifier evaluation.
+- LL-12: Even repeated synthetic improvements are research candidates only. No Shopify reconciliation, real-market calibration, business impact or automatic model promotion.
