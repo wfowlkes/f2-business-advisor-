@@ -5,7 +5,7 @@ const LAB=require('../lab/synthetic.js');
 const F2=require('../core.js');
 const sales=xs=>xs.reduce((s,x)=>s+x.net_sales,0)/Math.max(xs.length,1);
 
-test('five businesses each yield 1080 daily deterministic and distinct, non-PII observations',()=>{
+test('nine businesses each yield 1080 daily deterministic and distinct, non-PII observations',()=>{
  const fingerprints=new Set();
  for(const type of LAB.TYPES){
   const d=LAB.generate(type.id,101);const again=LAB.generate(type.id,101);
@@ -16,7 +16,7 @@ test('five businesses each yield 1080 daily deterministic and distinct, non-PII 
   assert(d.daily.every(x=>!('email'in x)&&!('customer_id'in x)&&!('order_id'in x)));
   fingerprints.add(d.fingerprint);
  }
- assert.equal(fingerprints.size,5);
+ assert.equal(fingerprints.size,9);
  assert.notEqual(LAB.generate('stable',101).fingerprint,LAB.generate('stable',102).fingerprint);
 });
 
@@ -72,10 +72,10 @@ test('all methods are time-aligned and no missing day is silently treated as zer
  assert.throws(()=>LAB.evaluate(broken),/Incomplete/);
 });
 
-test('batch yields all five stores × three replicates and never authorizes production learning',()=>{
+test('batch yields all nine stores × three replicates and never authorizes production learning',()=>{
  const report=LAB.batch({seed:101,seeds:3});
- assert.equal(report.productionStatus,'HOLD');assert.equal(report.businesses.length,5);
- assert.equal(report.businesses.reduce((s,b)=>s+b.runs.length,0),15);
+ assert.equal(report.productionStatus,'HOLD');assert.equal(report.businesses.length,9);
+ assert.equal(report.businesses.reduce((s,b)=>s+b.runs.length,0),27);
  for(const b of report.businesses){for(const h of [7,30]){
   assert.equal(b.summary[h].runs,3);
   assert(b.summary[h].championWape!==null);
@@ -83,4 +83,45 @@ test('batch yields all five stores × three replicates and never authorizes prod
   assert(b.runs.every(x=>x.productionStatus==='HOLD'&&x.tests[h].decisionAuthority==='HOLD'));
  }}
  assert.equal(JSON.stringify(report),JSON.stringify(LAB.batch({seed:101,seeds:3})));
+});
+
+
+test('original five generator fingerprints are identical to frozen v1',()=>{
+ const known={stable:'f8683ce1',growth:'1ecf33be',decline:'8826088e',seasonal:'cfad1c17',volatile:'6af076f4'};
+ for(const [type,expected] of Object.entries(known))assert.equal(LAB.generate(type,101).fingerprint,expected);
+});
+test('new synthetic regime shifts are visible without using any identifying information',()=>{
+ const step=LAB.generate('stepchange',101).daily,promo=LAB.generate('promotion',101).daily;
+ const supply=LAB.generate('supply',101).daily,shift=LAB.generate('weekdayshift',101).daily;
+ assert(sales(step.slice(-70))<sales(step.slice(650,720))*.75);
+ assert(promo.slice(-200).reduce((s,x)=>s+x.refunds,0)>promo.slice(0,200).reduce((s,x)=>s+x.refunds,0));
+ assert(supply.slice(780).filter(x=>x.stockout).length>30);
+ const weekend=a=>sales(a.filter(x=>[0,6].includes(new Date(x.date+'T00:00:00Z').getUTCDay())));
+ const midweek=a=>sales(a.filter(x=>[2,3].includes(new Date(x.date+'T00:00:00Z').getUTCDay())));
+ assert(weekend(shift.slice(0,240))>midweek(shift.slice(0,240)));
+ assert(weekend(shift.slice(-240))<midweek(shift.slice(-240)));
+});
+test('shadow challenger is fixed, reproducible, horizon aligned and does not change v1 baseline selection',()=>{
+ const ds=LAB.generate('stepchange',404),before=LAB.evaluate(ds);
+ for(const h of [7,30]){
+  const shadow=before.tests[h].shadow;
+  assert(shadow.folds>=8);assert.equal(shadow.action,'NO AUTOMATIC MODEL PROMOTION / PRODUCTION HOLD');
+  assert(shadow.holdoutWape>=0);assert.equal(before.tests[h].decisionAuthority,'HOLD');
+  const pred=LAB.predict(ds.daily.slice(0,780),h,'adaptive weekday');
+  assert.equal(pred[0].date,F2.addDay(ds.daily[779].date,1));
+  const altered={...ds,daily:ds.daily.map((r,i)=>i<780?r:{...r,net_sales:r.net_sales*4})};
+  const after=LAB.evaluate(altered);
+  assert.equal(before.tests[h].champion,after.tests[h].champion);
+  assert.equal(before.tests[h].candidate,after.tests[h].candidate);
+  assert.equal(before.tests[h].shadow.validationWape,after.tests[h].shadow.validationWape);
+  assert.notEqual(before.tests[h].shadow.holdoutWape,after.tests[h].shadow.holdoutWape);
+ }
+});
+test('future actuals cannot alter predictions frozen at the forecast cutoff',()=>{
+ const d=LAB.generate('supply',62),cut=780;
+ for(const h of [7,30]){
+  const forecast=LAB.predict(d.daily.slice(0,cut),h,'adaptive weekday');
+  const altered=d.daily.map((x,i)=>i<cut?x:{...x,net_sales:9999999});
+  assert.deepEqual(forecast,LAB.predict(altered.slice(0,cut),h,'adaptive weekday'));
+ }
 });
