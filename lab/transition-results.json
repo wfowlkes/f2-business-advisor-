@@ -1,0 +1,2808 @@
+{
+  "version": "F2 Scenario Transitions 1.3.0",
+  "design": "RULES FROZEN BEFORE CHALLENGE EXECUTION",
+  "asOf": "2027-05-19",
+  "seeds": [
+    740001,
+    850002,
+    960003
+  ],
+  "registry": [
+    "stable",
+    "growth",
+    "decline",
+    "seasonal",
+    "volatile",
+    "stepchange",
+    "promotion",
+    "supply",
+    "weekdayshift"
+  ],
+  "simulationOnly": true,
+  "externalValidity": "UNTESTED",
+  "decisionAuthority": "HOLD",
+  "dataCadence": "Completed DAILY aggregates; not instant transaction-level changes",
+  "dynamicRoutes": "SYNTHETIC SHADOW ONLY",
+  "qualityGate": "Only previously registered method choices with favorable prior challenge and shifted calendar checks are allowed to shadow-route; all other cases fall back to registered simple baselines.",
+  "allowedShadowMethods": {
+    "stable": {
+      "7": true,
+      "30": true
+    },
+    "growth": {
+      "7": true,
+      "30": true
+    },
+    "decline": {
+      "7": false,
+      "30": true
+    },
+    "seasonal": {
+      "7": true,
+      "30": true
+    },
+    "volatile": {
+      "7": false,
+      "30": true
+    },
+    "stepchange": {
+      "7": false,
+      "30": false
+    },
+    "promotion": {
+      "7": false,
+      "30": false
+    },
+    "supply": {
+      "7": false,
+      "30": false
+    },
+    "weekdayshift": {
+      "7": true,
+      "30": true
+    }
+  },
+  "businesses": [
+    {
+      "type": "stable",
+      "name": "Steady Retail",
+      "seeds": [
+        740001,
+        850002,
+        960003
+      ],
+      "detectorCorrectShare": 0.98,
+      "avgSwitches": 2.67,
+      "score": {
+        "7": {
+          "routerWape": 3.91,
+          "static28Wape": 5.39,
+          "oracleWape": 4.18,
+          "wins": 3,
+          "losses": 0,
+          "meanRouterBias": -0.36,
+          "improvementPct": 27.52
+        },
+        "30": {
+          "routerWape": 2.67,
+          "static28Wape": 4.92,
+          "oracleWape": 2.67,
+          "wins": 3,
+          "losses": 0,
+          "meanRouterBias": 0.08,
+          "improvementPct": 45.84
+        }
+      },
+      "examples": [
+        {
+          "seed": 740001,
+          "events": [
+            {
+              "date": "2025-01-15",
+              "from": "stable",
+              "to": "stepchange",
+              "signalStrength": 0.6549,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2025-02-12",
+              "from": "stepchange",
+              "to": "stable",
+              "signalStrength": 0.56,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2026-12-29",
+              "from": "stable",
+              "to": "growth",
+              "signalStrength": 0.6416,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2027-01-26",
+              "from": "growth",
+              "to": "stable",
+              "signalStrength": 0.56,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            }
+          ],
+          "final": "stable"
+        },
+        {
+          "seed": 850002,
+          "events": [
+            {
+              "date": "2026-01-14",
+              "from": "stable",
+              "to": "stepchange",
+              "signalStrength": 0.6569,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2026-02-11",
+              "from": "stepchange",
+              "to": "stable",
+              "signalStrength": 0.56,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            }
+          ],
+          "final": "stable"
+        },
+        {
+          "seed": 960003,
+          "events": [
+            {
+              "date": "2024-12-29",
+              "from": "stable",
+              "to": "growth",
+              "signalStrength": 0.6357,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2025-01-26",
+              "from": "growth",
+              "to": "stable",
+              "signalStrength": 0.56,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            }
+          ],
+          "final": "stable"
+        }
+      ]
+    },
+    {
+      "type": "growth",
+      "name": "Rapid Growth",
+      "seeds": [
+        740001,
+        850002,
+        960003
+      ],
+      "detectorCorrectShare": 0.28,
+      "avgSwitches": 22.67,
+      "score": {
+        "7": {
+          "routerWape": 3.36,
+          "static28Wape": 5.93,
+          "oracleWape": 3.29,
+          "wins": 3,
+          "losses": 0,
+          "meanRouterBias": -1.52,
+          "improvementPct": 43.31
+        },
+        "30": {
+          "routerWape": 1.94,
+          "static28Wape": 5.69,
+          "oracleWape": 1.94,
+          "wins": 3,
+          "losses": 0,
+          "meanRouterBias": 0.35,
+          "improvementPct": 65.98
+        }
+      },
+      "examples": [
+        {
+          "seed": 740001,
+          "events": [
+            {
+              "date": "2024-12-07",
+              "from": "stable",
+              "to": "growth",
+              "signalStrength": 0.6362,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2025-01-10",
+              "from": "growth",
+              "to": "stable",
+              "signalStrength": 0.56,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2025-02-18",
+              "from": "stable",
+              "to": "growth",
+              "signalStrength": 0.6559,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2025-03-18",
+              "from": "growth",
+              "to": "stable",
+              "signalStrength": 0.56,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2025-05-29",
+              "from": "stable",
+              "to": "growth",
+              "signalStrength": 0.6389,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2025-06-26",
+              "from": "growth",
+              "to": "stable",
+              "signalStrength": 0.56,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2025-07-24",
+              "from": "stable",
+              "to": "growth",
+              "signalStrength": 0.6434,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2025-08-25",
+              "from": "growth",
+              "to": "stable",
+              "signalStrength": 0.56,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2025-09-27",
+              "from": "stable",
+              "to": "growth",
+              "signalStrength": 0.6306,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2025-10-25",
+              "from": "growth",
+              "to": "stable",
+              "signalStrength": 0.56,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2025-11-26",
+              "from": "stable",
+              "to": "growth",
+              "signalStrength": 0.6304,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2026-01-11",
+              "from": "growth",
+              "to": "stable",
+              "signalStrength": 0.56,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2026-02-20",
+              "from": "stable",
+              "to": "growth",
+              "signalStrength": 0.6487,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2026-03-20",
+              "from": "growth",
+              "to": "stable",
+              "signalStrength": 0.56,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2026-05-28",
+              "from": "stable",
+              "to": "growth",
+              "signalStrength": 0.64,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2026-07-12",
+              "from": "growth",
+              "to": "stable",
+              "signalStrength": 0.56,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2026-08-09",
+              "from": "stable",
+              "to": "growth",
+              "signalStrength": 0.6353,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2026-09-06",
+              "from": "growth",
+              "to": "stable",
+              "signalStrength": 0.56,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2026-12-07",
+              "from": "stable",
+              "to": "growth",
+              "signalStrength": 0.6338,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2027-01-13",
+              "from": "growth",
+              "to": "stable",
+              "signalStrength": 0.56,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2027-02-21",
+              "from": "stable",
+              "to": "growth",
+              "signalStrength": 0.6693,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2027-03-21",
+              "from": "growth",
+              "to": "stable",
+              "signalStrength": 0.56,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            }
+          ],
+          "final": "stable"
+        },
+        {
+          "seed": 850002,
+          "events": [
+            {
+              "date": "2024-12-10",
+              "from": "stable",
+              "to": "growth",
+              "signalStrength": 0.6308,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2025-01-12",
+              "from": "growth",
+              "to": "stable",
+              "signalStrength": 0.56,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2025-02-21",
+              "from": "stable",
+              "to": "growth",
+              "signalStrength": 0.6546,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2025-03-21",
+              "from": "growth",
+              "to": "stable",
+              "signalStrength": 0.56,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2025-06-01",
+              "from": "stable",
+              "to": "growth",
+              "signalStrength": 0.6325,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2025-07-06",
+              "from": "growth",
+              "to": "stable",
+              "signalStrength": 0.56,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2025-08-03",
+              "from": "stable",
+              "to": "growth",
+              "signalStrength": 0.6386,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2025-08-31",
+              "from": "growth",
+              "to": "stable",
+              "signalStrength": 0.56,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2025-10-11",
+              "from": "stable",
+              "to": "growth",
+              "signalStrength": 0.6318,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2025-11-10",
+              "from": "growth",
+              "to": "stable",
+              "signalStrength": 0.56,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2025-12-08",
+              "from": "stable",
+              "to": "growth",
+              "signalStrength": 0.6794,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2026-01-12",
+              "from": "growth",
+              "to": "stable",
+              "signalStrength": 0.56,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2026-02-22",
+              "from": "stable",
+              "to": "growth",
+              "signalStrength": 0.6698,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2026-03-22",
+              "from": "growth",
+              "to": "stable",
+              "signalStrength": 0.56,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2026-06-03",
+              "from": "stable",
+              "to": "growth",
+              "signalStrength": 0.6412,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2026-07-01",
+              "from": "growth",
+              "to": "stable",
+              "signalStrength": 0.56,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2026-07-29",
+              "from": "stable",
+              "to": "growth",
+              "signalStrength": 0.6427,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2026-09-07",
+              "from": "growth",
+              "to": "stable",
+              "signalStrength": 0.56,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2026-10-05",
+              "from": "stable",
+              "to": "growth",
+              "signalStrength": 0.6445,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2026-11-02",
+              "from": "growth",
+              "to": "stable",
+              "signalStrength": 0.56,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2026-11-30",
+              "from": "stable",
+              "to": "growth",
+              "signalStrength": 0.6347,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2027-01-10",
+              "from": "growth",
+              "to": "stable",
+              "signalStrength": 0.56,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2027-02-21",
+              "from": "stable",
+              "to": "growth",
+              "signalStrength": 0.637,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2027-03-21",
+              "from": "growth",
+              "to": "stable",
+              "signalStrength": 0.56,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            }
+          ],
+          "final": "stable"
+        },
+        {
+          "seed": 960003,
+          "events": [
+            {
+              "date": "2024-12-11",
+              "from": "stable",
+              "to": "growth",
+              "signalStrength": 0.6422,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2025-01-12",
+              "from": "growth",
+              "to": "stable",
+              "signalStrength": 0.56,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2025-02-19",
+              "from": "stable",
+              "to": "growth",
+              "signalStrength": 0.6593,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2025-03-19",
+              "from": "growth",
+              "to": "stable",
+              "signalStrength": 0.56,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2025-06-09",
+              "from": "stable",
+              "to": "growth",
+              "signalStrength": 0.657,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2025-07-24",
+              "from": "growth",
+              "to": "stable",
+              "signalStrength": 0.56,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2025-08-21",
+              "from": "stable",
+              "to": "growth",
+              "signalStrength": 0.6465,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2025-09-24",
+              "from": "growth",
+              "to": "stable",
+              "signalStrength": 0.56,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2025-11-03",
+              "from": "stable",
+              "to": "growth",
+              "signalStrength": 0.6303,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2025-12-01",
+              "from": "growth",
+              "to": "stable",
+              "signalStrength": 0.56,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2025-12-29",
+              "from": "stable",
+              "to": "growth",
+              "signalStrength": 0.7195,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2026-01-26",
+              "from": "growth",
+              "to": "stable",
+              "signalStrength": 0.56,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2026-02-23",
+              "from": "stable",
+              "to": "growth",
+              "signalStrength": 0.678,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2026-03-23",
+              "from": "growth",
+              "to": "stable",
+              "signalStrength": 0.56,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2026-06-04",
+              "from": "stable",
+              "to": "growth",
+              "signalStrength": 0.635,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2026-07-02",
+              "from": "growth",
+              "to": "stable",
+              "signalStrength": 0.56,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2026-07-30",
+              "from": "stable",
+              "to": "growth",
+              "signalStrength": 0.6359,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2026-08-27",
+              "from": "growth",
+              "to": "stable",
+              "signalStrength": 0.56,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2026-11-04",
+              "from": "stable",
+              "to": "growth",
+              "signalStrength": 0.6355,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2027-01-12",
+              "from": "growth",
+              "to": "stable",
+              "signalStrength": 0.56,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2027-02-21",
+              "from": "stable",
+              "to": "growth",
+              "signalStrength": 0.6603,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2027-03-21",
+              "from": "growth",
+              "to": "stable",
+              "signalStrength": 0.56,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            }
+          ],
+          "final": "stable"
+        }
+      ]
+    },
+    {
+      "type": "decline",
+      "name": "Struggling Store",
+      "seeds": [
+        740001,
+        850002,
+        960003
+      ],
+      "detectorCorrectShare": 0.19,
+      "avgSwitches": 10.33,
+      "score": {
+        "7": {
+          "routerWape": 4.95,
+          "static28Wape": 5.88,
+          "oracleWape": 4,
+          "wins": 3,
+          "losses": 0,
+          "meanRouterBias": 2.6,
+          "improvementPct": 15.83
+        },
+        "30": {
+          "routerWape": 2.16,
+          "static28Wape": 7.58,
+          "oracleWape": 2.14,
+          "wins": 3,
+          "losses": 0,
+          "meanRouterBias": 1.39,
+          "improvementPct": 71.46
+        }
+      },
+      "examples": [
+        {
+          "seed": 740001,
+          "events": [
+            {
+              "date": "2025-01-13",
+              "from": "stable",
+              "to": "stepchange",
+              "signalStrength": 0.6784,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2025-02-10",
+              "from": "stepchange",
+              "to": "stable",
+              "signalStrength": 0.56,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2025-04-14",
+              "from": "stable",
+              "to": "decline",
+              "signalStrength": 0.6303,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2025-05-12",
+              "from": "decline",
+              "to": "stable",
+              "signalStrength": 0.56,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2026-01-13",
+              "from": "stable",
+              "to": "stepchange",
+              "signalStrength": 0.6712,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2026-02-10",
+              "from": "stepchange",
+              "to": "stable",
+              "signalStrength": 0.56,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2026-03-28",
+              "from": "stable",
+              "to": "decline",
+              "signalStrength": 0.6968,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2026-04-27",
+              "from": "decline",
+              "to": "stable",
+              "signalStrength": 0.56,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2027-01-11",
+              "from": "stable",
+              "to": "stepchange",
+              "signalStrength": 0.6737,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2027-02-08",
+              "from": "stepchange",
+              "to": "stable",
+              "signalStrength": 0.56,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2027-03-22",
+              "from": "stable",
+              "to": "decline",
+              "signalStrength": 0.7452,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            }
+          ],
+          "final": "decline"
+        },
+        {
+          "seed": 850002,
+          "events": [
+            {
+              "date": "2025-03-29",
+              "from": "stable",
+              "to": "decline",
+              "signalStrength": 0.6717,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2025-04-26",
+              "from": "decline",
+              "to": "stable",
+              "signalStrength": 0.56,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2026-01-13",
+              "from": "stable",
+              "to": "stepchange",
+              "signalStrength": 0.6574,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2026-02-10",
+              "from": "stepchange",
+              "to": "stable",
+              "signalStrength": 0.56,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2026-04-03",
+              "from": "stable",
+              "to": "decline",
+              "signalStrength": 0.6668,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2026-05-01",
+              "from": "decline",
+              "to": "stable",
+              "signalStrength": 0.56,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2027-01-11",
+              "from": "stable",
+              "to": "stepchange",
+              "signalStrength": 0.6737,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2027-02-08",
+              "from": "stepchange",
+              "to": "stable",
+              "signalStrength": 0.56,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2027-03-22",
+              "from": "stable",
+              "to": "decline",
+              "signalStrength": 0.7348,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            }
+          ],
+          "final": "decline"
+        },
+        {
+          "seed": 960003,
+          "events": [
+            {
+              "date": "2025-01-12",
+              "from": "stable",
+              "to": "stepchange",
+              "signalStrength": 0.6451,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2025-02-09",
+              "from": "stepchange",
+              "to": "stable",
+              "signalStrength": 0.56,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2025-03-30",
+              "from": "stable",
+              "to": "decline",
+              "signalStrength": 0.6721,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2025-04-27",
+              "from": "decline",
+              "to": "stable",
+              "signalStrength": 0.56,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2026-01-14",
+              "from": "stable",
+              "to": "stepchange",
+              "signalStrength": 0.66,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2026-02-11",
+              "from": "stepchange",
+              "to": "stable",
+              "signalStrength": 0.56,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2026-03-28",
+              "from": "stable",
+              "to": "decline",
+              "signalStrength": 0.6861,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2026-04-27",
+              "from": "decline",
+              "to": "stable",
+              "signalStrength": 0.56,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2027-01-12",
+              "from": "stable",
+              "to": "stepchange",
+              "signalStrength": 0.6882,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2027-02-09",
+              "from": "stepchange",
+              "to": "stable",
+              "signalStrength": 0.56,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2027-03-29",
+              "from": "stable",
+              "to": "decline",
+              "signalStrength": 0.7409,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            }
+          ],
+          "final": "decline"
+        }
+      ]
+    },
+    {
+      "type": "seasonal",
+      "name": "Seasonal Store",
+      "seeds": [
+        740001,
+        850002,
+        960003
+      ],
+      "detectorCorrectShare": 0.6,
+      "avgSwitches": 16,
+      "score": {
+        "7": {
+          "routerWape": 7.06,
+          "static28Wape": 18.66,
+          "oracleWape": 4.11,
+          "wins": 3,
+          "losses": 0,
+          "meanRouterBias": 0.11,
+          "improvementPct": 62.19
+        },
+        "30": {
+          "routerWape": 4.64,
+          "static28Wape": 23.16,
+          "oracleWape": 2.43,
+          "wins": 3,
+          "losses": 0,
+          "meanRouterBias": -0.54,
+          "improvementPct": 79.95
+        }
+      },
+      "examples": [
+        {
+          "seed": 740001,
+          "events": [
+            {
+              "date": "2024-11-20",
+              "from": "stable",
+              "to": "growth",
+              "signalStrength": 0.8472,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2025-01-12",
+              "from": "growth",
+              "to": "stepchange",
+              "signalStrength": 0.9625,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2025-02-09",
+              "from": "stepchange",
+              "to": "volatile",
+              "signalStrength": 0.8523,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2025-03-09",
+              "from": "volatile",
+              "to": "stable",
+              "signalStrength": 0.56,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2025-06-08",
+              "from": "stable",
+              "to": "stepchange",
+              "signalStrength": 0.6934,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2025-07-06",
+              "from": "stepchange",
+              "to": "stable",
+              "signalStrength": 0.56,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2025-11-03",
+              "from": "stable",
+              "to": "growth",
+              "signalStrength": 0.7007,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2026-01-12",
+              "from": "growth",
+              "to": "stepchange",
+              "signalStrength": 0.9531,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2026-02-09",
+              "from": "stepchange",
+              "to": "volatile",
+              "signalStrength": 0.8636,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2026-03-09",
+              "from": "volatile",
+              "to": "stable",
+              "signalStrength": 0.56,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2026-06-05",
+              "from": "stable",
+              "to": "seasonal",
+              "signalStrength": 0.7277,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2026-11-16",
+              "from": "seasonal",
+              "to": "growth",
+              "signalStrength": 0.8153,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2027-01-11",
+              "from": "growth",
+              "to": "stepchange",
+              "signalStrength": 0.9567,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2027-02-08",
+              "from": "stepchange",
+              "to": "volatile",
+              "signalStrength": 0.8531,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2027-03-08",
+              "from": "volatile",
+              "to": "seasonal",
+              "signalStrength": 0.7275,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            }
+          ],
+          "final": "seasonal"
+        },
+        {
+          "seed": 850002,
+          "events": [
+            {
+              "date": "2024-11-20",
+              "from": "stable",
+              "to": "growth",
+              "signalStrength": 0.8444,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2025-01-10",
+              "from": "growth",
+              "to": "stepchange",
+              "signalStrength": 0.9645,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2025-02-07",
+              "from": "stepchange",
+              "to": "volatile",
+              "signalStrength": 0.8483,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2025-03-07",
+              "from": "volatile",
+              "to": "stable",
+              "signalStrength": 0.56,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2025-05-30",
+              "from": "stable",
+              "to": "decline",
+              "signalStrength": 0.6697,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2025-06-27",
+              "from": "decline",
+              "to": "stable",
+              "signalStrength": 0.56,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2025-11-03",
+              "from": "stable",
+              "to": "growth",
+              "signalStrength": 0.6849,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2026-01-12",
+              "from": "growth",
+              "to": "stepchange",
+              "signalStrength": 0.9607,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2026-02-09",
+              "from": "stepchange",
+              "to": "volatile",
+              "signalStrength": 0.8565,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2026-03-09",
+              "from": "volatile",
+              "to": "stable",
+              "signalStrength": 0.56,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2026-06-05",
+              "from": "stable",
+              "to": "seasonal",
+              "signalStrength": 0.7269,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2026-11-16",
+              "from": "seasonal",
+              "to": "growth",
+              "signalStrength": 0.8131,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2027-01-11",
+              "from": "growth",
+              "to": "stepchange",
+              "signalStrength": 0.9617,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2027-02-08",
+              "from": "stepchange",
+              "to": "volatile",
+              "signalStrength": 0.8644,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2027-03-08",
+              "from": "volatile",
+              "to": "seasonal",
+              "signalStrength": 0.7268,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2027-05-09",
+              "from": "seasonal",
+              "to": "decline",
+              "signalStrength": 0.8375,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            }
+          ],
+          "final": "decline"
+        },
+        {
+          "seed": 960003,
+          "events": [
+            {
+              "date": "2024-11-20",
+              "from": "stable",
+              "to": "growth",
+              "signalStrength": 0.8364,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2025-01-11",
+              "from": "growth",
+              "to": "stepchange",
+              "signalStrength": 0.9639,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2025-02-08",
+              "from": "stepchange",
+              "to": "volatile",
+              "signalStrength": 0.8636,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2025-03-08",
+              "from": "volatile",
+              "to": "stable",
+              "signalStrength": 0.56,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2025-05-26",
+              "from": "stable",
+              "to": "decline",
+              "signalStrength": 0.7309,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2025-06-23",
+              "from": "decline",
+              "to": "stable",
+              "signalStrength": 0.56,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2025-11-03",
+              "from": "stable",
+              "to": "growth",
+              "signalStrength": 0.6991,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2026-01-11",
+              "from": "growth",
+              "to": "stepchange",
+              "signalStrength": 0.9598,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2026-02-08",
+              "from": "stepchange",
+              "to": "volatile",
+              "signalStrength": 0.8492,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2026-03-08",
+              "from": "volatile",
+              "to": "stable",
+              "signalStrength": 0.56,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2026-06-05",
+              "from": "stable",
+              "to": "seasonal",
+              "signalStrength": 0.7256,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2026-11-15",
+              "from": "seasonal",
+              "to": "growth",
+              "signalStrength": 0.8208,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2027-01-11",
+              "from": "growth",
+              "to": "stepchange",
+              "signalStrength": 0.9605,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2027-02-08",
+              "from": "stepchange",
+              "to": "volatile",
+              "signalStrength": 0.8434,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2027-03-08",
+              "from": "volatile",
+              "to": "seasonal",
+              "signalStrength": 0.7248,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2027-04-16",
+              "from": "seasonal",
+              "to": "decline",
+              "signalStrength": 0.9286,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2027-05-14",
+              "from": "decline",
+              "to": "seasonal",
+              "signalStrength": 0.7248,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            }
+          ],
+          "final": "seasonal"
+        }
+      ]
+    },
+    {
+      "type": "volatile",
+      "name": "Unpredictable Store",
+      "seeds": [
+        740001,
+        850002,
+        960003
+      ],
+      "detectorCorrectShare": 0.4,
+      "avgSwitches": 23.67,
+      "score": {
+        "7": {
+          "routerWape": 29.97,
+          "static28Wape": 35.78,
+          "oracleWape": 31.19,
+          "wins": 3,
+          "losses": 0,
+          "meanRouterBias": -0.44,
+          "improvementPct": 16.24
+        },
+        "30": {
+          "routerWape": 20.91,
+          "static28Wape": 26.15,
+          "oracleWape": 18.35,
+          "wins": 3,
+          "losses": 0,
+          "meanRouterBias": 0.43,
+          "improvementPct": 20.04
+        }
+      },
+      "examples": [
+        {
+          "seed": 740001,
+          "events": [
+            {
+              "date": "2024-09-25",
+              "from": "stable",
+              "to": "volatile",
+              "signalStrength": 0.7581,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2024-10-27",
+              "from": "volatile",
+              "to": "supply",
+              "signalStrength": 0.9462,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2024-12-09",
+              "from": "supply",
+              "to": "volatile",
+              "signalStrength": 0.6991,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2025-02-17",
+              "from": "volatile",
+              "to": "supply",
+              "signalStrength": 0.8606,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2025-04-19",
+              "from": "supply",
+              "to": "volatile",
+              "signalStrength": 0.7851,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2025-05-20",
+              "from": "volatile",
+              "to": "stepchange",
+              "signalStrength": 0.991,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2025-06-17",
+              "from": "stepchange",
+              "to": "volatile",
+              "signalStrength": 0.7222,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2025-08-02",
+              "from": "volatile",
+              "to": "stepchange",
+              "signalStrength": 1,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2025-08-30",
+              "from": "stepchange",
+              "to": "volatile",
+              "signalStrength": 0.7147,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2025-09-27",
+              "from": "volatile",
+              "to": "stable",
+              "signalStrength": 0.56,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2025-10-25",
+              "from": "stable",
+              "to": "volatile",
+              "signalStrength": 0.7956,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2025-11-22",
+              "from": "volatile",
+              "to": "supply",
+              "signalStrength": 0.9462,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2026-01-06",
+              "from": "supply",
+              "to": "volatile",
+              "signalStrength": 0.7025,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2026-03-01",
+              "from": "volatile",
+              "to": "stepchange",
+              "signalStrength": 1,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2026-03-29",
+              "from": "stepchange",
+              "to": "supply",
+              "signalStrength": 0.9462,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2026-04-28",
+              "from": "supply",
+              "to": "volatile",
+              "signalStrength": 0.7925,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2026-07-06",
+              "from": "volatile",
+              "to": "growth",
+              "signalStrength": 0.7038,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2026-08-03",
+              "from": "growth",
+              "to": "supply",
+              "signalStrength": 0.8606,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2026-09-15",
+              "from": "supply",
+              "to": "volatile",
+              "signalStrength": 0.648,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2026-11-27",
+              "from": "volatile",
+              "to": "stable",
+              "signalStrength": 0.56,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2026-12-25",
+              "from": "stable",
+              "to": "supply",
+              "signalStrength": 0.832,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2027-01-30",
+              "from": "supply",
+              "to": "volatile",
+              "signalStrength": 0.6981,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2027-04-17",
+              "from": "volatile",
+              "to": "stepchange",
+              "signalStrength": 1,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2027-05-15",
+              "from": "stepchange",
+              "to": "supply",
+              "signalStrength": 0.9462,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            }
+          ],
+          "final": "supply"
+        },
+        {
+          "seed": 850002,
+          "events": [
+            {
+              "date": "2024-09-25",
+              "from": "stable",
+              "to": "volatile",
+              "signalStrength": 0.7622,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2024-10-27",
+              "from": "volatile",
+              "to": "supply",
+              "signalStrength": 0.9462,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2024-12-09",
+              "from": "supply",
+              "to": "volatile",
+              "signalStrength": 0.7221,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2025-02-17",
+              "from": "volatile",
+              "to": "supply",
+              "signalStrength": 0.8606,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2025-04-19",
+              "from": "supply",
+              "to": "volatile",
+              "signalStrength": 0.7789,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2025-05-19",
+              "from": "volatile",
+              "to": "stepchange",
+              "signalStrength": 0.945,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2025-06-20",
+              "from": "stepchange",
+              "to": "volatile",
+              "signalStrength": 0.7137,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2025-07-31",
+              "from": "volatile",
+              "to": "supply",
+              "signalStrength": 0.8606,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2025-08-28",
+              "from": "supply",
+              "to": "volatile",
+              "signalStrength": 0.726,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2025-09-26",
+              "from": "volatile",
+              "to": "stable",
+              "signalStrength": 0.56,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2025-11-06",
+              "from": "stable",
+              "to": "supply",
+              "signalStrength": 0.8606,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2025-12-08",
+              "from": "supply",
+              "to": "volatile",
+              "signalStrength": 0.6786,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2026-03-01",
+              "from": "volatile",
+              "to": "stepchange",
+              "signalStrength": 1,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2026-03-29",
+              "from": "stepchange",
+              "to": "supply",
+              "signalStrength": 0.9462,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2026-04-27",
+              "from": "supply",
+              "to": "volatile",
+              "signalStrength": 0.8223,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2026-07-07",
+              "from": "volatile",
+              "to": "stable",
+              "signalStrength": 0.56,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2026-08-04",
+              "from": "stable",
+              "to": "supply",
+              "signalStrength": 0.8606,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2026-09-15",
+              "from": "supply",
+              "to": "volatile",
+              "signalStrength": 0.6633,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2026-12-05",
+              "from": "volatile",
+              "to": "stepchange",
+              "signalStrength": 0.9085,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2027-01-02",
+              "from": "stepchange",
+              "to": "supply",
+              "signalStrength": 0.832,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2027-01-30",
+              "from": "supply",
+              "to": "volatile",
+              "signalStrength": 0.7534,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2027-04-18",
+              "from": "volatile",
+              "to": "stepchange",
+              "signalStrength": 0.9567,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2027-05-16",
+              "from": "stepchange",
+              "to": "supply",
+              "signalStrength": 0.9462,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            }
+          ],
+          "final": "supply"
+        },
+        {
+          "seed": 960003,
+          "events": [
+            {
+              "date": "2024-09-25",
+              "from": "stable",
+              "to": "volatile",
+              "signalStrength": 0.7544,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2024-10-26",
+              "from": "volatile",
+              "to": "supply",
+              "signalStrength": 0.9462,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2024-12-09",
+              "from": "supply",
+              "to": "volatile",
+              "signalStrength": 0.6772,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2025-02-17",
+              "from": "volatile",
+              "to": "supply",
+              "signalStrength": 0.8606,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2025-04-19",
+              "from": "supply",
+              "to": "volatile",
+              "signalStrength": 0.7877,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2025-05-19",
+              "from": "volatile",
+              "to": "stepchange",
+              "signalStrength": 0.8342,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2025-06-16",
+              "from": "stepchange",
+              "to": "volatile",
+              "signalStrength": 0.7179,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2025-07-14",
+              "from": "volatile",
+              "to": "supply",
+              "signalStrength": 0.8034,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2025-09-01",
+              "from": "supply",
+              "to": "volatile",
+              "signalStrength": 0.6743,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2025-09-29",
+              "from": "volatile",
+              "to": "stable",
+              "signalStrength": 0.56,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2025-10-27",
+              "from": "stable",
+              "to": "volatile",
+              "signalStrength": 0.7543,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2025-11-24",
+              "from": "volatile",
+              "to": "supply",
+              "signalStrength": 0.9462,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2026-01-06",
+              "from": "supply",
+              "to": "volatile",
+              "signalStrength": 0.7077,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2026-02-19",
+              "from": "volatile",
+              "to": "stable",
+              "signalStrength": 0.56,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2026-03-24",
+              "from": "stable",
+              "to": "supply",
+              "signalStrength": 0.9462,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2026-04-27",
+              "from": "supply",
+              "to": "volatile",
+              "signalStrength": 0.8299,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2026-07-04",
+              "from": "volatile",
+              "to": "growth",
+              "signalStrength": 0.7962,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2026-08-03",
+              "from": "growth",
+              "to": "supply",
+              "signalStrength": 0.8606,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2026-09-15",
+              "from": "supply",
+              "to": "volatile",
+              "signalStrength": 0.6524,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2026-11-29",
+              "from": "volatile",
+              "to": "stepchange",
+              "signalStrength": 0.6626,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2026-12-27",
+              "from": "stepchange",
+              "to": "supply",
+              "signalStrength": 0.832,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2027-01-30",
+              "from": "supply",
+              "to": "volatile",
+              "signalStrength": 0.7728,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2027-04-15",
+              "from": "volatile",
+              "to": "stepchange",
+              "signalStrength": 0.9577,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2027-05-13",
+              "from": "stepchange",
+              "to": "supply",
+              "signalStrength": 0.9462,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            }
+          ],
+          "final": "supply"
+        }
+      ]
+    },
+    {
+      "type": "stepchange",
+      "name": "Sudden Demand Drop",
+      "seeds": [
+        740001,
+        850002,
+        960003
+      ],
+      "detectorCorrectShare": 0.13,
+      "avgSwitches": 6.33,
+      "score": {
+        "7": {
+          "routerWape": 10.05,
+          "static28Wape": 10.92,
+          "oracleWape": 8.15,
+          "wins": 3,
+          "losses": 0,
+          "meanRouterBias": 4.92,
+          "improvementPct": 7.91
+        },
+        "30": {
+          "routerWape": 9.24,
+          "static28Wape": 12.74,
+          "oracleWape": 9.93,
+          "wins": 3,
+          "losses": 0,
+          "meanRouterBias": 6.66,
+          "improvementPct": 27.43
+        }
+      },
+      "examples": [
+        {
+          "seed": 740001,
+          "events": [
+            {
+              "date": "2026-08-03",
+              "from": "stable",
+              "to": "stepchange",
+              "signalStrength": 0.7897,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2026-09-15",
+              "from": "stepchange",
+              "to": "decline",
+              "signalStrength": 0.7683,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2026-10-13",
+              "from": "decline",
+              "to": "stable",
+              "signalStrength": 0.56,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2027-01-14",
+              "from": "stable",
+              "to": "stepchange",
+              "signalStrength": 0.6441,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2027-02-11",
+              "from": "stepchange",
+              "to": "stable",
+              "signalStrength": 0.56,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            }
+          ],
+          "final": "stable"
+        },
+        {
+          "seed": 850002,
+          "events": [
+            {
+              "date": "2025-01-16",
+              "from": "stable",
+              "to": "stepchange",
+              "signalStrength": 0.6577,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2025-02-13",
+              "from": "stepchange",
+              "to": "stable",
+              "signalStrength": 0.56,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2026-08-03",
+              "from": "stable",
+              "to": "stepchange",
+              "signalStrength": 0.7631,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2026-09-15",
+              "from": "stepchange",
+              "to": "decline",
+              "signalStrength": 0.7782,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2026-10-13",
+              "from": "decline",
+              "to": "stable",
+              "signalStrength": 0.56,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2027-01-14",
+              "from": "stable",
+              "to": "stepchange",
+              "signalStrength": 0.6534,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2027-02-11",
+              "from": "stepchange",
+              "to": "stable",
+              "signalStrength": 0.56,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            }
+          ],
+          "final": "stable"
+        },
+        {
+          "seed": 960003,
+          "events": [
+            {
+              "date": "2025-12-29",
+              "from": "stable",
+              "to": "growth",
+              "signalStrength": 0.6349,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2026-01-26",
+              "from": "growth",
+              "to": "stable",
+              "signalStrength": 0.56,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2026-08-04",
+              "from": "stable",
+              "to": "stepchange",
+              "signalStrength": 0.8343,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2026-09-17",
+              "from": "stepchange",
+              "to": "decline",
+              "signalStrength": 0.7797,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2026-10-15",
+              "from": "decline",
+              "to": "stable",
+              "signalStrength": 0.56,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2027-01-16",
+              "from": "stable",
+              "to": "stepchange",
+              "signalStrength": 0.6453,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2027-02-13",
+              "from": "stepchange",
+              "to": "stable",
+              "signalStrength": 0.56,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            }
+          ],
+          "final": "stable"
+        }
+      ]
+    },
+    {
+      "type": "promotion",
+      "name": "Promotion Fatigue",
+      "seeds": [
+        740001,
+        850002,
+        960003
+      ],
+      "detectorCorrectShare": 0.25,
+      "avgSwitches": 9,
+      "score": {
+        "7": {
+          "routerWape": 14.95,
+          "static28Wape": 13.88,
+          "oracleWape": 15.65,
+          "wins": 0,
+          "losses": 3,
+          "meanRouterBias": 3.01,
+          "improvementPct": -7.68
+        },
+        "30": {
+          "routerWape": 8.93,
+          "static28Wape": 10.21,
+          "oracleWape": 13.68,
+          "wins": 3,
+          "losses": 0,
+          "meanRouterBias": 8.44,
+          "improvementPct": 12.48
+        }
+      },
+      "examples": [
+        {
+          "seed": 740001,
+          "events": [
+            {
+              "date": "2024-12-24",
+              "from": "stable",
+              "to": "growth",
+              "signalStrength": 0.6558,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2025-01-21",
+              "from": "growth",
+              "to": "stepchange",
+              "signalStrength": 0.6667,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2025-02-18",
+              "from": "stepchange",
+              "to": "stable",
+              "signalStrength": 0.56,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2026-01-17",
+              "from": "stable",
+              "to": "stepchange",
+              "signalStrength": 0.6999,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2026-02-14",
+              "from": "stepchange",
+              "to": "stable",
+              "signalStrength": 0.56,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2026-08-03",
+              "from": "stable",
+              "to": "promotion",
+              "signalStrength": 0.8044,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2026-10-22",
+              "from": "promotion",
+              "to": "stable",
+              "signalStrength": 0.56,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2027-01-24",
+              "from": "stable",
+              "to": "stepchange",
+              "signalStrength": 0.7095,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2027-02-21",
+              "from": "stepchange",
+              "to": "stable",
+              "signalStrength": 0.56,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            }
+          ],
+          "final": "stable"
+        },
+        {
+          "seed": 850002,
+          "events": [
+            {
+              "date": "2024-12-25",
+              "from": "stable",
+              "to": "growth",
+              "signalStrength": 0.6315,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2025-01-22",
+              "from": "growth",
+              "to": "stepchange",
+              "signalStrength": 0.6869,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2025-02-19",
+              "from": "stepchange",
+              "to": "stable",
+              "signalStrength": 0.56,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2025-12-19",
+              "from": "stable",
+              "to": "growth",
+              "signalStrength": 0.6479,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2026-01-16",
+              "from": "growth",
+              "to": "stepchange",
+              "signalStrength": 0.6907,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2026-02-13",
+              "from": "stepchange",
+              "to": "stable",
+              "signalStrength": 0.56,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2026-08-04",
+              "from": "stable",
+              "to": "promotion",
+              "signalStrength": 0.7917,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2026-10-22",
+              "from": "promotion",
+              "to": "stable",
+              "signalStrength": 0.56,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2027-01-24",
+              "from": "stable",
+              "to": "stepchange",
+              "signalStrength": 0.7258,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2027-02-21",
+              "from": "stepchange",
+              "to": "stable",
+              "signalStrength": 0.56,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            }
+          ],
+          "final": "stable"
+        },
+        {
+          "seed": 960003,
+          "events": [
+            {
+              "date": "2025-01-13",
+              "from": "stable",
+              "to": "stepchange",
+              "signalStrength": 0.694,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2025-02-10",
+              "from": "stepchange",
+              "to": "stable",
+              "signalStrength": 0.56,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2026-01-17",
+              "from": "stable",
+              "to": "stepchange",
+              "signalStrength": 0.69,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2026-02-14",
+              "from": "stepchange",
+              "to": "stable",
+              "signalStrength": 0.56,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2026-08-04",
+              "from": "stable",
+              "to": "promotion",
+              "signalStrength": 0.7978,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2026-10-22",
+              "from": "promotion",
+              "to": "stable",
+              "signalStrength": 0.56,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2027-01-24",
+              "from": "stable",
+              "to": "stepchange",
+              "signalStrength": 0.7325,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2027-02-21",
+              "from": "stepchange",
+              "to": "stable",
+              "signalStrength": 0.56,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            }
+          ],
+          "final": "stable"
+        }
+      ]
+    },
+    {
+      "type": "supply",
+      "name": "Supply Disruption",
+      "seeds": [
+        740001,
+        850002,
+        960003
+      ],
+      "detectorCorrectShare": 0.57,
+      "avgSwitches": 11.33,
+      "score": {
+        "7": {
+          "routerWape": 40.32,
+          "static28Wape": 54.5,
+          "oracleWape": 33.66,
+          "wins": 3,
+          "losses": 0,
+          "meanRouterBias": 4.11,
+          "improvementPct": 26.01
+        },
+        "30": {
+          "routerWape": 51.14,
+          "static28Wape": 50.58,
+          "oracleWape": 54.32,
+          "wins": 0,
+          "losses": 3,
+          "meanRouterBias": 10.01,
+          "improvementPct": -1.12
+        }
+      },
+      "examples": [
+        {
+          "seed": 740001,
+          "events": [
+            {
+              "date": "2025-01-15",
+              "from": "stable",
+              "to": "stepchange",
+              "signalStrength": 0.6587,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2025-02-12",
+              "from": "stepchange",
+              "to": "stable",
+              "signalStrength": 0.56,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2026-01-17",
+              "from": "stable",
+              "to": "stepchange",
+              "signalStrength": 0.6427,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2026-02-14",
+              "from": "stepchange",
+              "to": "stable",
+              "signalStrength": 0.56,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2026-06-03",
+              "from": "stable",
+              "to": "stepchange",
+              "signalStrength": 0.882,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2026-07-01",
+              "from": "stepchange",
+              "to": "supply",
+              "signalStrength": 0.8034,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2026-07-29",
+              "from": "supply",
+              "to": "stable",
+              "signalStrength": 0.56,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2026-08-30",
+              "from": "stable",
+              "to": "supply",
+              "signalStrength": 0.8034,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2026-09-29",
+              "from": "supply",
+              "to": "stable",
+              "signalStrength": 0.56,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2026-10-31",
+              "from": "stable",
+              "to": "supply",
+              "signalStrength": 1,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2027-04-03",
+              "from": "supply",
+              "to": "stable",
+              "signalStrength": 0.56,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2027-05-01",
+              "from": "stable",
+              "to": "supply",
+              "signalStrength": 1,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            }
+          ],
+          "final": "supply"
+        },
+        {
+          "seed": 850002,
+          "events": [
+            {
+              "date": "2024-12-31",
+              "from": "stable",
+              "to": "growth",
+              "signalStrength": 0.6337,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2025-01-28",
+              "from": "growth",
+              "to": "stable",
+              "signalStrength": 0.56,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2026-01-02",
+              "from": "stable",
+              "to": "growth",
+              "signalStrength": 0.634,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2026-01-30",
+              "from": "growth",
+              "to": "stable",
+              "signalStrength": 0.56,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2026-06-02",
+              "from": "stable",
+              "to": "stepchange",
+              "signalStrength": 0.8321,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2026-06-30",
+              "from": "stepchange",
+              "to": "supply",
+              "signalStrength": 0.8034,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2026-07-29",
+              "from": "supply",
+              "to": "stable",
+              "signalStrength": 0.56,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2026-08-30",
+              "from": "stable",
+              "to": "supply",
+              "signalStrength": 0.8034,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2026-09-30",
+              "from": "supply",
+              "to": "stable",
+              "signalStrength": 0.56,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2026-10-31",
+              "from": "stable",
+              "to": "supply",
+              "signalStrength": 1,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2027-04-03",
+              "from": "supply",
+              "to": "stable",
+              "signalStrength": 0.56,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2027-05-01",
+              "from": "stable",
+              "to": "supply",
+              "signalStrength": 1,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            }
+          ],
+          "final": "supply"
+        },
+        {
+          "seed": 960003,
+          "events": [
+            {
+              "date": "2025-01-01",
+              "from": "stable",
+              "to": "growth",
+              "signalStrength": 0.6302,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2025-01-29",
+              "from": "growth",
+              "to": "stable",
+              "signalStrength": 0.56,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2026-06-02",
+              "from": "stable",
+              "to": "stepchange",
+              "signalStrength": 0.8102,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2026-06-30",
+              "from": "stepchange",
+              "to": "supply",
+              "signalStrength": 0.8034,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2026-07-29",
+              "from": "supply",
+              "to": "stable",
+              "signalStrength": 0.56,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2026-08-30",
+              "from": "stable",
+              "to": "supply",
+              "signalStrength": 0.8034,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2026-09-29",
+              "from": "supply",
+              "to": "stable",
+              "signalStrength": 0.56,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2026-10-31",
+              "from": "stable",
+              "to": "supply",
+              "signalStrength": 1,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2027-04-03",
+              "from": "supply",
+              "to": "stable",
+              "signalStrength": 0.56,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2027-05-01",
+              "from": "stable",
+              "to": "supply",
+              "signalStrength": 1,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            }
+          ],
+          "final": "supply"
+        }
+      ]
+    },
+    {
+      "type": "weekdayshift",
+      "name": "Customer Behavior Shift",
+      "seeds": [
+        740001,
+        850002,
+        960003
+      ],
+      "detectorCorrectShare": 0.21,
+      "avgSwitches": 6.67,
+      "score": {
+        "7": {
+          "routerWape": 4.86,
+          "static28Wape": 5.81,
+          "oracleWape": 4.56,
+          "wins": 3,
+          "losses": 0,
+          "meanRouterBias": 0.04,
+          "improvementPct": 16.25
+        },
+        "30": {
+          "routerWape": 3.56,
+          "static28Wape": 4.45,
+          "oracleWape": 3.12,
+          "wins": 3,
+          "losses": 0,
+          "meanRouterBias": -0.24,
+          "improvementPct": 20.07
+        }
+      },
+      "examples": [
+        {
+          "seed": 740001,
+          "events": [
+            {
+              "date": "2026-01-15",
+              "from": "stable",
+              "to": "stepchange",
+              "signalStrength": 0.6461,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2026-02-12",
+              "from": "stepchange",
+              "to": "stable",
+              "signalStrength": 0.56,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2026-08-18",
+              "from": "stable",
+              "to": "weekdayshift",
+              "signalStrength": 0.6792,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2026-10-19",
+              "from": "weekdayshift",
+              "to": "stable",
+              "signalStrength": 0.56,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            }
+          ],
+          "final": "stable"
+        },
+        {
+          "seed": 850002,
+          "events": [
+            {
+              "date": "2025-01-15",
+              "from": "stable",
+              "to": "stepchange",
+              "signalStrength": 0.6429,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2025-02-12",
+              "from": "stepchange",
+              "to": "stable",
+              "signalStrength": 0.56,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2026-01-15",
+              "from": "stable",
+              "to": "stepchange",
+              "signalStrength": 0.6509,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2026-02-12",
+              "from": "stepchange",
+              "to": "stable",
+              "signalStrength": 0.56,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2026-08-18",
+              "from": "stable",
+              "to": "weekdayshift",
+              "signalStrength": 0.6758,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2026-10-19",
+              "from": "weekdayshift",
+              "to": "stable",
+              "signalStrength": 0.56,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2027-01-15",
+              "from": "stable",
+              "to": "stepchange",
+              "signalStrength": 0.644,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2027-02-12",
+              "from": "stepchange",
+              "to": "stable",
+              "signalStrength": 0.56,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            }
+          ],
+          "final": "stable"
+        },
+        {
+          "seed": 960003,
+          "events": [
+            {
+              "date": "2025-01-16",
+              "from": "stable",
+              "to": "stepchange",
+              "signalStrength": 0.6614,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2025-02-13",
+              "from": "stepchange",
+              "to": "stable",
+              "signalStrength": 0.56,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2026-01-15",
+              "from": "stable",
+              "to": "stepchange",
+              "signalStrength": 0.6533,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2026-02-12",
+              "from": "stepchange",
+              "to": "stable",
+              "signalStrength": 0.56,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2026-08-18",
+              "from": "stable",
+              "to": "weekdayshift",
+              "signalStrength": 0.6876,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2026-10-19",
+              "from": "weekdayshift",
+              "to": "stable",
+              "signalStrength": 0.56,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2027-01-14",
+              "from": "stable",
+              "to": "stepchange",
+              "signalStrength": 0.6672,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            },
+            {
+              "date": "2027-02-11",
+              "from": "stepchange",
+              "to": "stable",
+              "signalStrength": 0.56,
+              "authority": "SYNTHETIC SHADOW — HOLD"
+            }
+          ],
+          "final": "stable"
+        }
+      ]
+    }
+  ]
+}

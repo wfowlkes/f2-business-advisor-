@@ -1,0 +1,41 @@
+name: F2 transition research and protection gates
+on:
+  push:
+    paths:
+      - 'lab/transition_*.js'
+      - 'lab/transitions.html'
+      - 'lab/synthetic.js'
+      - 'lab/scenario_methods.js'
+      - 'lab/selection-frozen.json'
+      - 'server/**'
+      - 'tests/test_transition.js'
+      - '.github/workflows/transition-research.yml'
+  pull_request:
+    paths:
+      - 'lab/transition_*.js'
+      - 'lab/transitions.html'
+      - 'server/**'
+      - 'tests/test_transition.js'
+      - '.github/workflows/transition-research.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  test-and-grade:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: node --check lab/transition_engine.js && node --check lab/transition_report.js && node --check lab/transition_ui.js
+      - run: node --test tests/test_transition.js server/test/transition.test.js
+      - name: Replay out-of-sample synthetic switching
+        run: node lab/transition_report.js
+      - name: Retain independent synthetic evidence
+        uses: actions/upload-artifact@v4
+        with:
+          name: transition-learning-lab-${{ github.run_number }}
+          path: transition-evidence/
+          retention-days: 30

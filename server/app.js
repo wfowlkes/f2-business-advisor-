@@ -17,7 +17,12 @@ const syntheticLab={
   '/lab/strategies.html': ['strategies.html','text/html; charset=utf-8'],
   '/lab/strategies.js': ['strategies.js','application/javascript; charset=utf-8'],
   '/lab/strategy-summary.json': ['strategy-summary.json','application/json; charset=utf-8'],
-  '/lab/calendar-stress.json': ['calendar-stress.json','application/json; charset=utf-8']
+  '/lab/calendar-stress.json': ['calendar-stress.json','application/json; charset=utf-8'],
+  '/lab/selection-frozen.json': ['selection-frozen.json','application/json; charset=utf-8'],
+  '/lab/transitions.html': ['transitions.html','text/html; charset=utf-8'],
+  '/lab/transition_engine.js': ['transition_engine.js','application/javascript; charset=utf-8'],
+  '/lab/transition_ui.js': ['transition_ui.js','application/javascript; charset=utf-8'],
+  '/lab/transition-results.json': ['transition-results.json','application/json; charset=utf-8']
 };
 
 function secretOK(received, expected){
