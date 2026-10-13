@@ -1,0 +1,36 @@
+name: F2 causal bridge research and regression
+on:
+  push:
+    paths:
+      - 'lab/bridge_*.js'
+      - 'lab/bridge.html'
+      - 'lab/bridge-summary.json'
+      - 'server/**'
+      - 'tests/test_bridge.js'
+      - '.github/workflows/bridge-research.yml'
+  pull_request:
+    paths:
+      - 'lab/bridge_*.js'
+      - 'lab/bridge.html'
+      - 'lab/bridge-summary.json'
+      - 'server/**'
+      - 'tests/test_bridge.js'
+      - '.github/workflows/bridge-research.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Syntax guards
+        run: node --check lab/bridge_engine.js && node --check lab/bridge_report.js && node --check lab/bridge_ui.js && node --check lab/bridge_publish.js
+      - name: Shadow gates, no future leakage, and public/private route checks
+        run: node --test tests/test_bridge.js server/test/bridge.test.js
+      - name: Immutable legacy core validation
+        run: node tests/test_core.js

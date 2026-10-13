@@ -1,0 +1,1293 @@
+{
+  "version": "F2 Transition Bridge 1.4",
+  "phase": "FROZEN RESEARCH SHADOW — HOLD",
+  "at": "2026-10-13",
+  "synthetic": true,
+  "authority": "HOLD",
+  "seedGroups": {
+    "development": [
+      242424,
+      353535
+    ],
+    "challenge": [
+      731111,
+      842222,
+      953333
+    ],
+    "calendarShift": [
+      365365
+    ],
+    "shiftedAsOf": "2027-07-17"
+  },
+  "provenance": {
+    "v13Hash": "ac92803c8d89dced9fb46dcc4eca61f0101c9a7dedeac7d4daecc40c7f84ccc6",
+    "bridgeHash": "cb679a197ae40ece185d6e48149e72b5ef3a944dc1ee7c26db2bc4ca96d723c9",
+    "syntheticGeneratorHash": "a86393cc578e28ff2a57d6c7852cfaac76342bf1a7816600dd89022d4375f081"
+  },
+  "algorithm": "Causal indicator + hysteresis/dwell + selective, horizon-specific exposure/refund bridge. Original v1.3 forecast remains frozen as fallback.",
+  "permission": "NO production routing, credentials, Shopify reads, or model promotion.",
+  "significance": "Unseen seeds from the SAME synthetic generator family; results do not demonstrate external statistical generalization.",
+  "businesses": [
+    {
+      "type": "stable",
+      "name": "Steady Retail",
+      "meanSwitchesV13": 2,
+      "meanSwitchesV14": 0,
+      "scenariosDuringTest": [
+        {
+          "seed": 731111,
+          "final": "stable",
+          "events": []
+        },
+        {
+          "seed": 842222,
+          "final": "stable",
+          "events": []
+        },
+        {
+          "seed": 953333,
+          "final": "stable",
+          "events": []
+        }
+      ],
+      "horizons": {
+        "7": {
+          "oldWape": 3.6,
+          "unfilteredBridgeWape": 4.52,
+          "gatedWape": 3.6,
+          "staticWape": 4.52,
+          "winningSeeds": 0,
+          "losingSeeds": 0,
+          "perSeed": [
+            {
+              "seed": 731111,
+              "old": 3.9,
+              "gated": 3.9
+            },
+            {
+              "seed": 842222,
+              "old": 3.27,
+              "gated": 3.27
+            },
+            {
+              "seed": 953333,
+              "old": 3.62,
+              "gated": 3.62
+            }
+          ]
+        },
+        "30": {
+          "oldWape": 1.74,
+          "unfilteredBridgeWape": 3.39,
+          "gatedWape": 1.74,
+          "staticWape": 3.39,
+          "winningSeeds": 0,
+          "losingSeeds": 0,
+          "perSeed": [
+            {
+              "seed": 731111,
+              "old": 1.74,
+              "gated": 1.74
+            },
+            {
+              "seed": 842222,
+              "old": 1.23,
+              "gated": 1.23
+            },
+            {
+              "seed": 953333,
+              "old": 2.26,
+              "gated": 2.26
+            }
+          ]
+        }
+      },
+      "calendar": {
+        "seed": 365365,
+        "asOf": "2027-07-17",
+        "seven": {
+          "old": 4.22,
+          "gated": 4.22
+        },
+        "thirty": {
+          "old": 2.56,
+          "gated": 2.56
+        }
+      }
+    },
+    {
+      "type": "growth",
+      "name": "Rapid Growth",
+      "meanSwitchesV13": 19.67,
+      "meanSwitchesV14": 4.67,
+      "scenariosDuringTest": [
+        {
+          "seed": 731111,
+          "final": "stable",
+          "events": [
+            {
+              "date": "2024-12-30",
+              "from": "stable",
+              "to": "growth"
+            },
+            {
+              "date": "2025-03-10",
+              "from": "growth",
+              "to": "stable"
+            },
+            {
+              "date": "2025-12-26",
+              "from": "stable",
+              "to": "growth"
+            },
+            {
+              "date": "2026-03-06",
+              "from": "growth",
+              "to": "stable"
+            }
+          ]
+        },
+        {
+          "seed": 842222,
+          "final": "stable",
+          "events": [
+            {
+              "date": "2025-01-04",
+              "from": "stable",
+              "to": "growth"
+            },
+            {
+              "date": "2025-03-15",
+              "from": "growth",
+              "to": "stable"
+            },
+            {
+              "date": "2026-01-01",
+              "from": "stable",
+              "to": "growth"
+            },
+            {
+              "date": "2026-03-12",
+              "from": "growth",
+              "to": "stable"
+            }
+          ]
+        },
+        {
+          "seed": 953333,
+          "final": "stable",
+          "events": [
+            {
+              "date": "2025-01-01",
+              "from": "stable",
+              "to": "growth"
+            },
+            {
+              "date": "2025-03-12",
+              "from": "growth",
+              "to": "stable"
+            },
+            {
+              "date": "2025-06-18",
+              "from": "stable",
+              "to": "growth"
+            },
+            {
+              "date": "2025-08-27",
+              "from": "growth",
+              "to": "stable"
+            },
+            {
+              "date": "2025-12-30",
+              "from": "stable",
+              "to": "growth"
+            },
+            {
+              "date": "2026-03-10",
+              "from": "growth",
+              "to": "stable"
+            }
+          ]
+        }
+      ],
+      "horizons": {
+        "7": {
+          "oldWape": 2.98,
+          "unfilteredBridgeWape": 4.84,
+          "gatedWape": 2.98,
+          "staticWape": 4.84,
+          "winningSeeds": 0,
+          "losingSeeds": 0,
+          "perSeed": [
+            {
+              "seed": 731111,
+              "old": 2.95,
+              "gated": 2.95
+            },
+            {
+              "seed": 842222,
+              "old": 2.86,
+              "gated": 2.86
+            },
+            {
+              "seed": 953333,
+              "old": 3.12,
+              "gated": 3.12
+            }
+          ]
+        },
+        "30": {
+          "oldWape": 2.14,
+          "unfilteredBridgeWape": 3.86,
+          "gatedWape": 2.14,
+          "staticWape": 3.86,
+          "winningSeeds": 0,
+          "losingSeeds": 0,
+          "perSeed": [
+            {
+              "seed": 731111,
+              "old": 2.47,
+              "gated": 2.47
+            },
+            {
+              "seed": 842222,
+              "old": 1.87,
+              "gated": 1.87
+            },
+            {
+              "seed": 953333,
+              "old": 2.07,
+              "gated": 2.07
+            }
+          ]
+        }
+      },
+      "calendar": {
+        "seed": 365365,
+        "asOf": "2027-07-17",
+        "seven": {
+          "old": 3.46,
+          "gated": 3.46
+        },
+        "thirty": {
+          "old": 0.94,
+          "gated": 0.94
+        }
+      }
+    },
+    {
+      "type": "decline",
+      "name": "Struggling Store",
+      "meanSwitchesV13": 8.33,
+      "meanSwitchesV14": 2,
+      "scenariosDuringTest": [
+        {
+          "seed": 731111,
+          "final": "decline",
+          "events": [
+            {
+              "date": "2026-03-27",
+              "from": "stable",
+              "to": "decline"
+            },
+            {
+              "date": "2026-06-05",
+              "from": "decline",
+              "to": "stable"
+            },
+            {
+              "date": "2026-10-07",
+              "from": "stable",
+              "to": "decline"
+            }
+          ]
+        },
+        {
+          "seed": 842222,
+          "final": "stable",
+          "events": []
+        },
+        {
+          "seed": 953333,
+          "final": "stable",
+          "events": [
+            {
+              "date": "2026-01-21",
+              "from": "stable",
+              "to": "stepchange"
+            },
+            {
+              "date": "2026-04-03",
+              "from": "stepchange",
+              "to": "decline"
+            },
+            {
+              "date": "2026-06-12",
+              "from": "decline",
+              "to": "stable"
+            }
+          ]
+        }
+      ],
+      "horizons": {
+        "7": {
+          "oldWape": 5.21,
+          "unfilteredBridgeWape": 6.33,
+          "gatedWape": 5.21,
+          "staticWape": 6.33,
+          "winningSeeds": 0,
+          "losingSeeds": 0,
+          "perSeed": [
+            {
+              "seed": 731111,
+              "old": 5.19,
+              "gated": 5.19
+            },
+            {
+              "seed": 842222,
+              "old": 5.51,
+              "gated": 5.51
+            },
+            {
+              "seed": 953333,
+              "old": 4.93,
+              "gated": 4.93
+            }
+          ]
+        },
+        "30": {
+          "oldWape": 2.22,
+          "unfilteredBridgeWape": 7.58,
+          "gatedWape": 2.22,
+          "staticWape": 7.58,
+          "winningSeeds": 0,
+          "losingSeeds": 0,
+          "perSeed": [
+            {
+              "seed": 731111,
+              "old": 2.37,
+              "gated": 2.37
+            },
+            {
+              "seed": 842222,
+              "old": 2.37,
+              "gated": 2.37
+            },
+            {
+              "seed": 953333,
+              "old": 1.91,
+              "gated": 1.91
+            }
+          ]
+        }
+      },
+      "calendar": {
+        "seed": 365365,
+        "asOf": "2027-07-17",
+        "seven": {
+          "old": 5.76,
+          "gated": 5.76
+        },
+        "thirty": {
+          "old": 1.82,
+          "gated": 1.82
+        }
+      }
+    },
+    {
+      "type": "seasonal",
+      "name": "Seasonal Store",
+      "meanSwitchesV13": 15.33,
+      "meanSwitchesV14": 9,
+      "scenariosDuringTest": [
+        {
+          "seed": 731111,
+          "final": "seasonal",
+          "events": [
+            {
+              "date": "2024-02-22",
+              "from": "stable",
+              "to": "volatile"
+            },
+            {
+              "date": "2024-05-02",
+              "from": "volatile",
+              "to": "stable"
+            },
+            {
+              "date": "2024-11-09",
+              "from": "stable",
+              "to": "growth"
+            },
+            {
+              "date": "2025-01-18",
+              "from": "growth",
+              "to": "stepchange"
+            },
+            {
+              "date": "2025-03-29",
+              "from": "stepchange",
+              "to": "stable"
+            },
+            {
+              "date": "2025-06-21",
+              "from": "stable",
+              "to": "stepchange"
+            },
+            {
+              "date": "2025-08-30",
+              "from": "stepchange",
+              "to": "stable"
+            },
+            {
+              "date": "2026-02-06",
+              "from": "stable",
+              "to": "volatile"
+            },
+            {
+              "date": "2026-04-17",
+              "from": "volatile",
+              "to": "seasonal"
+            }
+          ]
+        },
+        {
+          "seed": 842222,
+          "final": "seasonal",
+          "events": [
+            {
+              "date": "2024-02-22",
+              "from": "stable",
+              "to": "volatile"
+            },
+            {
+              "date": "2024-05-02",
+              "from": "volatile",
+              "to": "stable"
+            },
+            {
+              "date": "2024-11-10",
+              "from": "stable",
+              "to": "growth"
+            },
+            {
+              "date": "2025-01-19",
+              "from": "growth",
+              "to": "stepchange"
+            },
+            {
+              "date": "2025-03-30",
+              "from": "stepchange",
+              "to": "stable"
+            },
+            {
+              "date": "2025-06-20",
+              "from": "stable",
+              "to": "stepchange"
+            },
+            {
+              "date": "2025-08-29",
+              "from": "stepchange",
+              "to": "stable"
+            },
+            {
+              "date": "2026-01-24",
+              "from": "stable",
+              "to": "stepchange"
+            },
+            {
+              "date": "2026-04-04",
+              "from": "stepchange",
+              "to": "seasonal"
+            }
+          ]
+        },
+        {
+          "seed": 953333,
+          "final": "seasonal",
+          "events": [
+            {
+              "date": "2024-06-21",
+              "from": "stable",
+              "to": "stepchange"
+            },
+            {
+              "date": "2024-08-30",
+              "from": "stepchange",
+              "to": "stable"
+            },
+            {
+              "date": "2024-11-09",
+              "from": "stable",
+              "to": "growth"
+            },
+            {
+              "date": "2025-01-18",
+              "from": "growth",
+              "to": "stepchange"
+            },
+            {
+              "date": "2025-03-29",
+              "from": "stepchange",
+              "to": "stable"
+            },
+            {
+              "date": "2025-06-19",
+              "from": "stable",
+              "to": "stepchange"
+            },
+            {
+              "date": "2025-08-28",
+              "from": "stepchange",
+              "to": "stable"
+            },
+            {
+              "date": "2026-01-22",
+              "from": "stable",
+              "to": "stepchange"
+            },
+            {
+              "date": "2026-04-02",
+              "from": "stepchange",
+              "to": "seasonal"
+            }
+          ]
+        }
+      ],
+      "horizons": {
+        "7": {
+          "oldWape": 6.65,
+          "unfilteredBridgeWape": 17.59,
+          "gatedWape": 6.65,
+          "staticWape": 17.59,
+          "winningSeeds": 0,
+          "losingSeeds": 0,
+          "perSeed": [
+            {
+              "seed": 731111,
+              "old": 6.93,
+              "gated": 6.93
+            },
+            {
+              "seed": 842222,
+              "old": 6.26,
+              "gated": 6.26
+            },
+            {
+              "seed": 953333,
+              "old": 6.75,
+              "gated": 6.75
+            }
+          ]
+        },
+        "30": {
+          "oldWape": 5.06,
+          "unfilteredBridgeWape": 17.25,
+          "gatedWape": 5.06,
+          "staticWape": 17.25,
+          "winningSeeds": 0,
+          "losingSeeds": 0,
+          "perSeed": [
+            {
+              "seed": 731111,
+              "old": 5.4,
+              "gated": 5.4
+            },
+            {
+              "seed": 842222,
+              "old": 5.14,
+              "gated": 5.14
+            },
+            {
+              "seed": 953333,
+              "old": 4.65,
+              "gated": 4.65
+            }
+          ]
+        }
+      },
+      "calendar": {
+        "seed": 365365,
+        "asOf": "2027-07-17",
+        "seven": {
+          "old": 6.49,
+          "gated": 6.49
+        },
+        "thirty": {
+          "old": 4.39,
+          "gated": 4.39
+        }
+      }
+    },
+    {
+      "type": "volatile",
+      "name": "Unpredictable Store",
+      "meanSwitchesV13": 24,
+      "meanSwitchesV14": 8.33,
+      "scenariosDuringTest": [
+        {
+          "seed": 731111,
+          "final": "volatile",
+          "events": [
+            {
+              "date": "2024-02-22",
+              "from": "stable",
+              "to": "volatile"
+            },
+            {
+              "date": "2024-05-21",
+              "from": "volatile",
+              "to": "stable"
+            },
+            {
+              "date": "2024-08-06",
+              "from": "stable",
+              "to": "volatile"
+            },
+            {
+              "date": "2025-07-26",
+              "from": "volatile",
+              "to": "stable"
+            },
+            {
+              "date": "2025-10-04",
+              "from": "stable",
+              "to": "volatile"
+            },
+            {
+              "date": "2025-12-13",
+              "from": "volatile",
+              "to": "stable"
+            },
+            {
+              "date": "2026-03-03",
+              "from": "stable",
+              "to": "volatile"
+            },
+            {
+              "date": "2026-07-11",
+              "from": "volatile",
+              "to": "stable"
+            },
+            {
+              "date": "2026-09-25",
+              "from": "stable",
+              "to": "volatile"
+            }
+          ]
+        },
+        {
+          "seed": 842222,
+          "final": "volatile",
+          "events": [
+            {
+              "date": "2024-02-22",
+              "from": "stable",
+              "to": "volatile"
+            },
+            {
+              "date": "2024-05-22",
+              "from": "volatile",
+              "to": "stable"
+            },
+            {
+              "date": "2024-08-16",
+              "from": "stable",
+              "to": "volatile"
+            },
+            {
+              "date": "2025-03-04",
+              "from": "volatile",
+              "to": "stable"
+            },
+            {
+              "date": "2025-05-16",
+              "from": "stable",
+              "to": "volatile"
+            },
+            {
+              "date": "2025-12-18",
+              "from": "volatile",
+              "to": "stable"
+            },
+            {
+              "date": "2026-03-27",
+              "from": "stable",
+              "to": "volatile"
+            },
+            {
+              "date": "2026-07-13",
+              "from": "volatile",
+              "to": "stable"
+            },
+            {
+              "date": "2026-09-27",
+              "from": "stable",
+              "to": "volatile"
+            }
+          ]
+        },
+        {
+          "seed": 953333,
+          "final": "volatile",
+          "events": [
+            {
+              "date": "2024-02-22",
+              "from": "stable",
+              "to": "volatile"
+            },
+            {
+              "date": "2024-10-13",
+              "from": "volatile",
+              "to": "stable"
+            },
+            {
+              "date": "2024-12-28",
+              "from": "stable",
+              "to": "volatile"
+            },
+            {
+              "date": "2025-03-19",
+              "from": "volatile",
+              "to": "stable"
+            },
+            {
+              "date": "2025-05-28",
+              "from": "stable",
+              "to": "volatile"
+            },
+            {
+              "date": "2025-11-28",
+              "from": "volatile",
+              "to": "stable"
+            },
+            {
+              "date": "2026-03-26",
+              "from": "stable",
+              "to": "volatile"
+            }
+          ]
+        }
+      ],
+      "horizons": {
+        "7": {
+          "oldWape": 30.83,
+          "unfilteredBridgeWape": 35.65,
+          "gatedWape": 30.83,
+          "staticWape": 35.65,
+          "winningSeeds": 0,
+          "losingSeeds": 0,
+          "perSeed": [
+            {
+              "seed": 731111,
+              "old": 33,
+              "gated": 33
+            },
+            {
+              "seed": 842222,
+              "old": 27.97,
+              "gated": 27.97
+            },
+            {
+              "seed": 953333,
+              "old": 31.52,
+              "gated": 31.52
+            }
+          ]
+        },
+        "30": {
+          "oldWape": 20.01,
+          "unfilteredBridgeWape": 25.23,
+          "gatedWape": 20.01,
+          "staticWape": 25.23,
+          "winningSeeds": 0,
+          "losingSeeds": 0,
+          "perSeed": [
+            {
+              "seed": 731111,
+              "old": 20.25,
+              "gated": 20.25
+            },
+            {
+              "seed": 842222,
+              "old": 19.24,
+              "gated": 19.24
+            },
+            {
+              "seed": 953333,
+              "old": 20.55,
+              "gated": 20.55
+            }
+          ]
+        }
+      },
+      "calendar": {
+        "seed": 365365,
+        "asOf": "2027-07-17",
+        "seven": {
+          "old": 31.93,
+          "gated": 31.93
+        },
+        "thirty": {
+          "old": 15.49,
+          "gated": 15.49
+        }
+      }
+    },
+    {
+      "type": "stepchange",
+      "name": "Sudden Demand Drop",
+      "meanSwitchesV13": 3.67,
+      "meanSwitchesV14": 2,
+      "scenariosDuringTest": [
+        {
+          "seed": 731111,
+          "final": "stable",
+          "events": [
+            {
+              "date": "2026-01-09",
+              "from": "stable",
+              "to": "stepchange"
+            },
+            {
+              "date": "2026-03-20",
+              "from": "stepchange",
+              "to": "stable"
+            }
+          ]
+        },
+        {
+          "seed": 842222,
+          "final": "stable",
+          "events": [
+            {
+              "date": "2026-01-11",
+              "from": "stable",
+              "to": "stepchange"
+            },
+            {
+              "date": "2026-03-22",
+              "from": "stepchange",
+              "to": "stable"
+            }
+          ]
+        },
+        {
+          "seed": 953333,
+          "final": "stable",
+          "events": [
+            {
+              "date": "2026-01-11",
+              "from": "stable",
+              "to": "stepchange"
+            },
+            {
+              "date": "2026-03-22",
+              "from": "stepchange",
+              "to": "stable"
+            }
+          ]
+        }
+      ],
+      "horizons": {
+        "7": {
+          "oldWape": 9.24,
+          "unfilteredBridgeWape": 10.21,
+          "gatedWape": 9.24,
+          "staticWape": 10.21,
+          "winningSeeds": 0,
+          "losingSeeds": 0,
+          "perSeed": [
+            {
+              "seed": 731111,
+              "old": 8.54,
+              "gated": 8.54
+            },
+            {
+              "seed": 842222,
+              "old": 9.48,
+              "gated": 9.48
+            },
+            {
+              "seed": 953333,
+              "old": 9.69,
+              "gated": 9.69
+            }
+          ]
+        },
+        "30": {
+          "oldWape": 9.05,
+          "unfilteredBridgeWape": 12.83,
+          "gatedWape": 9.05,
+          "staticWape": 12.83,
+          "winningSeeds": 0,
+          "losingSeeds": 0,
+          "perSeed": [
+            {
+              "seed": 731111,
+              "old": 9.53,
+              "gated": 9.53
+            },
+            {
+              "seed": 842222,
+              "old": 9.15,
+              "gated": 9.15
+            },
+            {
+              "seed": 953333,
+              "old": 8.47,
+              "gated": 8.47
+            }
+          ]
+        }
+      },
+      "calendar": {
+        "seed": 365365,
+        "asOf": "2027-07-17",
+        "seven": {
+          "old": 8.39,
+          "gated": 8.39
+        },
+        "thirty": {
+          "old": 8.95,
+          "gated": 8.95
+        }
+      }
+    },
+    {
+      "type": "promotion",
+      "name": "Promotion Fatigue",
+      "meanSwitchesV13": 4.67,
+      "meanSwitchesV14": 1,
+      "scenariosDuringTest": [
+        {
+          "seed": 731111,
+          "final": "promotion",
+          "events": [
+            {
+              "date": "2025-12-25",
+              "from": "stable",
+              "to": "promotion"
+            }
+          ]
+        },
+        {
+          "seed": 842222,
+          "final": "promotion",
+          "events": [
+            {
+              "date": "2025-12-26",
+              "from": "stable",
+              "to": "promotion"
+            }
+          ]
+        },
+        {
+          "seed": 953333,
+          "final": "promotion",
+          "events": [
+            {
+              "date": "2025-12-26",
+              "from": "stable",
+              "to": "promotion"
+            }
+          ]
+        }
+      ],
+      "horizons": {
+        "7": {
+          "oldWape": 16.74,
+          "unfilteredBridgeWape": 14.52,
+          "gatedWape": 14.8,
+          "staticWape": 13.33,
+          "winningSeeds": 3,
+          "losingSeeds": 0,
+          "perSeed": [
+            {
+              "seed": 731111,
+              "old": 16.53,
+              "gated": 14.76
+            },
+            {
+              "seed": 842222,
+              "old": 16.7,
+              "gated": 14.71
+            },
+            {
+              "seed": 953333,
+              "old": 17,
+              "gated": 14.94
+            }
+          ]
+        },
+        "30": {
+          "oldWape": 10.81,
+          "unfilteredBridgeWape": 13.11,
+          "gatedWape": 10.81,
+          "staticWape": 10.08,
+          "winningSeeds": 0,
+          "losingSeeds": 0,
+          "perSeed": [
+            {
+              "seed": 731111,
+              "old": 11.59,
+              "gated": 11.59
+            },
+            {
+              "seed": 842222,
+              "old": 10.54,
+              "gated": 10.54
+            },
+            {
+              "seed": 953333,
+              "old": 10.3,
+              "gated": 10.3
+            }
+          ]
+        }
+      },
+      "calendar": {
+        "seed": 365365,
+        "asOf": "2027-07-17",
+        "seven": {
+          "old": 15.53,
+          "gated": 13.28
+        },
+        "thirty": {
+          "old": 10.16,
+          "gated": 10.16
+        }
+      }
+    },
+    {
+      "type": "supply",
+      "name": "Supply Disruption",
+      "meanSwitchesV13": 8.67,
+      "meanSwitchesV14": 1.33,
+      "scenariosDuringTest": [
+        {
+          "seed": 731111,
+          "final": "supply",
+          "events": [
+            {
+              "date": "2026-03-19",
+              "from": "stable",
+              "to": "supply"
+            }
+          ]
+        },
+        {
+          "seed": 842222,
+          "final": "stable",
+          "events": [
+            {
+              "date": "2026-03-19",
+              "from": "stable",
+              "to": "supply"
+            },
+            {
+              "date": "2026-09-08",
+              "from": "supply",
+              "to": "stable"
+            }
+          ]
+        },
+        {
+          "seed": 953333,
+          "final": "supply",
+          "events": [
+            {
+              "date": "2026-03-19",
+              "from": "stable",
+              "to": "supply"
+            }
+          ]
+        }
+      ],
+      "horizons": {
+        "7": {
+          "oldWape": 39.99,
+          "unfilteredBridgeWape": 53.69,
+          "gatedWape": 39.99,
+          "staticWape": 53.33,
+          "winningSeeds": 0,
+          "losingSeeds": 0,
+          "perSeed": [
+            {
+              "seed": 731111,
+              "old": 39.89,
+              "gated": 39.89
+            },
+            {
+              "seed": 842222,
+              "old": 40.03,
+              "gated": 40.03
+            },
+            {
+              "seed": 953333,
+              "old": 40.05,
+              "gated": 40.05
+            }
+          ]
+        },
+        "30": {
+          "oldWape": 52.26,
+          "unfilteredBridgeWape": 47.24,
+          "gatedWape": 47.93,
+          "staticWape": 50.61,
+          "winningSeeds": 3,
+          "losingSeeds": 0,
+          "perSeed": [
+            {
+              "seed": 731111,
+              "old": 51.72,
+              "gated": 47.81
+            },
+            {
+              "seed": 842222,
+              "old": 51.97,
+              "gated": 47.42
+            },
+            {
+              "seed": 953333,
+              "old": 53.09,
+              "gated": 48.56
+            }
+          ]
+        }
+      },
+      "calendar": {
+        "seed": 365365,
+        "asOf": "2027-07-17",
+        "seven": {
+          "old": 39.19,
+          "gated": 39.19
+        },
+        "thirty": {
+          "old": 46.9,
+          "gated": 42.96
+        }
+      }
+    },
+    {
+      "type": "weekdayshift",
+      "name": "Customer Behavior Shift",
+      "meanSwitchesV13": 3.67,
+      "meanSwitchesV14": 2,
+      "scenariosDuringTest": [
+        {
+          "seed": 731111,
+          "final": "stable",
+          "events": [
+            {
+              "date": "2026-01-15",
+              "from": "stable",
+              "to": "weekdayshift"
+            },
+            {
+              "date": "2026-03-28",
+              "from": "weekdayshift",
+              "to": "stable"
+            }
+          ]
+        },
+        {
+          "seed": 842222,
+          "final": "stable",
+          "events": [
+            {
+              "date": "2026-01-15",
+              "from": "stable",
+              "to": "weekdayshift"
+            },
+            {
+              "date": "2026-03-28",
+              "from": "weekdayshift",
+              "to": "stable"
+            }
+          ]
+        },
+        {
+          "seed": 953333,
+          "final": "stable",
+          "events": [
+            {
+              "date": "2026-01-16",
+              "from": "stable",
+              "to": "weekdayshift"
+            },
+            {
+              "date": "2026-03-28",
+              "from": "weekdayshift",
+              "to": "stable"
+            }
+          ]
+        }
+      ],
+      "horizons": {
+        "7": {
+          "oldWape": 4,
+          "unfilteredBridgeWape": 5.21,
+          "gatedWape": 4,
+          "staticWape": 5.21,
+          "winningSeeds": 0,
+          "losingSeeds": 0,
+          "perSeed": [
+            {
+              "seed": 731111,
+              "old": 3.64,
+              "gated": 3.64
+            },
+            {
+              "seed": 842222,
+              "old": 4,
+              "gated": 4
+            },
+            {
+              "seed": 953333,
+              "old": 4.36,
+              "gated": 4.36
+            }
+          ]
+        },
+        "30": {
+          "oldWape": 4.13,
+          "unfilteredBridgeWape": 4.51,
+          "gatedWape": 4.13,
+          "staticWape": 4.51,
+          "winningSeeds": 0,
+          "losingSeeds": 0,
+          "perSeed": [
+            {
+              "seed": 731111,
+              "old": 4.71,
+              "gated": 4.71
+            },
+            {
+              "seed": 842222,
+              "old": 4,
+              "gated": 4
+            },
+            {
+              "seed": 953333,
+              "old": 3.69,
+              "gated": 3.69
+            }
+          ]
+        }
+      },
+      "calendar": {
+        "seed": 365365,
+        "asOf": "2027-07-17",
+        "seven": {
+          "old": 4.31,
+          "gated": 4.31
+        },
+        "thirty": {
+          "old": 2.9,
+          "gated": 2.9
+        }
+      }
+    }
+  ]
+}

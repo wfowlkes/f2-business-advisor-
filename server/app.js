@@ -22,7 +22,11 @@ const syntheticLab={
   '/lab/transitions.html': ['transitions.html','text/html; charset=utf-8'],
   '/lab/transition_engine.js': ['transition_engine.js','application/javascript; charset=utf-8'],
   '/lab/transition_ui.js': ['transition_ui.js','application/javascript; charset=utf-8'],
-  '/lab/transition-results.json': ['transition-results.json','application/json; charset=utf-8']
+  '/lab/transition-results.json': ['transition-results.json','application/json; charset=utf-8'],
+  '/lab/bridge.html': ['bridge.html','text/html; charset=utf-8'],
+  '/lab/bridge_ui.js': ['bridge_ui.js','application/javascript; charset=utf-8'],
+  '/lab/bridge_engine.js': ['bridge_engine.js','application/javascript; charset=utf-8'],
+  '/lab/bridge-summary.json': ['bridge-summary.json','application/json; charset=utf-8']
 };
 
 function secretOK(received, expected){
