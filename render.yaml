@@ -1,0 +1,31 @@
+# F2 Commerce Shopify bridge: development preview ONLY, not production approval.
+# NEVER put merchant secrets in this file or GitHub.
+services:
+  - type: web
+    runtime: node
+    name: f2-commerce-learning-lab-private
+    plan: free
+    region: oregon
+    branch: main
+    buildCommand: node --test server/test/*.test.js && node tests/test_core.js
+    startCommand: node server/app.js
+    healthCheckPath: /health
+    autoDeployTrigger: off
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: SHOPIFY_SHOP
+        sync: false
+      - key: SHOPIFY_CLIENT_ID
+        sync: false
+      - key: SHOPIFY_CLIENT_SECRET
+        sync: false
+      - key: F2_DASHBOARD_KEY
+        generateValue: true
+      - key: SHOPIFY_API_VERSION
+        value: 2026-10
+      - key: F2_BASE_URL
+        fromService:
+          type: web
+          name: f2-commerce-learning-lab-private
+          envVarKey: RENDER_EXTERNAL_URL
