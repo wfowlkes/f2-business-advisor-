@@ -1,0 +1,2108 @@
+{
+  "version": "F2 Scenario Research 1.2",
+  "evidence": "SYNTHETIC ONLY",
+  "selectionPolicy": "Scenario and horizon chosen using DEVELOPMENT VALIDATION seeds only. Unseen challenge sets never influence selection.",
+  "caution": "Generator type is known ONLY in simulation. No automatic identification of a real merchant regime is implemented.",
+  "developmentSeeds": [
+    121121,
+    232232,
+    343343
+  ],
+  "futureTestSeeds": [
+    454454,
+    565565,
+    676676
+  ],
+  "productionStatus": "HOLD",
+  "businessCount": 9,
+  "businesses": [
+    {
+      "type": "stable",
+      "name": "Steady Retail",
+      "horizons": {
+        "7": {
+          "method": "regime reset",
+          "baseline": "28-day average",
+          "developmentWape": 2.45,
+          "baselineDevelopmentWape": 2.46,
+          "holdoutWape": 3.5,
+          "holdoutBias": 0.71,
+          "baselineHoldoutWape": 4.58,
+          "improvement": 23.58,
+          "wins": 3,
+          "losses": 0,
+          "observedBest": "yearly analogue",
+          "retrospectiveBestOnly": true,
+          "status": "RESEARCH CANDIDATE — PROSPECTIVE TEST REQUIRED",
+          "seedResults": [
+            {
+              "seed": 454454,
+              "baselineWape": 4.55,
+              "selectedWape": 3.58,
+              "improvement": 21.32,
+              "selectedBias": 0.61
+            },
+            {
+              "seed": 565565,
+              "baselineWape": 4.27,
+              "selectedWape": 2.97,
+              "improvement": 30.44,
+              "selectedBias": 0.7
+            },
+            {
+              "seed": 676676,
+              "baselineWape": 4.94,
+              "selectedWape": 3.94,
+              "improvement": 20.24,
+              "selectedBias": 0.81
+            }
+          ],
+          "methodRanks": [
+            {
+              "method": "yearly analogue",
+              "wape": 2.88,
+              "bias": -0.22,
+              "folds": 126
+            },
+            {
+              "method": "seasonal normalized",
+              "wape": 2.88,
+              "bias": -0.22,
+              "folds": 126
+            },
+            {
+              "method": "7-day average",
+              "wape": 3.14,
+              "bias": 0.48,
+              "folds": 126
+            },
+            {
+              "method": "regime reset",
+              "wape": 3.5,
+              "bias": 0.71,
+              "folds": 126
+            },
+            {
+              "method": "damped trend",
+              "wape": 3.9,
+              "bias": 0.72,
+              "folds": 126
+            },
+            {
+              "method": "trend",
+              "wape": 4.15,
+              "bias": 0.84,
+              "folds": 126
+            },
+            {
+              "method": "adaptive weekday",
+              "wape": 4.55,
+              "bias": 0.81,
+              "folds": 126
+            },
+            {
+              "method": "28-day average",
+              "wape": 4.58,
+              "bias": 0.81,
+              "folds": 126
+            },
+            {
+              "method": "promotion pulse",
+              "wape": 4.71,
+              "bias": 0.56,
+              "folds": 126
+            },
+            {
+              "method": "same weekday",
+              "wape": 4.96,
+              "bias": 0.81,
+              "folds": 126
+            },
+            {
+              "method": "stockout-aware",
+              "wape": 4.96,
+              "bias": 0.81,
+              "folds": 126
+            },
+            {
+              "method": "robust weekday",
+              "wape": 5.11,
+              "bias": 0.57,
+              "folds": 126
+            }
+          ],
+          "productionStatus": "HOLD"
+        },
+        "30": {
+          "method": "yearly analogue",
+          "baseline": "28-day average",
+          "developmentWape": 1.3,
+          "baselineDevelopmentWape": 2.53,
+          "holdoutWape": 2.05,
+          "holdoutBias": -0.41,
+          "baselineHoldoutWape": 3.33,
+          "improvement": 38.44,
+          "wins": 3,
+          "losses": 0,
+          "observedBest": "yearly analogue",
+          "retrospectiveBestOnly": true,
+          "status": "RESEARCH CANDIDATE — PROSPECTIVE TEST REQUIRED",
+          "seedResults": [
+            {
+              "seed": 454454,
+              "baselineWape": 3.55,
+              "selectedWape": 2.76,
+              "improvement": 22.25,
+              "selectedBias": -0.87
+            },
+            {
+              "seed": 565565,
+              "baselineWape": 3.08,
+              "selectedWape": 1.52,
+              "improvement": 50.65,
+              "selectedBias": -0.19
+            },
+            {
+              "seed": 676676,
+              "baselineWape": 3.36,
+              "selectedWape": 1.87,
+              "improvement": 44.35,
+              "selectedBias": -0.15
+            }
+          ],
+          "methodRanks": [
+            {
+              "method": "yearly analogue",
+              "wape": 2.05,
+              "bias": -0.41,
+              "folds": 30
+            },
+            {
+              "method": "seasonal normalized",
+              "wape": 2.05,
+              "bias": -0.41,
+              "folds": 30
+            },
+            {
+              "method": "promotion pulse",
+              "wape": 2.43,
+              "bias": 0.72,
+              "folds": 30
+            },
+            {
+              "method": "regime reset",
+              "wape": 2.49,
+              "bias": 1.24,
+              "folds": 30
+            },
+            {
+              "method": "damped trend",
+              "wape": 2.56,
+              "bias": 1.46,
+              "folds": 30
+            },
+            {
+              "method": "same weekday",
+              "wape": 2.96,
+              "bias": 0.79,
+              "folds": 30
+            },
+            {
+              "method": "stockout-aware",
+              "wape": 2.96,
+              "bias": 0.79,
+              "folds": 30
+            },
+            {
+              "method": "adaptive weekday",
+              "wape": 3.07,
+              "bias": 0.82,
+              "folds": 30
+            },
+            {
+              "method": "robust weekday",
+              "wape": 3.08,
+              "bias": 0.5,
+              "folds": 30
+            },
+            {
+              "method": "28-day average",
+              "wape": 3.33,
+              "bias": 0.82,
+              "folds": 30
+            },
+            {
+              "method": "7-day average",
+              "wape": 4.2,
+              "bias": 1.65,
+              "folds": 30
+            },
+            {
+              "method": "trend",
+              "wape": 4.66,
+              "bias": 1.8,
+              "folds": 30
+            }
+          ],
+          "productionStatus": "HOLD"
+        }
+      }
+    },
+    {
+      "type": "growth",
+      "name": "Rapid Growth",
+      "horizons": {
+        "7": {
+          "method": "yearly analogue",
+          "baseline": "7-day average",
+          "developmentWape": 2.61,
+          "baselineDevelopmentWape": 2.85,
+          "holdoutWape": 2.99,
+          "holdoutBias": 0.1,
+          "baselineHoldoutWape": 3.35,
+          "improvement": 10.75,
+          "wins": 2,
+          "losses": 0,
+          "observedBest": "yearly analogue",
+          "retrospectiveBestOnly": true,
+          "status": "RESEARCH CANDIDATE — PROSPECTIVE TEST REQUIRED",
+          "seedResults": [
+            {
+              "seed": 454454,
+              "baselineWape": 3.28,
+              "selectedWape": 3.07,
+              "improvement": 6.4,
+              "selectedBias": 0
+            },
+            {
+              "seed": 565565,
+              "baselineWape": 3.38,
+              "selectedWape": 2.86,
+              "improvement": 15.38,
+              "selectedBias": 0.26
+            },
+            {
+              "seed": 676676,
+              "baselineWape": 3.38,
+              "selectedWape": 3.03,
+              "improvement": 10.36,
+              "selectedBias": 0.05
+            }
+          ],
+          "methodRanks": [
+            {
+              "method": "yearly analogue",
+              "wape": 2.99,
+              "bias": 0.1,
+              "folds": 126
+            },
+            {
+              "method": "seasonal normalized",
+              "wape": 2.99,
+              "bias": 0.1,
+              "folds": 126
+            },
+            {
+              "method": "7-day average",
+              "wape": 3.35,
+              "bias": -0.19,
+              "folds": 126
+            },
+            {
+              "method": "regime reset",
+              "wape": 3.7,
+              "bias": -0.58,
+              "folds": 126
+            },
+            {
+              "method": "trend",
+              "wape": 4.22,
+              "bias": 0.52,
+              "folds": 126
+            },
+            {
+              "method": "damped trend",
+              "wape": 4.44,
+              "bias": -1.42,
+              "folds": 126
+            },
+            {
+              "method": "28-day average",
+              "wape": 4.7,
+              "bias": -0.71,
+              "folds": 126
+            },
+            {
+              "method": "adaptive weekday",
+              "wape": 4.85,
+              "bias": -1.07,
+              "folds": 126
+            },
+            {
+              "method": "same weekday",
+              "wape": 5.79,
+              "bias": -1.92,
+              "folds": 126
+            },
+            {
+              "method": "stockout-aware",
+              "wape": 5.79,
+              "bias": -1.92,
+              "folds": 126
+            },
+            {
+              "method": "robust weekday",
+              "wape": 5.92,
+              "bias": -2.03,
+              "folds": 126
+            },
+            {
+              "method": "promotion pulse",
+              "wape": 6.69,
+              "bias": -3.84,
+              "folds": 126
+            }
+          ],
+          "productionStatus": "HOLD"
+        },
+        "30": {
+          "method": "yearly analogue",
+          "baseline": "7-day average",
+          "developmentWape": 1.89,
+          "baselineDevelopmentWape": 3.42,
+          "holdoutWape": 2.32,
+          "holdoutBias": 0.13,
+          "baselineHoldoutWape": 4.04,
+          "improvement": 42.57,
+          "wins": 3,
+          "losses": 0,
+          "observedBest": "yearly analogue",
+          "retrospectiveBestOnly": true,
+          "status": "RESEARCH CANDIDATE — PROSPECTIVE TEST REQUIRED",
+          "seedResults": [
+            {
+              "seed": 454454,
+              "baselineWape": 3.72,
+              "selectedWape": 2.93,
+              "improvement": 21.24,
+              "selectedBias": -0.08
+            },
+            {
+              "seed": 565565,
+              "baselineWape": 4.64,
+              "selectedWape": 2.37,
+              "improvement": 48.92,
+              "selectedBias": 0.42
+            },
+            {
+              "seed": 676676,
+              "baselineWape": 3.77,
+              "selectedWape": 1.67,
+              "improvement": 55.7,
+              "selectedBias": 0.03
+            }
+          ],
+          "methodRanks": [
+            {
+              "method": "yearly analogue",
+              "wape": 2.32,
+              "bias": 0.13,
+              "folds": 30
+            },
+            {
+              "method": "seasonal normalized",
+              "wape": 2.32,
+              "bias": 0.13,
+              "folds": 30
+            },
+            {
+              "method": "regime reset",
+              "wape": 3.49,
+              "bias": -1.53,
+              "folds": 30
+            },
+            {
+              "method": "damped trend",
+              "wape": 3.6,
+              "bias": -2.36,
+              "folds": 30
+            },
+            {
+              "method": "28-day average",
+              "wape": 3.93,
+              "bias": -1.65,
+              "folds": 30
+            },
+            {
+              "method": "7-day average",
+              "wape": 4.04,
+              "bias": -1,
+              "folds": 30
+            },
+            {
+              "method": "adaptive weekday",
+              "wape": 4.12,
+              "bias": -2.05,
+              "folds": 30
+            },
+            {
+              "method": "trend",
+              "wape": 4.54,
+              "bias": -0.21,
+              "folds": 30
+            },
+            {
+              "method": "same weekday",
+              "wape": 5.15,
+              "bias": -2.99,
+              "folds": 30
+            },
+            {
+              "method": "stockout-aware",
+              "wape": 5.15,
+              "bias": -2.99,
+              "folds": 30
+            },
+            {
+              "method": "robust weekday",
+              "wape": 5.41,
+              "bias": -3.18,
+              "folds": 30
+            },
+            {
+              "method": "promotion pulse",
+              "wape": 5.99,
+              "bias": -4.49,
+              "folds": 30
+            }
+          ],
+          "productionStatus": "HOLD"
+        }
+      }
+    },
+    {
+      "type": "decline",
+      "name": "Struggling Store",
+      "horizons": {
+        "7": {
+          "method": "7-day average",
+          "baseline": "7-day average",
+          "developmentWape": 3.02,
+          "baselineDevelopmentWape": 3.02,
+          "holdoutWape": 3.89,
+          "holdoutBias": 2.06,
+          "baselineHoldoutWape": 3.89,
+          "improvement": 0,
+          "wins": 0,
+          "losses": 0,
+          "observedBest": "yearly analogue",
+          "retrospectiveBestOnly": true,
+          "status": "HOLD — NO PROMOTION",
+          "seedResults": [
+            {
+              "seed": 454454,
+              "baselineWape": 3.21,
+              "selectedWape": 3.21,
+              "improvement": 0,
+              "selectedBias": 2.09
+            },
+            {
+              "seed": 565565,
+              "baselineWape": 4.44,
+              "selectedWape": 4.44,
+              "improvement": 0,
+              "selectedBias": 2.05
+            },
+            {
+              "seed": 676676,
+              "baselineWape": 4.02,
+              "selectedWape": 4.02,
+              "improvement": 0,
+              "selectedBias": 2.04
+            }
+          ],
+          "methodRanks": [
+            {
+              "method": "yearly analogue",
+              "wape": 2.81,
+              "bias": 1.25,
+              "folds": 126
+            },
+            {
+              "method": "seasonal normalized",
+              "wape": 2.81,
+              "bias": 1.25,
+              "folds": 126
+            },
+            {
+              "method": "7-day average",
+              "wape": 3.89,
+              "bias": 2.06,
+              "folds": 126
+            },
+            {
+              "method": "regime reset",
+              "wape": 4.75,
+              "bias": 3.9,
+              "folds": 126
+            },
+            {
+              "method": "trend",
+              "wape": 4.89,
+              "bias": 1.93,
+              "folds": 126
+            },
+            {
+              "method": "28-day average",
+              "wape": 6.39,
+              "bias": 4.57,
+              "folds": 126
+            },
+            {
+              "method": "damped trend",
+              "wape": 6.57,
+              "bias": 5.85,
+              "folds": 126
+            },
+            {
+              "method": "adaptive weekday",
+              "wape": 6.7,
+              "bias": 5.4,
+              "folds": 126
+            },
+            {
+              "method": "same weekday",
+              "wape": 8.75,
+              "bias": 7.32,
+              "folds": 126
+            },
+            {
+              "method": "robust weekday",
+              "wape": 8.75,
+              "bias": 7.16,
+              "folds": 126
+            },
+            {
+              "method": "stockout-aware",
+              "wape": 8.75,
+              "bias": 7.32,
+              "folds": 126
+            },
+            {
+              "method": "promotion pulse",
+              "wape": 11.98,
+              "bias": 10.77,
+              "folds": 126
+            }
+          ],
+          "productionStatus": "HOLD"
+        },
+        "30": {
+          "method": "yearly analogue",
+          "baseline": "7-day average",
+          "developmentWape": 1.89,
+          "baselineDevelopmentWape": 3.1,
+          "holdoutWape": 2.54,
+          "holdoutBias": 2.06,
+          "baselineHoldoutWape": 6.35,
+          "improvement": 60,
+          "wins": 3,
+          "losses": 0,
+          "observedBest": "yearly analogue",
+          "retrospectiveBestOnly": true,
+          "status": "RESEARCH CANDIDATE — PROSPECTIVE TEST REQUIRED",
+          "seedResults": [
+            {
+              "seed": 454454,
+              "baselineWape": 6.62,
+              "selectedWape": 2.33,
+              "improvement": 64.8,
+              "selectedBias": 2.01
+            },
+            {
+              "seed": 565565,
+              "baselineWape": 5.97,
+              "selectedWape": 2.4,
+              "improvement": 59.8,
+              "selectedBias": 1.86
+            },
+            {
+              "seed": 676676,
+              "baselineWape": 6.45,
+              "selectedWape": 2.88,
+              "improvement": 55.35,
+              "selectedBias": 2.3
+            }
+          ],
+          "methodRanks": [
+            {
+              "method": "yearly analogue",
+              "wape": 2.54,
+              "bias": 2.06,
+              "folds": 30
+            },
+            {
+              "method": "seasonal normalized",
+              "wape": 2.54,
+              "bias": 2.06,
+              "folds": 30
+            },
+            {
+              "method": "7-day average",
+              "wape": 6.35,
+              "bias": 5.25,
+              "folds": 30
+            },
+            {
+              "method": "regime reset",
+              "wape": 6.68,
+              "bias": 6.68,
+              "folds": 30
+            },
+            {
+              "method": "trend",
+              "wape": 7.36,
+              "bias": 5.12,
+              "folds": 30
+            },
+            {
+              "method": "28-day average",
+              "wape": 7.4,
+              "bias": 6.95,
+              "folds": 30
+            },
+            {
+              "method": "adaptive weekday",
+              "wape": 7.86,
+              "bias": 7.78,
+              "folds": 30
+            },
+            {
+              "method": "damped trend",
+              "wape": 8.9,
+              "bias": 8.9,
+              "folds": 30
+            },
+            {
+              "method": "robust weekday",
+              "wape": 9.39,
+              "bias": 9.39,
+              "folds": 30
+            },
+            {
+              "method": "same weekday",
+              "wape": 9.68,
+              "bias": 9.68,
+              "folds": 30
+            },
+            {
+              "method": "stockout-aware",
+              "wape": 9.68,
+              "bias": 9.68,
+              "folds": 30
+            },
+            {
+              "method": "promotion pulse",
+              "wape": 12.78,
+              "bias": 12.78,
+              "folds": 30
+            }
+          ],
+          "productionStatus": "HOLD"
+        }
+      }
+    },
+    {
+      "type": "seasonal",
+      "name": "Seasonal Store",
+      "horizons": {
+        "7": {
+          "method": "yearly analogue",
+          "baseline": "7-day average",
+          "developmentWape": 3.55,
+          "baselineDevelopmentWape": 6.63,
+          "holdoutWape": 4.33,
+          "holdoutBias": -0.33,
+          "baselineHoldoutWape": 8.69,
+          "improvement": 50.17,
+          "wins": 3,
+          "losses": 0,
+          "observedBest": "yearly analogue",
+          "retrospectiveBestOnly": true,
+          "status": "RESEARCH CANDIDATE — PROSPECTIVE TEST REQUIRED",
+          "seedResults": [
+            {
+              "seed": 454454,
+              "baselineWape": 8.98,
+              "selectedWape": 4.76,
+              "improvement": 46.99,
+              "selectedBias": -0.33
+            },
+            {
+              "seed": 565565,
+              "baselineWape": 8.55,
+              "selectedWape": 3.88,
+              "improvement": 54.62,
+              "selectedBias": -0.1
+            },
+            {
+              "seed": 676676,
+              "baselineWape": 8.53,
+              "selectedWape": 4.34,
+              "improvement": 49.12,
+              "selectedBias": -0.55
+            }
+          ],
+          "methodRanks": [
+            {
+              "method": "yearly analogue",
+              "wape": 4.33,
+              "bias": -0.33,
+              "folds": 126
+            },
+            {
+              "method": "seasonal normalized",
+              "wape": 4.33,
+              "bias": -0.33,
+              "folds": 126
+            },
+            {
+              "method": "7-day average",
+              "wape": 8.69,
+              "bias": 3.54,
+              "folds": 126
+            },
+            {
+              "method": "regime reset",
+              "wape": 12.15,
+              "bias": 6.38,
+              "folds": 126
+            },
+            {
+              "method": "trend",
+              "wape": 15.2,
+              "bias": 9.87,
+              "folds": 126
+            },
+            {
+              "method": "28-day average",
+              "wape": 17.85,
+              "bias": 7.59,
+              "folds": 126
+            },
+            {
+              "method": "adaptive weekday",
+              "wape": 18.29,
+              "bias": 8.6,
+              "folds": 126
+            },
+            {
+              "method": "damped trend",
+              "wape": 20.49,
+              "bias": 10.43,
+              "folds": 126
+            },
+            {
+              "method": "same weekday",
+              "wape": 24.09,
+              "bias": 10.97,
+              "folds": 126
+            },
+            {
+              "method": "stockout-aware",
+              "wape": 24.09,
+              "bias": 10.97,
+              "folds": 126
+            },
+            {
+              "method": "robust weekday",
+              "wape": 24.33,
+              "bias": 10.81,
+              "folds": 126
+            },
+            {
+              "method": "promotion pulse",
+              "wape": 25.16,
+              "bias": 12.24,
+              "folds": 126
+            }
+          ],
+          "productionStatus": "HOLD"
+        },
+        "30": {
+          "method": "yearly analogue",
+          "baseline": "7-day average",
+          "developmentWape": 1.92,
+          "baselineDevelopmentWape": 11.76,
+          "holdoutWape": 3.09,
+          "holdoutBias": -0.41,
+          "baselineHoldoutWape": 13.64,
+          "improvement": 77.35,
+          "wins": 3,
+          "losses": 0,
+          "observedBest": "yearly analogue",
+          "retrospectiveBestOnly": true,
+          "status": "RESEARCH CANDIDATE — PROSPECTIVE TEST REQUIRED",
+          "seedResults": [
+            {
+              "seed": 454454,
+              "baselineWape": 14.37,
+              "selectedWape": 3.47,
+              "improvement": 75.85,
+              "selectedBias": -0.26
+            },
+            {
+              "seed": 565565,
+              "baselineWape": 13.93,
+              "selectedWape": 2.25,
+              "improvement": 83.85,
+              "selectedBias": -0.27
+            },
+            {
+              "seed": 676676,
+              "baselineWape": 12.61,
+              "selectedWape": 3.55,
+              "improvement": 71.85,
+              "selectedBias": -0.7
+            }
+          ],
+          "methodRanks": [
+            {
+              "method": "yearly analogue",
+              "wape": 3.09,
+              "bias": -0.41,
+              "folds": 30
+            },
+            {
+              "method": "seasonal normalized",
+              "wape": 3.09,
+              "bias": -0.41,
+              "folds": 30
+            },
+            {
+              "method": "regime reset",
+              "wape": 11.69,
+              "bias": 8.43,
+              "folds": 30
+            },
+            {
+              "method": "7-day average",
+              "wape": 13.64,
+              "bias": 7.44,
+              "folds": 30
+            },
+            {
+              "method": "adaptive weekday",
+              "wape": 16.52,
+              "bias": 11.46,
+              "folds": 30
+            },
+            {
+              "method": "28-day average",
+              "wape": 16.86,
+              "bias": 10.8,
+              "folds": 30
+            },
+            {
+              "method": "trend",
+              "wape": 16.99,
+              "bias": 12.5,
+              "folds": 30
+            },
+            {
+              "method": "promotion pulse",
+              "wape": 18.03,
+              "bias": 13.66,
+              "folds": 30
+            },
+            {
+              "method": "robust weekday",
+              "wape": 18.18,
+              "bias": 12.63,
+              "folds": 30
+            },
+            {
+              "method": "damped trend",
+              "wape": 18.68,
+              "bias": 13.65,
+              "folds": 30
+            },
+            {
+              "method": "same weekday",
+              "wape": 18.81,
+              "bias": 12.9,
+              "folds": 30
+            },
+            {
+              "method": "stockout-aware",
+              "wape": 18.81,
+              "bias": 12.9,
+              "folds": 30
+            }
+          ],
+          "productionStatus": "HOLD"
+        }
+      }
+    },
+    {
+      "type": "volatile",
+      "name": "Unpredictable Store",
+      "horizons": {
+        "7": {
+          "method": "stockout-aware",
+          "baseline": "same weekday",
+          "developmentWape": 31.34,
+          "baselineDevelopmentWape": 33.28,
+          "holdoutWape": 32.94,
+          "holdoutBias": 7.51,
+          "baselineHoldoutWape": 35.03,
+          "improvement": 5.97,
+          "wins": 0,
+          "losses": 0,
+          "observedBest": "damped trend",
+          "retrospectiveBestOnly": true,
+          "status": "HOLD — NO PROMOTION",
+          "seedResults": [
+            {
+              "seed": 454454,
+              "baselineWape": 35.58,
+              "selectedWape": 33.4,
+              "improvement": 6.13,
+              "selectedBias": 7.61
+            },
+            {
+              "seed": 565565,
+              "baselineWape": 33.75,
+              "selectedWape": 31.38,
+              "improvement": 7.02,
+              "selectedBias": 7.83
+            },
+            {
+              "seed": 676676,
+              "baselineWape": 35.77,
+              "selectedWape": 34.08,
+              "improvement": 4.72,
+              "selectedBias": 7.08
+            }
+          ],
+          "methodRanks": [
+            {
+              "method": "damped trend",
+              "wape": 32.69,
+              "bias": -0.43,
+              "folds": 126
+            },
+            {
+              "method": "trend",
+              "wape": 32.84,
+              "bias": 2.44,
+              "folds": 126
+            },
+            {
+              "method": "stockout-aware",
+              "wape": 32.94,
+              "bias": 7.51,
+              "folds": 126
+            },
+            {
+              "method": "promotion pulse",
+              "wape": 33.95,
+              "bias": 0.01,
+              "folds": 126
+            },
+            {
+              "method": "7-day average",
+              "wape": 34.45,
+              "bias": -3.44,
+              "folds": 126
+            },
+            {
+              "method": "regime reset",
+              "wape": 34.47,
+              "bias": -2.31,
+              "folds": 126
+            },
+            {
+              "method": "robust weekday",
+              "wape": 34.76,
+              "bias": 1.23,
+              "folds": 126
+            },
+            {
+              "method": "same weekday",
+              "wape": 35.03,
+              "bias": 0.01,
+              "folds": 126
+            },
+            {
+              "method": "adaptive weekday",
+              "wape": 36.35,
+              "bias": -1.22,
+              "folds": 126
+            },
+            {
+              "method": "28-day average",
+              "wape": 37.82,
+              "bias": -1.74,
+              "folds": 126
+            },
+            {
+              "method": "seasonal normalized",
+              "wape": 48.27,
+              "bias": 2.7,
+              "folds": 126
+            },
+            {
+              "method": "yearly analogue",
+              "wape": 48.29,
+              "bias": 2.67,
+              "folds": 126
+            }
+          ],
+          "productionStatus": "HOLD"
+        },
+        "30": {
+          "method": "promotion pulse",
+          "baseline": "same weekday",
+          "developmentWape": 20.68,
+          "baselineDevelopmentWape": 21.82,
+          "holdoutWape": 17.4,
+          "holdoutBias": 0.44,
+          "baselineHoldoutWape": 19.72,
+          "improvement": 11.76,
+          "wins": 3,
+          "losses": 0,
+          "observedBest": "damped trend",
+          "retrospectiveBestOnly": true,
+          "status": "RESEARCH CANDIDATE — PROSPECTIVE TEST REQUIRED",
+          "seedResults": [
+            {
+              "seed": 454454,
+              "baselineWape": 20.49,
+              "selectedWape": 18.18,
+              "improvement": 11.27,
+              "selectedBias": 0.36
+            },
+            {
+              "seed": 565565,
+              "baselineWape": 19.01,
+              "selectedWape": 17.02,
+              "improvement": 10.47,
+              "selectedBias": 0.6
+            },
+            {
+              "seed": 676676,
+              "baselineWape": 19.67,
+              "selectedWape": 16.99,
+              "improvement": 13.62,
+              "selectedBias": 0.35
+            }
+          ],
+          "methodRanks": [
+            {
+              "method": "damped trend",
+              "wape": 16.77,
+              "bias": -1.21,
+              "folds": 30
+            },
+            {
+              "method": "promotion pulse",
+              "wape": 17.4,
+              "bias": 0.44,
+              "folds": 30
+            },
+            {
+              "method": "stockout-aware",
+              "wape": 19.39,
+              "bias": 7.79,
+              "folds": 30
+            },
+            {
+              "method": "same weekday",
+              "wape": 19.72,
+              "bias": 0.7,
+              "folds": 30
+            },
+            {
+              "method": "robust weekday",
+              "wape": 19.76,
+              "bias": 2.35,
+              "folds": 30
+            },
+            {
+              "method": "adaptive weekday",
+              "wape": 22.12,
+              "bias": -0.65,
+              "folds": 30
+            },
+            {
+              "method": "regime reset",
+              "wape": 25.19,
+              "bias": -4.14,
+              "folds": 30
+            },
+            {
+              "method": "28-day average",
+              "wape": 25.49,
+              "bias": -0.91,
+              "folds": 30
+            },
+            {
+              "method": "trend",
+              "wape": 25.61,
+              "bias": -0.65,
+              "folds": 30
+            },
+            {
+              "method": "7-day average",
+              "wape": 33.92,
+              "bias": -9.09,
+              "folds": 30
+            },
+            {
+              "method": "seasonal normalized",
+              "wape": 40.83,
+              "bias": 4.71,
+              "folds": 30
+            },
+            {
+              "method": "yearly analogue",
+              "wape": 43.14,
+              "bias": 7.02,
+              "folds": 30
+            }
+          ],
+          "productionStatus": "HOLD"
+        }
+      }
+    },
+    {
+      "type": "stepchange",
+      "name": "Sudden Demand Drop",
+      "horizons": {
+        "7": {
+          "method": "yearly analogue",
+          "baseline": "28-day average",
+          "developmentWape": 2.52,
+          "baselineDevelopmentWape": 2.72,
+          "holdoutWape": 7.75,
+          "holdoutBias": 5.41,
+          "baselineHoldoutWape": 9.93,
+          "improvement": 21.95,
+          "wins": 3,
+          "losses": 0,
+          "observedBest": "7-day average",
+          "retrospectiveBestOnly": true,
+          "status": "HOLD — NO PROMOTION",
+          "seedResults": [
+            {
+              "seed": 454454,
+              "baselineWape": 9.97,
+              "selectedWape": 7.83,
+              "improvement": 21.46,
+              "selectedBias": 5.45
+            },
+            {
+              "seed": 565565,
+              "baselineWape": 9.43,
+              "selectedWape": 7.52,
+              "improvement": 20.25,
+              "selectedBias": 5.25
+            },
+            {
+              "seed": 676676,
+              "baselineWape": 10.4,
+              "selectedWape": 7.9,
+              "improvement": 24.04,
+              "selectedBias": 5.54
+            }
+          ],
+          "methodRanks": [
+            {
+              "method": "7-day average",
+              "wape": 5.67,
+              "bias": 3.1,
+              "folds": 126
+            },
+            {
+              "method": "yearly analogue",
+              "wape": 7.75,
+              "bias": 5.41,
+              "folds": 126
+            },
+            {
+              "method": "seasonal normalized",
+              "wape": 7.75,
+              "bias": 5.41,
+              "folds": 126
+            },
+            {
+              "method": "regime reset",
+              "wape": 7.95,
+              "bias": 6.01,
+              "folds": 126
+            },
+            {
+              "method": "trend",
+              "wape": 9.51,
+              "bias": 7,
+              "folds": 126
+            },
+            {
+              "method": "28-day average",
+              "wape": 9.93,
+              "bias": 7.11,
+              "folds": 126
+            },
+            {
+              "method": "adaptive weekday",
+              "wape": 10.52,
+              "bias": 8.42,
+              "folds": 126
+            },
+            {
+              "method": "damped trend",
+              "wape": 12.4,
+              "bias": 10.11,
+              "folds": 126
+            },
+            {
+              "method": "robust weekday",
+              "wape": 13.73,
+              "bias": 10.88,
+              "folds": 126
+            },
+            {
+              "method": "same weekday",
+              "wape": 14.06,
+              "bias": 11.49,
+              "folds": 126
+            },
+            {
+              "method": "stockout-aware",
+              "wape": 14.06,
+              "bias": 11.49,
+              "folds": 126
+            },
+            {
+              "method": "promotion pulse",
+              "wape": 18.36,
+              "bias": 17.05,
+              "folds": 126
+            }
+          ],
+          "productionStatus": "HOLD"
+        },
+        "30": {
+          "method": "yearly analogue",
+          "baseline": "7-day average",
+          "developmentWape": 1.65,
+          "baselineDevelopmentWape": 2.13,
+          "holdoutWape": 9.43,
+          "holdoutBias": 8.11,
+          "baselineHoldoutWape": 13.52,
+          "improvement": 30.25,
+          "wins": 3,
+          "losses": 0,
+          "observedBest": "yearly analogue",
+          "retrospectiveBestOnly": true,
+          "status": "HOLD — NO PROMOTION",
+          "seedResults": [
+            {
+              "seed": 454454,
+              "baselineWape": 14.47,
+              "selectedWape": 9.43,
+              "improvement": 34.83,
+              "selectedBias": 8.34
+            },
+            {
+              "seed": 565565,
+              "baselineWape": 13.06,
+              "selectedWape": 8.99,
+              "improvement": 31.16,
+              "selectedBias": 7.81
+            },
+            {
+              "seed": 676676,
+              "baselineWape": 13.05,
+              "selectedWape": 9.86,
+              "improvement": 24.44,
+              "selectedBias": 8.19
+            }
+          ],
+          "methodRanks": [
+            {
+              "method": "yearly analogue",
+              "wape": 9.43,
+              "bias": 8.11,
+              "folds": 30
+            },
+            {
+              "method": "seasonal normalized",
+              "wape": 9.43,
+              "bias": 8.11,
+              "folds": 30
+            },
+            {
+              "method": "regime reset",
+              "wape": 12.07,
+              "bias": 10.8,
+              "folds": 30
+            },
+            {
+              "method": "28-day average",
+              "wape": 12.61,
+              "bias": 10.43,
+              "folds": 30
+            },
+            {
+              "method": "7-day average",
+              "wape": 13.52,
+              "bias": 9.84,
+              "folds": 30
+            },
+            {
+              "method": "adaptive weekday",
+              "wape": 13.55,
+              "bias": 11.74,
+              "folds": 30
+            },
+            {
+              "method": "trend",
+              "wape": 15.47,
+              "bias": 14.19,
+              "folds": 30
+            },
+            {
+              "method": "same weekday",
+              "wape": 16,
+              "bias": 14.56,
+              "folds": 30
+            },
+            {
+              "method": "stockout-aware",
+              "wape": 16,
+              "bias": 14.56,
+              "folds": 30
+            },
+            {
+              "method": "robust weekday",
+              "wape": 16.05,
+              "bias": 14.01,
+              "folds": 30
+            },
+            {
+              "method": "damped trend",
+              "wape": 16.2,
+              "bias": 14.64,
+              "folds": 30
+            },
+            {
+              "method": "promotion pulse",
+              "wape": 20.01,
+              "bias": 19.48,
+              "folds": 30
+            }
+          ],
+          "productionStatus": "HOLD"
+        }
+      }
+    },
+    {
+      "type": "promotion",
+      "name": "Promotion Fatigue",
+      "horizons": {
+        "7": {
+          "method": "promotion pulse",
+          "baseline": "same weekday",
+          "developmentWape": 10.91,
+          "baselineDevelopmentWape": 16,
+          "holdoutWape": 14.94,
+          "holdoutBias": 10.55,
+          "baselineHoldoutWape": 15.44,
+          "improvement": 3.24,
+          "wins": 0,
+          "losses": 0,
+          "observedBest": "28-day average",
+          "retrospectiveBestOnly": true,
+          "status": "HOLD — NO PROMOTION",
+          "seedResults": [
+            {
+              "seed": 454454,
+              "baselineWape": 15.88,
+              "selectedWape": 15,
+              "improvement": 5.54,
+              "selectedBias": 10.59
+            },
+            {
+              "seed": 565565,
+              "baselineWape": 15.34,
+              "selectedWape": 15.03,
+              "improvement": 2.02,
+              "selectedBias": 10.61
+            },
+            {
+              "seed": 676676,
+              "baselineWape": 15.09,
+              "selectedWape": 14.79,
+              "improvement": 1.99,
+              "selectedBias": 10.45
+            }
+          ],
+          "methodRanks": [
+            {
+              "method": "28-day average",
+              "wape": 13.35,
+              "bias": 3.82,
+              "folds": 126
+            },
+            {
+              "method": "adaptive weekday",
+              "wape": 13.74,
+              "bias": 4.67,
+              "folds": 126
+            },
+            {
+              "method": "robust weekday",
+              "wape": 13.97,
+              "bias": 8.51,
+              "folds": 126
+            },
+            {
+              "method": "regime reset",
+              "wape": 14.71,
+              "bias": 3.14,
+              "folds": 126
+            },
+            {
+              "method": "promotion pulse",
+              "wape": 14.94,
+              "bias": 10.55,
+              "folds": 126
+            },
+            {
+              "method": "same weekday",
+              "wape": 15.44,
+              "bias": 6.65,
+              "folds": 126
+            },
+            {
+              "method": "stockout-aware",
+              "wape": 15.44,
+              "bias": 6.65,
+              "folds": 126
+            },
+            {
+              "method": "7-day average",
+              "wape": 15.64,
+              "bias": 1.57,
+              "folds": 126
+            },
+            {
+              "method": "trend",
+              "wape": 16.25,
+              "bias": 2.27,
+              "folds": 126
+            },
+            {
+              "method": "damped trend",
+              "wape": 16.5,
+              "bias": 5.45,
+              "folds": 126
+            },
+            {
+              "method": "yearly analogue",
+              "wape": 24.92,
+              "bias": 3.9,
+              "folds": 126
+            },
+            {
+              "method": "seasonal normalized",
+              "wape": 24.92,
+              "bias": 3.9,
+              "folds": 126
+            }
+          ],
+          "productionStatus": "HOLD"
+        },
+        "30": {
+          "method": "promotion pulse",
+          "baseline": "same weekday",
+          "developmentWape": 3.78,
+          "baselineDevelopmentWape": 5.33,
+          "holdoutWape": 13.75,
+          "holdoutBias": 13.49,
+          "baselineHoldoutWape": 11.09,
+          "improvement": -23.99,
+          "wins": 0,
+          "losses": 3,
+          "observedBest": "yearly analogue",
+          "retrospectiveBestOnly": true,
+          "status": "FAIL — KEEP BASELINE",
+          "seedResults": [
+            {
+              "seed": 454454,
+              "baselineWape": 10.88,
+              "selectedWape": 13.44,
+              "improvement": -23.53,
+              "selectedBias": 13.44
+            },
+            {
+              "seed": 565565,
+              "baselineWape": 10.8,
+              "selectedWape": 13.63,
+              "improvement": -26.2,
+              "selectedBias": 13.57
+            },
+            {
+              "seed": 676676,
+              "baselineWape": 11.58,
+              "selectedWape": 14.17,
+              "improvement": -22.37,
+              "selectedBias": 13.46
+            }
+          ],
+          "methodRanks": [
+            {
+              "method": "yearly analogue",
+              "wape": 7.82,
+              "bias": 6.82,
+              "folds": 30
+            },
+            {
+              "method": "seasonal normalized",
+              "wape": 7.82,
+              "bias": 6.82,
+              "folds": 30
+            },
+            {
+              "method": "28-day average",
+              "wape": 9.61,
+              "bias": 9.08,
+              "folds": 30
+            },
+            {
+              "method": "adaptive weekday",
+              "wape": 9.82,
+              "bias": 9.36,
+              "folds": 30
+            },
+            {
+              "method": "same weekday",
+              "wape": 11.09,
+              "bias": 10.71,
+              "folds": 30
+            },
+            {
+              "method": "stockout-aware",
+              "wape": 11.09,
+              "bias": 10.71,
+              "folds": 30
+            },
+            {
+              "method": "robust weekday",
+              "wape": 11.92,
+              "bias": 11.84,
+              "folds": 30
+            },
+            {
+              "method": "regime reset",
+              "wape": 12.09,
+              "bias": 12.09,
+              "folds": 30
+            },
+            {
+              "method": "7-day average",
+              "wape": 12.77,
+              "bias": 12.41,
+              "folds": 30
+            },
+            {
+              "method": "promotion pulse",
+              "wape": 13.75,
+              "bias": 13.49,
+              "folds": 30
+            },
+            {
+              "method": "damped trend",
+              "wape": 13.98,
+              "bias": 13.98,
+              "folds": 30
+            },
+            {
+              "method": "trend",
+              "wape": 14.78,
+              "bias": 14.07,
+              "folds": 30
+            }
+          ],
+          "productionStatus": "HOLD"
+        }
+      }
+    },
+    {
+      "type": "supply",
+      "name": "Supply Disruption",
+      "horizons": {
+        "7": {
+          "method": "7-day average",
+          "baseline": "7-day average",
+          "developmentWape": 6.9,
+          "baselineDevelopmentWape": 6.9,
+          "holdoutWape": 33.67,
+          "holdoutBias": 0.82,
+          "baselineHoldoutWape": 33.67,
+          "improvement": 0,
+          "wins": 0,
+          "losses": 0,
+          "observedBest": "7-day average",
+          "retrospectiveBestOnly": true,
+          "status": "HOLD — NO PROMOTION",
+          "seedResults": [
+            {
+              "seed": 454454,
+              "baselineWape": 33.71,
+              "selectedWape": 33.71,
+              "improvement": 0,
+              "selectedBias": 0.86
+            },
+            {
+              "seed": 565565,
+              "baselineWape": 33.51,
+              "selectedWape": 33.51,
+              "improvement": 0,
+              "selectedBias": 0.75
+            },
+            {
+              "seed": 676676,
+              "baselineWape": 33.81,
+              "selectedWape": 33.81,
+              "improvement": 0,
+              "selectedBias": 0.87
+            }
+          ],
+          "methodRanks": [
+            {
+              "method": "7-day average",
+              "wape": 33.67,
+              "bias": 0.82,
+              "folds": 126
+            },
+            {
+              "method": "regime reset",
+              "wape": 43.75,
+              "bias": 3.94,
+              "folds": 126
+            },
+            {
+              "method": "trend",
+              "wape": 48.26,
+              "bias": 7.83,
+              "folds": 126
+            },
+            {
+              "method": "damped trend",
+              "wape": 48.98,
+              "bias": 7.92,
+              "folds": 126
+            },
+            {
+              "method": "seasonal normalized",
+              "wape": 50.67,
+              "bias": 11.03,
+              "folds": 126
+            },
+            {
+              "method": "promotion pulse",
+              "wape": 50.84,
+              "bias": 11.05,
+              "folds": 126
+            },
+            {
+              "method": "yearly analogue",
+              "wape": 51.3,
+              "bias": 9.5,
+              "folds": 126
+            },
+            {
+              "method": "adaptive weekday",
+              "wape": 52.87,
+              "bias": 6.83,
+              "folds": 126
+            },
+            {
+              "method": "28-day average",
+              "wape": 53.47,
+              "bias": 5.81,
+              "folds": 126
+            },
+            {
+              "method": "stockout-aware",
+              "wape": 53.56,
+              "bias": 20.43,
+              "folds": 126
+            },
+            {
+              "method": "same weekday",
+              "wape": 53.63,
+              "bias": 9.2,
+              "folds": 126
+            },
+            {
+              "method": "robust weekday",
+              "wape": 56.27,
+              "bias": 13.1,
+              "folds": 126
+            }
+          ],
+          "productionStatus": "HOLD"
+        },
+        "30": {
+          "method": "7-day average",
+          "baseline": "7-day average",
+          "developmentWape": 6.64,
+          "baselineDevelopmentWape": 6.64,
+          "holdoutWape": 56.81,
+          "holdoutBias": 7.25,
+          "baselineHoldoutWape": 56.81,
+          "improvement": 0,
+          "wins": 0,
+          "losses": 0,
+          "observedBest": "damped trend",
+          "retrospectiveBestOnly": true,
+          "status": "HOLD — NO PROMOTION",
+          "seedResults": [
+            {
+              "seed": 454454,
+              "baselineWape": 55.99,
+              "selectedWape": 55.99,
+              "improvement": 0,
+              "selectedBias": 6.55
+            },
+            {
+              "seed": 565565,
+              "baselineWape": 57.66,
+              "selectedWape": 57.66,
+              "improvement": 0,
+              "selectedBias": 7.66
+            },
+            {
+              "seed": 676676,
+              "baselineWape": 56.78,
+              "selectedWape": 56.78,
+              "improvement": 0,
+              "selectedBias": 7.53
+            }
+          ],
+          "methodRanks": [
+            {
+              "method": "damped trend",
+              "wape": 31.44,
+              "bias": 5.29,
+              "folds": 30
+            },
+            {
+              "method": "promotion pulse",
+              "wape": 32.95,
+              "bias": 9.78,
+              "folds": 30
+            },
+            {
+              "method": "same weekday",
+              "wape": 33.41,
+              "bias": 7.51,
+              "folds": 30
+            },
+            {
+              "method": "robust weekday",
+              "wape": 36.93,
+              "bias": 11.16,
+              "folds": 30
+            },
+            {
+              "method": "stockout-aware",
+              "wape": 41.14,
+              "bias": 20.09,
+              "folds": 30
+            },
+            {
+              "method": "trend",
+              "wape": 45.07,
+              "bias": 3.85,
+              "folds": 30
+            },
+            {
+              "method": "adaptive weekday",
+              "wape": 45.41,
+              "bias": 7.19,
+              "folds": 30
+            },
+            {
+              "method": "seasonal normalized",
+              "wape": 46.78,
+              "bias": 8.97,
+              "folds": 30
+            },
+            {
+              "method": "yearly analogue",
+              "wape": 48.28,
+              "bias": 7.47,
+              "folds": 30
+            },
+            {
+              "method": "28-day average",
+              "wape": 50.49,
+              "bias": 7.04,
+              "folds": 30
+            },
+            {
+              "method": "regime reset",
+              "wape": 51.92,
+              "bias": -2.36,
+              "folds": 30
+            },
+            {
+              "method": "7-day average",
+              "wape": 56.81,
+              "bias": 7.25,
+              "folds": 30
+            }
+          ],
+          "productionStatus": "HOLD"
+        }
+      }
+    },
+    {
+      "type": "weekdayshift",
+      "name": "Customer Behavior Shift",
+      "horizons": {
+        "7": {
+          "method": "regime reset",
+          "baseline": "28-day average",
+          "developmentWape": 2.53,
+          "baselineDevelopmentWape": 2.6,
+          "holdoutWape": 4.02,
+          "holdoutBias": 1.01,
+          "baselineHoldoutWape": 5.19,
+          "improvement": 22.54,
+          "wins": 3,
+          "losses": 0,
+          "observedBest": "yearly analogue",
+          "retrospectiveBestOnly": true,
+          "status": "RESEARCH CANDIDATE — PROSPECTIVE TEST REQUIRED",
+          "seedResults": [
+            {
+              "seed": 454454,
+              "baselineWape": 4.87,
+              "selectedWape": 3.68,
+              "improvement": 24.44,
+              "selectedBias": 0.97
+            },
+            {
+              "seed": 565565,
+              "baselineWape": 5.15,
+              "selectedWape": 3.92,
+              "improvement": 23.88,
+              "selectedBias": 0.96
+            },
+            {
+              "seed": 676676,
+              "baselineWape": 5.56,
+              "selectedWape": 4.47,
+              "improvement": 19.6,
+              "selectedBias": 1.09
+            }
+          ],
+          "methodRanks": [
+            {
+              "method": "yearly analogue",
+              "wape": 3.13,
+              "bias": 0.1,
+              "folds": 126
+            },
+            {
+              "method": "seasonal normalized",
+              "wape": 3.13,
+              "bias": 0.1,
+              "folds": 126
+            },
+            {
+              "method": "7-day average",
+              "wape": 3.93,
+              "bias": 0.64,
+              "folds": 126
+            },
+            {
+              "method": "regime reset",
+              "wape": 4.02,
+              "bias": 1.01,
+              "folds": 126
+            },
+            {
+              "method": "damped trend",
+              "wape": 4.59,
+              "bias": 1.2,
+              "folds": 126
+            },
+            {
+              "method": "trend",
+              "wape": 4.73,
+              "bias": 1,
+              "folds": 126
+            },
+            {
+              "method": "adaptive weekday",
+              "wape": 5.02,
+              "bias": 1.25,
+              "folds": 126
+            },
+            {
+              "method": "28-day average",
+              "wape": 5.19,
+              "bias": 1.19,
+              "folds": 126
+            },
+            {
+              "method": "promotion pulse",
+              "wape": 5.24,
+              "bias": 2.1,
+              "folds": 126
+            },
+            {
+              "method": "same weekday",
+              "wape": 5.69,
+              "bias": 1.4,
+              "folds": 126
+            },
+            {
+              "method": "stockout-aware",
+              "wape": 5.69,
+              "bias": 1.4,
+              "folds": 126
+            },
+            {
+              "method": "robust weekday",
+              "wape": 5.8,
+              "bias": 1.03,
+              "folds": 126
+            }
+          ],
+          "productionStatus": "HOLD"
+        },
+        "30": {
+          "method": "yearly analogue",
+          "baseline": "28-day average",
+          "developmentWape": 1.48,
+          "baselineDevelopmentWape": 2.33,
+          "holdoutWape": 3.13,
+          "holdoutBias": 0.49,
+          "baselineHoldoutWape": 4.34,
+          "improvement": 27.88,
+          "wins": 3,
+          "losses": 0,
+          "observedBest": "regime reset",
+          "retrospectiveBestOnly": true,
+          "status": "RESEARCH CANDIDATE — PROSPECTIVE TEST REQUIRED",
+          "seedResults": [
+            {
+              "seed": 454454,
+              "baselineWape": 4.4,
+              "selectedWape": 3.41,
+              "improvement": 22.5,
+              "selectedBias": 0.66
+            },
+            {
+              "seed": 565565,
+              "baselineWape": 4.55,
+              "selectedWape": 2.76,
+              "improvement": 39.34,
+              "selectedBias": 0.42
+            },
+            {
+              "seed": 676676,
+              "baselineWape": 4.06,
+              "selectedWape": 3.23,
+              "improvement": 20.44,
+              "selectedBias": 0.38
+            }
+          ],
+          "methodRanks": [
+            {
+              "method": "regime reset",
+              "wape": 2.9,
+              "bias": 1.17,
+              "folds": 30
+            },
+            {
+              "method": "yearly analogue",
+              "wape": 3.13,
+              "bias": 0.49,
+              "folds": 30
+            },
+            {
+              "method": "seasonal normalized",
+              "wape": 3.13,
+              "bias": 0.49,
+              "folds": 30
+            },
+            {
+              "method": "promotion pulse",
+              "wape": 3.18,
+              "bias": 1.78,
+              "folds": 30
+            },
+            {
+              "method": "same weekday",
+              "wape": 3.49,
+              "bias": 1.59,
+              "folds": 30
+            },
+            {
+              "method": "stockout-aware",
+              "wape": 3.49,
+              "bias": 1.59,
+              "folds": 30
+            },
+            {
+              "method": "adaptive weekday",
+              "wape": 3.65,
+              "bias": 1.53,
+              "folds": 30
+            },
+            {
+              "method": "damped trend",
+              "wape": 3.72,
+              "bias": 1.76,
+              "folds": 30
+            },
+            {
+              "method": "robust weekday",
+              "wape": 3.9,
+              "bias": 1.23,
+              "folds": 30
+            },
+            {
+              "method": "28-day average",
+              "wape": 4.34,
+              "bias": 1.78,
+              "folds": 30
+            },
+            {
+              "method": "7-day average",
+              "wape": 4.57,
+              "bias": 1.58,
+              "folds": 30
+            },
+            {
+              "method": "trend",
+              "wape": 5.4,
+              "bias": 1.45,
+              "folds": 30
+            }
+          ],
+          "productionStatus": "HOLD"
+        }
+      }
+    }
+  ]
+}
