@@ -15,3 +15,20 @@ test('private API holds with auth, rejects invalid key and write methods, never 
  const post=await fetch(base+'/api/snapshot',{method:'POST',headers:{Authorization:'Bearer '+KEY}});assert.equal(post.status,405);
  const health=await fetch(base+'/health');assert.deepEqual((await health.json()).ok,true);
 }));
+
+test('synthetic hosted demo requires no Shopify credentials and never claims live data',async()=>{
+ const srv=createServer({env:{NODE_ENV:'production',F2_BASE_URL:'https://demo.example.test',F2_DASHBOARD_KEY:KEY,F2_DEMO_MODE:'true'},now:()=>fixed});
+ await new Promise(resolve=>srv.listen(0,'127.0.0.1',resolve));
+ try{
+   const base='http://127.0.0.1:'+srv.address().port;
+   const opts={headers:{'X-Forwarded-Proto':'https',Authorization:'Bearer '+KEY}};
+   const resp=await fetch(base+'/api/snapshot',opts);
+   assert.equal(resp.status,200);
+   const data=await resp.json();
+   assert.equal(data.status,'HOLD');
+   assert.match(data.source,/DEMO/);
+   assert.match(data.provenance.metric,/NOT SHOPIFY/);
+   assert.equal(data.provenance.mode,'DEMO');
+   assert.equal(data.analysis.tests[7].status,'HOLD');
+ }finally{await new Promise(resolve=>srv.close(resolve));}
+});
