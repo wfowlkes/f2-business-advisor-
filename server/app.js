@@ -17,7 +17,11 @@ function createServer({env=process.env, client, now=()=>Date.now()}={}) {
   const key=env.F2_DASHBOARD_KEY;
   if(!key || key.length<32)throw Error('F2_DASHBOARD_KEY must be at least 32 random characters.');
   if(env.NODE_ENV==='production' && !String(env.F2_BASE_URL||'').startsWith('https://'))throw Error('F2_BASE_URL must be HTTPS in production.');
-  const backend=client||makeClient({env,now});
+  const demoClient={getDaily:async()=>{
+    const d=F2.makeDemo();
+    return {...d,provenance:{start:d.daily[0].date,end:d.daily[d.daily.length-1].date,timezone:'UTC',currency:'USD',metric:'SYNTHETIC DEMO DATA — NOT SHOPIFY',mode:'DEMO',reportAsOf:new Date(now()).toISOString()}};
+  }};
+  const backend=client||(env.F2_DEMO_MODE==='true'?demoClient:makeClient({env,now}));
   const attempts=new Map();let cached=null,inflight=null;
   function failAuth(req){
     const ip=req.socket.remoteAddress||'unknown';const t=now(),rec=attempts.get(ip)||{count:0,since:t};
