@@ -15,9 +15,9 @@ jobs:
         with:
           node-version: '22'
       - name: Check synthetic and existing backend safeguards
-        run: node --test server/test/*.test.js && node tests/test_core.js && node --test tests/test_report.js
+        run: node --test server/test/*.test.js tests/test_report.js tests/test_scenario_methods.js && node tests/test_core.js
       - name: Generate reproducible synthetic evidence package
-        run: node lab/report.js
+        run: node lab/report.js && F2_SCENARIO_OUTPUT=synthetic-report node lab/scenario_report.js
       - name: Store dated synthetic-only report
         uses: actions/upload-artifact@v4
         with:
