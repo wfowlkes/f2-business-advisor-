@@ -16,3 +16,5 @@ const quality=F.normalize('date,net_sales,orders\n2026-10-10,100,2\n2026-10-11,1
 if(quality.reconciled!==false)throw Error('CSV column labels must not imply verified reconciliation');
 if(!quality.warnings.some(w=>w.includes('NOT verified')))throw Error('Missing provenance warning');
 console.log('PASS: strict daily aggregates, blank amounts, real dates, PII rejection, reconciliation HOLD');
+
+mustThrow('date,net_sales,orders,product_name\n2026-10-11,100,2,widget\n','Only the approved');
