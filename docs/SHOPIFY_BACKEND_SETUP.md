@@ -60,3 +60,17 @@ The demo/private prototype does **not** yet provide the following: user-level lo
 Some platforms provide a free Node web-service tier for demos, but free compute often suspends or has weak persistence. Do not use it as the production home for merchant credentials or customer data without a security review. Deploying this backend in a real environment requires choosing a host and providing the app's credentials **privately in that host**.
 
 Reference: https://shopify.dev/docs/apps/build/authentication-authorization/client-credentials-grant
+
+
+## Optional zero-credit hosting preview: Render Blueprint
+
+A development-preview template is now in the repo root: [`render.yaml`](../render.yaml). Render currently offers a free Node web-service tier, but says it should **not** be used for production apps, and inactive free instances spin down. Select a paid, security-reviewed host before storing real merchant credentials or serving real merchant data.
+
+1. Open [Render Blueprints](https://dashboard.render.com/blueprints) while signed in to Render.
+2. Select **New Blueprint**. Connect GitHub to the repo `wfowlkes/f2-business-advisor-` and branch `main`. Approve only the required GitHub access.
+3. Inspect `render.yaml` before proceeding. It configures `node server/app.js`, executes offline tests before deployment, and uses HTTPS from Render. This creates **a new private-key-protected report endpoint**, not a Shopify embedded application.
+4. **Before production use**, complete security assessment and switch to an appropriate plan; the free template is for testing with synthetic/non-sensitive datasets only. Credentials to access a live merchant store should not be entered until hosting security has been reviewed.
+5. In the private host's environment configuration (not in GitHub, ChatGPT, or a screenshot), set `SHOPIFY_SHOP`, `SHOPIFY_CLIENT_ID` and `SHOPIFY_CLIENT_SECRET`. The Blueprint generates `F2_DASHBOARD_KEY` privately. Reveal/copy that key only when needed to access the private dashboard. `F2_BASE_URL` is supplied by the Render service's own HTTPS URL.
+6. Check the deployment logs, then `https://<your-host>/health` for a generic success response. Only after explicitly approving a secure live-data trial should an authorized user open the private dashboard and request a report.
+
+The Render account connection, Shopify app creation/approval, and private secret entry **cannot be completed by simply committing code to GitHub**. No such connection has been made by this release.
