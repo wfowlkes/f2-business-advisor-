@@ -56,7 +56,7 @@ function createServer({env=process.env, client, now=()=>Date.now()}={}) {
   return http.createServer(async(req,res)=>{
     try{
       // Do not rely on client-supplied X-Forwarded-For for authorization or throttling.
-      if(env.NODE_ENV==='production'&&req.headers['x-forwarded-proto']!=='https'){send(res,403,{error:'HTTPS required'});return;}
+      if(env.NODE_ENV==='production'&&req.url!=='/health'&&req.headers['x-forwarded-proto']!=='https'){send(res,403,{error:'HTTPS required'});return;}
       let url;
       try{url=new URL(req.url,'http://localhost')}catch{send(res,400,{error:'Invalid URL'});return;}
       if(req.method!=='GET'){send(res,405,{error:'Read-only service: GET only'});return;}
