@@ -13,3 +13,6 @@ This subdirectory contains a **separate private server**. The root GitHub Pages 
 Run: `npm test` and then `npm start` after setting secret environment variables securely.
 
 No Shopify mutations, order/customer PII queries, or automatic business actions are implemented. Forecast authority remains **HOLD**.
+
+
+For a development-only deployment, see the repository root [`render.yaml`](../render.yaml). This is **not** approved for hosting production merchant data.
