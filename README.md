@@ -58,3 +58,12 @@ Integrate these components into the existing F2 app or another host after secure
 A separate **private** Node 22 service is in [`server/`](server/), with a [setup guide](docs/SHOPIFY_BACKEND_SETUP.md) and an optional Render development-preview [Blueprint](render.yaml). The existing GitHub Pages website remains a **public synthetic dashboard only**. Private store access has **not** been installed or authorized and must not be attempted from the public site.
 
 The bridge uses Shopify client credentials only for a store under the same Shopify organization, selects minimal read-only scopes, aggregates recent order subtotal *proxies* by verified store timezone, and keeps all business decisions on **HOLD** until independent financial reconciliation and out-of-sample evaluation are complete. The code does not contain Shopify tokens, passwords, raw order exports, or other merchant secrets.
+
+## Synthetic Business Testing Lab v1.1 — nine scenarios
+
+- Original five generator regimes and their frozen fingerprints are preserved.
+- Four new independent stress conditions: sudden demand drop, promotion fatigue, recurring stockouts, and shifted weekday shopping patterns.
+- A fixed 70% recent / 30% longer same-weekday forecasting method is tested as a **shadow** and never used to replace the frozen production champion.
+- 7-day and 30-day results are compared on distinct validation and holdout windows; the two additional synthetic seed groups challenge the fixed model choices.
+- [Full v1.1 adversarial synthetic evaluation](docs/SYNTHETIC_V11_CHALLENGE_REPORT.md).
+- **Synthetic only / production HOLD.** No merchant credentials, customer information, or evidence of real Shopify profit lift is involved.

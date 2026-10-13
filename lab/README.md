@@ -38,6 +38,8 @@ Each has 1080 daily observations (reference end date **2026-10-12**), with `net_
 
 See [Synthetic Baseline Report](../docs/SYNTHETIC_BASELINE_REPORT.md) for actual measured results of the reproducible default experiment, including a case where the challenger becomes substantially worse.
 
-## Daily automated synthetic review
+## v1.1 challenge addendum
 
-GitHub Actions runs the **Synthetic Learning Lab daily review** workflow once daily at **07:20 UTC**, and it can also be started manually. It executes all simulator and read-only backend tests, rotates a reproducible seed based on the UTC calendar date (the synthetic historical cutoff stays fixed for comparability), records positive and negative results, and uploads a synthetic-only `report.json` and `report.md` artifact with a 30-day retention setting. This is an **evidence record**, not ongoing learning of deployed models or an independently immutable ledger. Schedule timing is best-effort and GitHub Actions minutes may be subject to plan limits.
+Nine synthetic regimes (five frozen original, four operational/demand shocks) now appear on the mobile testing dashboard. The separate *adaptive weekday* shadow result is displayed alongside unchanged original comparisons; negative as well as positive results are retained. No model is automatically promoted.
+
+The frozen experimental blend uses 70% of the last 28 days' same-weekday sales mean and 30% of the last 56 days' same-weekday mean. Research results from previously reserved seed groups are in [`docs/SYNTHETIC_V11_CHALLENGE_REPORT.md`](../docs/SYNTHETIC_V11_CHALLENGE_REPORT.md). All outcomes remain simulator-specific and unsuitable as proof of Shopify improvements.

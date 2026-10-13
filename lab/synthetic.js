@@ -1,11 +1,12 @@
-/* F2 Synthetic Business Testing Lab v1.0 — deterministic, entirely synthetic. */
+/* F2 Synthetic Business Testing Lab v1.1 — original frozen v1 regimes preserved. */
 (function(root,factory){
   if(typeof module==='object'&&module.exports)module.exports=factory(require('../core.js'));
   else root.F2Synthetic=factory(root.F2);
 })(typeof self!=='undefined'?self:this,function(F2){
 'use strict';
 if(!F2||typeof F2.forecast!=='function')throw Error('F2 core.js must load first');
-const VERSION='F2 Synthetic Lab 1.0';
+const VERSION='F2 Synthetic Lab 1.1';
+const FROZEN_LEGACY_VERSION='F2 Synthetic Lab 1.0';
 const AS_OF='2026-10-12';
 const DAYS=1080, VALIDATION_DAYS=300, HOLDOUT_DAYS=300;
 const METHODS=['7-day average','28-day average','same weekday','trend','yearly analogue'];
@@ -15,7 +16,11 @@ const TYPES=Object.freeze([
  {id:'growth',name:'Rapid Growth',description:'Accelerating demand and changing order volume'},
  {id:'decline',name:'Struggling Store',description:'Demand deterioration, weaker retention and more refunds'},
  {id:'seasonal',name:'Seasonal Store',description:'Strong holiday peaks and quieter off-season demand'},
- {id:'volatile',name:'Unpredictable Store',description:'Promotions, demand shocks, refund spikes and stockouts'}
+ {id:'volatile',name:'Unpredictable Store',description:'Promotions, demand shocks, refund spikes and stockouts'},
+ {id:'stepchange',name:'Sudden Demand Drop',description:'An unforeseen structural demand shift during the test holdout'},
+ {id:'promotion',name:'Promotion Fatigue',description:'Campaign spikes followed by discount fatigue and elevated returns'},
+ {id:'supply',name:'Supply Disruption',description:'Recurring clustered stockouts, recovery and latent demand uncertainty'},
+ {id:'weekdayshift',name:'Customer Behavior Shift',description:'Weekend buying moves toward weekdays after a channel transition'}
 ]);
 function prng(seed){let t=(seed>>>0)||1;return()=>{t+=0x6D2B79F5;let x=t;x=Math.imul(x^(x>>>15),x|1);x^=x+Math.imul(x^(x>>>7),x|61);return((x^(x>>>14))>>>0)/4294967296;};}
 function round2(x){return Math.round(x*100)/100;}
@@ -31,7 +36,7 @@ function generate(type='stable',seed=101,options={}){
  const first=F2.addDay(asOf,1-days),daily=[];
  for(let i=0;i<days;i++){
   const date=F2.addDay(first,i),month=Number(date.slice(5,7)),wd=new Date(date+'T00:00:00Z').getUTCDay();
-  const week=(wd===0||wd===6)?1.19:(wd===1?.91:1);
+  let week=(wd===0||wd===6)?1.19:(wd===1?.91:1);
   let base=900,annual=month===12?1.22:month===1?.87:1,refundRate=.035;
   let stockout=false,spike=false;
   if(type==='stable'){base=900*(1+.06*i/days);}
@@ -39,8 +44,15 @@ function generate(type='stable',seed=101,options={}){
   if(type==='decline'){base=1570*(1-.73*i/days);refundRate=.065+.06*i/days;}
   if(type==='seasonal'){base=815;annual=month===12?2.45:month===11?1.7:month===1?.7:month===6?.67:.98;}
   if(type==='volatile'){base=1100;annual=1;refundRate=.04;stockout=(i%71>=61)||(i%131>=123);spike=(i%58<=2)||(i%83===6);}
+  // NEW regimes introduce disturbances that do not exist in the frozen v1 generator.
+  // Holdout begins at day 780 on the default 1,080 day history.
+  if(type==='stepchange'){base=i<785?980:525;refundRate=i<785?.035:.055;}
+  if(type==='promotion'){base=i<780?840:710;refundRate=i<780?.04:.12;spike=(i%30<5);}
+  if(type==='supply'){base=1100;stockout=(i>=680&&(i%62>=43&&i%62<=55))||(i>=800&&i%97>=72);refundRate=.04;}
+  if(type==='weekdayshift'){base=970;refundRate=.03;if(i>=785)week=(wd===0||wd===6)?.67:((wd===2||wd===3)?1.44:.96);}
+
   const oscillation=type==='volatile'?.56+1.00*rnd():.90+.21*rnd();
-  const promotion=type==='volatile'&&i%97<4?1.95:1;
+  const promotion=(type==='volatile'&&i%97<4)?1.95:(type==='promotion'&&i%30<5)?(i<780?2.2:1.48):1;
   const stockFactor=stockout?.19:1;
   const gross=base*annual*week*oscillation*promotion*stockFactor;
   const orders=Math.max(0,Math.round(gross/46));
@@ -51,7 +63,7 @@ function generate(type='stable',seed=101,options={}){
   daily.push({date,net_sales,orders,refunds,new_customers,returning_customers,inventory_units:stockout?Math.max(0,orders-1):Math.round(orders*4.6+25),stockout,refund_spike:spike});
  }
  return {id:type,seed,asOf,days,source:'SYNTHETIC GENERATED • NOT A REAL SHOPIFY STORE',currency:'USD',daily,
-   fingerprint:hash(VERSION+'|'+type+'|'+seed+'|'+asOf+'|'+days+'|'+daily.map(d=>d.net_sales).join(','))};
+   fingerprint:hash((['stable','growth','decline','seasonal','volatile'].includes(type)?FROZEN_LEGACY_VERSION:VERSION)+'|'+type+'|'+seed+'|'+asOf+'|'+days+'|'+daily.map(d=>d.net_sales).join(','))};
 }
 function yearly(history,h){const n=history.length;if(n<400)return null;
  const origin=history.slice(-392,-364),recent=history.slice(-28);
@@ -67,7 +79,26 @@ function yearly(history,h){const n=history.length;if(n<400)return null;
  }
  return predicted;
 }
-function predict(history,h,method){if(method==='yearly analogue')return yearly(history,h);return F2.forecast(history,h,method);}
+function adaptiveWeekday(history,h){
+ // Shadow candidate, deliberately fixed BEFORE independent challenge seeds.
+ // Only known observations are used; no future demand/shock labels or oracle regimes.
+ if(history.length<56)return null;
+ const recent=history.slice(-28),old=history.slice(-56);
+ if(old.some(x=>!finite(x.net_sales)||x.net_sales<0))return null;
+ const results=[];
+ for(let t=1;t<=h;t++){
+  const date=F2.addDay(history[history.length-1].date,t),wd=new Date(date+'T00:00:00Z').getUTCDay();
+  const recentVals=recent.filter(x=>new Date(x.date+'T00:00:00Z').getUTCDay()===wd),allVals=old.filter(x=>new Date(x.date+'T00:00:00Z').getUTCDay()===wd);
+  if(!recentVals.length||!allVals.length)return null;
+  const mean=a=>a.reduce((s,x)=>s+x.net_sales,0)/a.length;
+  const short=mean(recentVals),long=mean(allVals);
+  // Pre-registered 70% short-recency / 30% weekday-history blend.
+  results.push({date,value:round2(Math.max(0,short*.70+long*.30))});
+ }
+ return results;
+}
+function predict(history,h,method){if(method==='yearly analogue')return yearly(history,h);if(method==='adaptive weekday')return adaptiveWeekday(history,h);return F2.forecast(history,h,method);}
+
 function grade(daily,h,method,start,end){
  const folds=[];
  for(let cutoff=start;cutoff+h<=end;cutoff+=h){
@@ -103,14 +134,26 @@ function evaluate(ds){
   const current=champion?holdout[champion]:null,next=candidate?holdout[candidate]:null;
   const improvement=comparable(current,next)&&current.wape>0?round2((current.wape-next.wape)/current.wape*100):null;
   const proposed=improvement!==null&&improvement>=10&&Math.abs(next.bias)<=5&&validation[candidate].wape<validation[champion].wape;
+  // Shadow trial never modifies champion or challenger selections from version 1.0.
+  const shadowValidation=grade(d,h,'adaptive weekday',trainEnd,validationEnd);
+  const shadowHoldout=grade(d,h,'adaptive weekday',validationEnd,n);
+  const shadowImprovement=comparable(current,shadowHoldout)&&current.wape>0?
+    round2((current.wape-shadowHoldout.wape)/current.wape*100):null;
+  const shadow={method:'adaptive weekday',blend:'70% last-28-day weekday; 30% last-56-day weekday',
+    validationWape:shadowValidation.wape,holdoutWape:shadowHoldout.wape,holdoutBias:shadowHoldout.bias,
+    folds:shadowHoldout.folds,improvement:shadowImprovement,
+    validationBeatsChampion:champion?shadowValidation.wape<validation[champion].wape:false,
+    proposedForAnotherTest:shadowImprovement!==null&&shadowImprovement>=10&&Math.abs(shadowHoldout.bias)<=5&&champion!==null&&shadowValidation.wape<validation[champion].wape,
+    action:'NO AUTOMATIC MODEL PROMOTION / PRODUCTION HOLD'};
   tests[h]={horizon:h,champion,candidate,validation,holdout,championHoldoutWape:current?.wape??null,candidateHoldoutWape:next?.wape??null,
-    improvement,proposed,action:proposed?'PROSPECTIVE TEST CANDIDATE':'NO MODEL PROMOTION',decisionAuthority:'HOLD'};
+    improvement,proposed,shadow,action:proposed?'PROSPECTIVE TEST CANDIDATE':'NO MODEL PROMOTION',decisionAuthority:'HOLD'};
  }
  const recent=d.slice(-30),prior=d.slice(-60,-30);
  const sum=(r,k)=>r.reduce((s,v)=>s+(v[k]||0),0);
  const sales=sum(recent,'net_sales'),before=sum(prior,'net_sales');
  const refunds=sum(recent,'refunds');
- const signals=[];
+  const signals=[];
+ if(['stepchange','promotion','supply','weekdayshift'].includes(ds.id))signals.push('New structural-stress regime: explicitly compare frozen baseline and shadow challenger across independent seeded histories.');
  if(before>0&&sales/before>1.18)signals.push('Recent 30-day simulated revenue rose more than 18% against the preceding 30 days. Test persistence before extrapolating.');
  if(before>0&&sales/before<.82)signals.push('Recent 30-day simulated revenue fell more than 18%. Stress-test further decline.');
  if(recent.some(x=>x.stockout))signals.push('Simulated stockout detected; revenue may be demand-constrained rather than true market demand.');
@@ -127,7 +170,8 @@ function evaluate(ds){
    {control:'LL-04 Alternative & adversarial',state:'RECORDED',evidence:'Synthetic shocks, seasonality, refunds and stockouts may mimic or obscure growth'},
    {control:'LL-05 Confidence/calibration',state:'HOLD',evidence:'No calibrated prediction intervals or real-store reconciliation'},
    {control:'LL-06 Learning authority',state:'HOLD',evidence:'Model changes are proposals only; require forward-time tests and real-data evidence'},
-   {control:'LL-07 Incremental merchant value',state:'UNVALIDATED',evidence:'No benchmark against real Shopify outcomes or business impact'}
+   {control:'LL-07 Incremental merchant value',state:'UNVALIDATED',evidence:'No benchmark against real Shopify outcomes or business impact'},
+   {control:'LL-08 Independent stress scenarios',state:'RESEARCH ONLY',evidence:'Legacy v1 generator fingerprints preserved; shadow forecast selection frozen before holdout and distinct seed challenges'}
   ]};
 }
 function batch(options={}){
@@ -143,12 +187,15 @@ function batch(options={}){
    const comparableRuns=runs.filter(x=>x.tests[h].improvement!==null);
    const mean=(key)=>{const vals=comparableRuns.map(r=>r.tests[h][key]).filter(finite);return vals.length?round2(vals.reduce((a,b)=>a+b,0)/vals.length):null};
    const positives=comparableRuns.filter(x=>x.tests[h].proposed).length;
-   summary[h]={runs:comparableRuns.length,championWape:mean('championHoldoutWape'),candidateWape:mean('candidateHoldoutWape'),meanImprovement:mean('improvement'),proposals:positives,action:positives>=Math.ceil(seeds*2/3)?'FORWARD-TIME EXPERIMENT CANDIDATE':'KEEP CHAMPION / INVESTIGATE'};
+   const shadowImprovements=comparableRuns.map(x=>x.tests[h].shadow.improvement).filter(finite);
+   const shadowMean=shadowImprovements.length?round2(shadowImprovements.reduce((a,b)=>a+b,0)/shadowImprovements.length):null;
+   const shadowPositive=comparableRuns.filter(x=>x.tests[h].shadow.proposedForAnotherTest).length;
+   summary[h]={runs:comparableRuns.length,championWape:mean('championHoldoutWape'),candidateWape:mean('candidateHoldoutWape'),meanImprovement:mean('improvement'),proposals:positives,shadowWape:shadowImprovements.length?round2(comparableRuns.reduce((a,b)=>a+b.tests[h].shadow.holdoutWape,0)/comparableRuns.length):null,shadowImprovement:shadowMean,shadowProposals:shadowPositive,action:positives>=Math.ceil(seeds*2/3)?'FORWARD-TIME EXPERIMENT CANDIDATE':'KEEP CHAMPION / INVESTIGATE'};
   }
   results.push({type:type.id,name:type.name,description:type.description,runs,summary});
  }
  return {version:VERSION,asOf,seed,seeds,provenance:'100% GENERATED SYNTHETIC DATA; NOT SHOPIFY',productionStatus:'HOLD',
    evaluationPolicy:'Validation selects champion and challenger. Independent holdout grades them. No weights auto-deploy. Synthetic successes do not validate real accuracy.',businesses:results};
 }
-return {VERSION,AS_OF,DAYS,TYPES,METHODS,BASELINES,CHALLENGERS,generate,predict,grade,evaluate,batch};
+return {VERSION,FROZEN_LEGACY_VERSION,AS_OF,DAYS,TYPES,METHODS,BASELINES,CHALLENGERS,generate,predict,grade,evaluate,batch};
 });
