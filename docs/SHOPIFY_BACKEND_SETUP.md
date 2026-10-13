@@ -4,7 +4,7 @@
 
 ## Scope of this release
 
-- Single-store, private merchant-only Node 22 backend (`server/`), no required third-party packages.
+- Single-store, private merchant-only Node 22 backend (`server/`), no required third-party packages. Credentials-free `F2_DEMO_MODE=true` is supported for a safe synthetic preview.
 - User-owned Shopify Dev Dashboard app, **client credentials grant** for stores in the **same Shopify organization** only. No merchant-install/OAuth support for unrelated businesses yet.
 - Strict `read_orders` scope required; explicitly rejects write scopes and uses only GraphQL queries, never mutations.
 - Authenticates a private dashboard using a strong `F2_DASHBOARD_KEY`, never transmitted to the public GitHub Pages site; browser holds it only in tab memory.
@@ -69,8 +69,8 @@ A development-preview template is now in the repo root: [`render.yaml`](../rende
 1. Open [Render Blueprints](https://dashboard.render.com/blueprints) while signed in to Render.
 2. Select **New Blueprint**. Connect GitHub to the repo `wfowlkes/f2-business-advisor-` and branch `main`. Approve only the required GitHub access.
 3. Inspect `render.yaml` before proceeding. It configures `node server/app.js`, executes offline tests before deployment, and uses HTTPS from Render. This creates **a new private-key-protected report endpoint**, not a Shopify embedded application.
-4. **Before production use**, complete security assessment and switch to an appropriate plan; the free template is for testing with synthetic/non-sensitive datasets only. Credentials to access a live merchant store should not be entered until hosting security has been reviewed.
-5. In the private host's environment configuration (not in GitHub, ChatGPT, or a screenshot), set `SHOPIFY_SHOP`, `SHOPIFY_CLIENT_ID` and `SHOPIFY_CLIENT_SECRET`. The Blueprint generates `F2_DASHBOARD_KEY` privately. Reveal/copy that key only when needed to access the private dashboard. `F2_BASE_URL` is supplied by the Render service's own HTTPS URL.
-6. Check the deployment logs, then `https://<your-host>/health` for a generic success response. Only after explicitly approving a secure live-data trial should an authorized user open the private dashboard and request a report.
+4. The free template launches with `F2_DEMO_MODE=true` and **does not require or access Shopify credentials**. The private dashboard displays unmistakably synthetic data and always HOLD. Before live use, complete security assessment and move to a suitable paid/controlled hosting plan.
+5. In synthetic mode, you do not need `SHOPIFY_SHOP`, `SHOPIFY_CLIENT_ID`, or `SHOPIFY_CLIENT_SECRET`. The Blueprint generates `F2_DASHBOARD_KEY` privately. Reveal/copy that key only when needed to access the private dashboard. `F2_BASE_URL` is supplied by the Render service's own HTTPS URL. To enable a real store **later on an approved secure host**, set `F2_DEMO_MODE=false` and enter merchant-approved Shopify credentials privately in the host.
+6. Check deployment logs, then the host's `/health` path for a generic success response. Open the private dashboard, enter the Render-generated dashboard key, and confirm the result is labeled `DEMO (SYNTHETIC)` and HOLD. Do not interpret it as a real Shopify report.
 
 The Render account connection, Shopify app creation/approval, and private secret entry **cannot be completed by simply committing code to GitHub**. No such connection has been made by this release.
