@@ -7,13 +7,17 @@ const F2=require('../core.js');
 const {makeClient}=require('./shopify.js');
 const dashboard=fs.readFileSync(path.join(__dirname,'dashboard.html'));
 const script=fs.readFileSync(path.join(__dirname,'dashboard.js'));
-// Public static synthetic lab is separate from live merchant data, and only exposed in DEMO mode.
+// Public static synthetic lab is independent of all Shopify reads or tokens.
 const syntheticLab={
   '/lab/': ['index.html','text/html; charset=utf-8'],
   '/lab/index.html': ['index.html','text/html; charset=utf-8'],
   '/lab/synthetic.js': ['synthetic.js','application/javascript; charset=utf-8'],
   '/lab/ui.js': ['ui.js','application/javascript; charset=utf-8'],
-  '/lab/style.css': ['style.css','text/css; charset=utf-8']
+  '/lab/style.css': ['style.css','text/css; charset=utf-8'],
+  '/lab/strategies.html': ['strategies.html','text/html; charset=utf-8'],
+  '/lab/strategies.js': ['strategies.js','application/javascript; charset=utf-8'],
+  '/lab/strategy-summary.json': ['strategy-summary.json','application/json; charset=utf-8'],
+  '/lab/calendar-stress.json': ['calendar-stress.json','application/json; charset=utf-8']
 };
 
 function secretOK(received, expected){
