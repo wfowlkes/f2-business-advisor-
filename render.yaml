@@ -1,4 +1,4 @@
-# F2 Commerce Shopify bridge: development preview ONLY, not production approval.
+# F2 Commerce Shopify bridge: development preview ONLY, synthetic mode by default.
 # NEVER put merchant secrets in this file or GitHub.
 services:
   - type: web
@@ -14,12 +14,8 @@ services:
     envVars:
       - key: NODE_ENV
         value: production
-      - key: SHOPIFY_SHOP
-        sync: false
-      - key: SHOPIFY_CLIENT_ID
-        sync: false
-      - key: SHOPIFY_CLIENT_SECRET
-        sync: false
+      - key: F2_DEMO_MODE
+        value: 'true'
       - key: F2_DASHBOARD_KEY
         generateValue: true
       - key: SHOPIFY_API_VERSION
