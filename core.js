@@ -1,23 +1,23 @@
 (function(root,factory){if(typeof module==='object'&&module.exports)module.exports=factory();else root.F2=factory();})(typeof self!=='undefined'?self:this,function(){
 'use strict';
-function day(d){let x=new Date(String(d).slice(0,10)+'T00:00:00Z');return Number.isNaN(x.getTime())?null:x.toISOString().slice(0,10)}
+function day(d){let raw=String(d||'').trim();if(!/^\d{4}-\d{2}-\d{2}$/.test(raw))return null;let x=new Date(raw+'T00:00:00Z');return Number.isNaN(x.getTime())||x.toISOString().slice(0,10)!==raw?null:raw}
 function addDay(d,n){let x=new Date(d+'T00:00:00Z');x.setUTCDate(x.getUTCDate()+n);return x.toISOString().slice(0,10)}
 function dow(d){return new Date(d+'T00:00:00Z').getUTCDay()}
 function parseCSV(s){let rows=[],row=[],v='',q=false;for(let i=0;i<s.length;i++){let c=s[i];if(q){if(c==='"'&&s[i+1]==='"'){v+='"';i++}else if(c==='"')q=false;else v+=c;}else if(c==='"')q=true;else if(c===','){row.push(v);v=''}else if(c==='\n'||c==='\r'){if(c==='\r'&&s[i+1]==='\n')i++;row.push(v);if(row.some(x=>x.trim()))rows.push(row);row=[];v=''}else v+=c;}if(v.length||row.length){row.push(v);rows.push(row)}return rows;}
-function normalize(input){let rows=parseCSV(input);if(rows.length<2)throw Error('The CSV has no data rows.');let hdr=rows.shift().map(x=>x.trim().replace(/^\ufeff/, '').toLowerCase().replace(/\s+/g,'_'));let idx=n=>hdr.indexOf(n);
-let dateKey=['date','day','created_at'].find(x=>idx(x)!==-1);if(!dateKey)throw Error('Missing a date/day column. For safe imports use date,net_sales,orders.');
+function normalize(input){let rows=parseCSV(input);if(rows.length<2)throw Error('The CSV has no data rows.');let hdr=rows.shift().map(x=>x.trim().replace(/^\ufeff/, '').toLowerCase().replace(/\s+/g,'_'));let idx=n=>hdr.indexOf(n);if(hdr.some(x=>/(^|_)(email|phone|address|first_name|last_name|customer_id|order_id|order_number|shipping|billing|line_item|lineitem|postal|zipcode|zip_code|ip_address)(_|$)/.test(x)))throw Error('Possible customer or order-level fields detected. Import only an anonymized DAILY AGGREGATE sales report.');
+let dateKey=['date','day'].find(x=>idx(x)!==-1);if(!dateKey)throw Error('Missing daily date/day column. Do not import raw order records.');
 let salesKey=['net_sales','net_sales_usd','total_sales','revenue'].find(x=>idx(x)!==-1);if(!salesKey)throw Error('Missing net_sales or total_sales. Export a daily aggregated sales report.');
-let ordersKey=['orders','order_count'].find(x=>idx(x)!==-1);let map=new Map(),warnings=[],invalid=0;
-for(let r of rows){let d=day(r[idx(dateKey)]);let val=Number(String(r[idx(salesKey)]||'').replace(/[$,]/g,''));let ord=ordersKey?Number(r[idx(ordersKey)]||0):0;
- if(!d||!Number.isFinite(val)||!Number.isFinite(ord)){invalid++;continue;}
- let old=map.get(d)||{date:d,net_sales:0,orders:0};old.net_sales+=val;old.orders+=ord;map.set(d,old);
+let ordersKey=['orders','order_count'].find(x=>idx(x)!==-1);if(!ordersKey)throw Error('Missing aggregated orders/order_count column.');let map=new Map(),warnings=[],invalid=0,duplicates=0;
+for(let r of rows){let d=day(r[idx(dateKey)]);let salesRaw=String(r[idx(salesKey)]??'').trim(),ordersRaw=String(r[idx(ordersKey)]??'').trim();let val=salesRaw===''?NaN:Number(salesRaw.replace(/[$,]/g,''));let ord=ordersRaw===''?NaN:Number(ordersRaw);
+ if(!d||!Number.isFinite(val)||!Number.isFinite(ord)||ord<0||!Number.isInteger(ord)){invalid++;continue;}
+ if(map.has(d))duplicates++;let old=map.get(d)||{date:d,net_sales:0,orders:0};old.net_sales+=val;old.orders+=ord;map.set(d,old);
 }
 if(!map.size)throw Error('No valid daily records.');let items=[...map.values()].sort((a,b)=>a.date.localeCompare(b.date));let start=items[0].date,end=items[items.length-1].date;let today=new Date().toISOString().slice(0,10);if(end>today)warnings.push('Data includes dates after today; future-dated rows are excluded.');items=items.filter(x=>x.date<=today);if(!items.length)throw Error('All rows are future-dated.');
 let daily=[];let m=new Map(items.map(x=>[x.date,x]));for(let d=items[0].date;d<=items[items.length-1].date;d=addDay(d,1)){daily.push(m.get(d)||{date:d,net_sales:null,orders:null});if(daily.length>5000)throw Error('Too many daily rows (limit: 5000).');}
 let missing=daily.filter(r=>r.net_sales===null).length; if(missing)warnings.push(`${missing} dates are absent; they are NOT treated as zero sales. Forecasts HOLD until resolved.`);
-if(invalid)warnings.push(`${invalid} invalid CSV rows skipped.`);
+if(invalid)warnings.push(`${invalid} invalid daily rows excluded (including blank sales or invalid dates).`);if(duplicates)warnings.push(`${duplicates} duplicate-day rows combined; verify export granularity.`);
 if(salesKey!=='net_sales')warnings.push(`Imported '${salesKey}' is not verified as net sales; reconciliation HOLD.`);
-return {daily,warnings,source:'IMPORTED',reconciled:salesKey==='net_sales'&&missing===0&&invalid===0,metrics:{days:daily.length,missing,orders:daily.reduce((s,x)=>s+(x.orders||0),0),sales:daily.reduce((s,x)=>s+(x.net_sales||0),0)}};
+warnings.push('Financial reconciliation and store currency are NOT verified by importing a CSV.');return {daily,warnings,source:'IMPORTED',reconciled:false,metrics:{days:daily.length,missing,orders:daily.reduce((s,x)=>s+(x.orders||0),0),sales:daily.reduce((s,x)=>s+(x.net_sales||0),0)}};
 }
 function makeDemo(){let first=addDay(new Date().toISOString().slice(0,10),-399),daily=[];for(let i=0;i<400;i++){let date=addDay(first,i),w=dow(date);let weekend=(w===0||w===6)?1.25:1;let trend=1+i/2200;let month=new Date(date+'T00:00:00Z').getUTCMonth();let season=(month===11)?1.22:1;let signal=0.92+0.08*Math.sin(i*0.31)+0.07*Math.sin(i*1.7);let sales=Math.round(820*weekend*trend*season*signal*100)/100;daily.push({date,net_sales:sales,orders:Math.round(sales/52)});}return {source:'DEMO (SYNTHETIC)',daily,warnings:['This dataset is synthetic and is not evidence of forecast accuracy on an actual Shopify business.'],reconciled:false,metrics:{days:daily.length,missing:0,orders:daily.reduce((s,x)=>s+x.orders,0),sales:daily.reduce((s,x)=>s+x.net_sales,0)}};}
 function forecast(history,h,method){let vals=history.map(x=>x.net_sales),n=vals.length;if(n<56||vals.some(x=>x===null))return null;let result=[];let last=(k)=>vals.slice(-k).reduce((s,x)=>s+x,0)/Math.min(n,k);let weekday=[];for(let d=0;d<7;d++){let w=history.slice(-56).filter(x=>dow(x.date)===d);weekday[d]=w.reduce((s,x)=>s+x.net_sales,0)/w.length;}
