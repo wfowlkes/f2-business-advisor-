@@ -32,6 +32,10 @@ Build a low-cost, reproducible synthetic test environment to challenge data vali
 
 Synthetic lab is browser-run; it does not write to Shopify, change merchant inventory, run recurring jobs, retain uploads, or hold access credentials. The production read-only Shopify bridge remains unchanged and separately secured. Developer proposals are code-reviewed and tested before merging, and the Render service uses manual deploys.
 
-## Scheduled review operation
+## v1.1: explicit regime shifts and research-only shadow method (2026-10-13)
 
-The synthetic review workflow `.github/workflows/synthetic-lab-daily.yml` runs on a best-effort daily UTC schedule and on manual dispatch. Its report includes seed, date, horizon-level baseline/challenger errors, underperformance flags and reproducibility fingerprints. Reports are stored as 30-day GitHub Action artifacts, not pushed to the live dashboard or automatically used to retrain. A failing validation test blocks report generation. Deployment to Render remains manual, and `F2_DEMO_MODE=true` is required for the public lab routes.
+- Four additional challenge regimes include sudden demand decline inside holdout, promotion fatigue, recurring supply interruptions, and a weekday demand shift. Synthetic timeline, folds, scoring, frozen original model choices, and original generator fingerprints remain unchanged.
+- A fixed 70%/30% short/long weekday blend is evaluated separately as **shadow research** and cannot influence the v1.0 champion/challenger. Each challenge is assessed on previously unexamined seed groups.
+- Scenario-specific HOLD remains mandatory for any negative candidate outcome or incomplete prospective stress-test coverage; no averaging across regimes can hide a meaningful failure.
+- Document all adverse results including the original v1.0 volatile weakness. See [v1.1 challenge findings](SYNTHETIC_V11_CHALLENGE_REPORT.md).
+- AC-09/LL-08–10 opportunity control ledger: log cause hypothesis and adversarial alternatives; do not declare generalized improvement or apply new predictive weights without later independent chronological real-business trials.
