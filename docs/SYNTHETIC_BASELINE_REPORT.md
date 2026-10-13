@@ -25,3 +25,20 @@
 **Next prospective test:** Hold candidate weights and algorithms fixed, evaluate **previously unused seeds** (e.g. 7727, 15646, 23565) and different synthetic regimes, then compare with realistic permitted historical business data and Shopify baselines only when available. Do not select new weights after seeing those prospective outcomes. Track confidence interval calibration and decision costs before considering real-world authorization.
 
 **Control decision:** No model promoted. Production accuracy and incremental business improvement **UNVALIDATED / HOLD**. These results were produced by the local test code, not asserted as completed on real Shopify orders.
+
+
+## Additional untouched synthetic-seed challenge
+
+After recording the default-seed results above, I ran the **same frozen generator and forecasting methods** on two other seed groups (7727 and 23565), three stores per scenario per group. No new weights, thresholds, algorithms or scenario definitions were selected in response to these outcomes.
+
+| Simulated business | 30d improvement (seed 7727) | 30d improvement (seed 23565) | Signal |
+|---|---:|---:|---|
+| Steady retail | +46.57% | +21.42% | Positive within this generator |
+| Rapid growth | +58.47% | +63.40% | Positive within this generator |
+| Struggling store | +58.21% | +63.05% | Positive within this generator |
+| Seasonal store | +75.84% | +79.71% | Strong but potentially simulator-specific |
+| Unpredictable store | **−94.98%** | **−98.29%** | Repeat substantial failure |
+
+For 7-day forecasts, challenge-set outcomes were less stable: steady retail improvement was **−1.77%** and **−0.96%**, growth was **+13.78%** and **−8.63%**, decline was **+15.07%** and **−16.37%**, and volatile retail was **−0.67%** and **+5.06%**. This prevents any defensible general claim that the challenger is superior at a 7-day horizon.
+
+**Next Learning Lab control adjustment (proposed, not a deployed predictive weight):** enforce scenario-specific gates and negative-result reporting. Candidate approval should be blocked in volatile regimes until a prospectively frozen alternative passes further challenge sets. Even positive repeated synthetic results do not justify a real business promotion.
