@@ -45,6 +45,14 @@ See [the read-only integration plan](docs/SHOPIFY_READ_ONLY_PLAN.md). Never put 
 Integrate these components into the existing F2 app or another host after secure independent Shopify app registration, merchant OAuth, least-privilege read-only scopes, historical access approval when required, multi-tenant isolation, and an authenticated database-backed immutable Learning Lab ledger. **Do not deploy this prototype as a publicly accessible merchant application**; it has no user authentication. Publishing the source code does not make it production-ready.
 
 
+## Synthetic Business Testing Lab v1.0
+
+- Open [the synthetic testing dashboard](lab/) in the free browser preview, or `/lab/` on the Render development service when `F2_DEMO_MODE=true`.
+- Five deterministic simulated merchant regimes × adjustable random seeds; 1080 days of synthetic sales, order, refund, customer-count and inventory signals per regime.
+- Leakage-safe training / validation / holdout windows, 7-day and 30-day forecasts, four core simple models plus a prior-year analogue, 15-run default robustness test, explicit opportunities and adversarial alternatives.
+- See [learning protocol](docs/LEARNING_LAB_PROTOCOL.md) and [measured synthetic benchmark report](docs/SYNTHETIC_BASELINE_REPORT.md).
+- All simulation outcomes and business decisions remain **SYNTHETIC / HOLD**. No Shopify orders, personal data, secrets or real-world accuracy claims are involved.
+
 ## Phase 2 — Shopify read-only backend (source available; NOT deployed)
 
 A separate **private** Node 22 service is in [`server/`](server/), with a [setup guide](docs/SHOPIFY_BACKEND_SETUP.md) and an optional Render development-preview [Blueprint](render.yaml). The existing GitHub Pages website remains a **public synthetic dashboard only**. Private store access has **not** been installed or authorized and must not be attempted from the public site.
