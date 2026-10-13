@@ -22,5 +22,9 @@ jobs:
           node-version: '22'
       - name: Syntax-check forecasting engine
         run: node --check core.js
-      - name: Run offline Learning Lab test suite
+      - name: Syntax-check synthetic evaluation engine
+        run: node --check lab/synthetic.js && node --check lab/report.js
+      - name: Run offline Learning Lab core checks
         run: node tests/test_core.js
+      - name: Validate frozen baselines, adversarial scenarios, shadow challenger and daily report
+        run: node --test tests/test_synthetic_lab.js tests/test_report.js
