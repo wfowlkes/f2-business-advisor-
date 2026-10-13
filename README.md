@@ -67,3 +67,9 @@ The bridge uses Shopify client credentials only for a store under the same Shopi
 - 7-day and 30-day results are compared on distinct validation and holdout windows; the two additional synthetic seed groups challenge the fixed model choices.
 - [Full v1.1 adversarial synthetic evaluation](docs/SYNTHETIC_V11_CHALLENGE_REPORT.md).
 - **Synthetic only / production HOLD.** No merchant credentials, customer information, or evidence of real Shopify profit lift is involved.
+
+## Scenario-specific forecasting research v1.2
+
+Explore [the preselected method versus challenge matrix](lab/strategies.html), including 9 store regimes × 7/30-day horizons × 12 forecasting methods. Pre-registered development validation seeds select one method per synthetic type and horizon. Three different synthetic challenge seed groups independently grade those methods without test-time model changes. [Read the complete findings](docs/SCENARIO_METHODS_V12.md). All merchant decisions remain **HOLD**.
+
+The [second calendar-shift challenge](docs/SCENARIO_RESULTS_V12.md) preserves adverse results and flags promotion cycle phase uncertainty. Frozen method choices remain research only.
