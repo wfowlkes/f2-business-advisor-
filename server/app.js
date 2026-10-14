@@ -118,6 +118,8 @@ function createServer({env=process.env, client, now=()=>Date.now()}={}) {
       if(url.pathname==='/health'){send(res,200,{ok:true,service:'F2 Commerce read-only backend',shopify:'not exposed'});return;}
       if(url.pathname==='/'){send(res,200,dashboard,'text/html; charset=utf-8');return;}
       if(url.pathname==='/dashboard.js'){send(res,200,script,'application/javascript; charset=utf-8');return;}
+      // F2 Core is public mathematical logic only; never includes tokens or private merchant records.
+      if(url.pathname==='/core.js'){send(res,200,fs.readFileSync(path.join(__dirname,'../core.js')),'application/javascript; charset=utf-8');return;}
       if(env.F2_DEMO_MODE==='true' && (url.pathname==='/lab' || url.pathname==='/core.js' || syntheticLab[url.pathname])){
         if(url.pathname==='/lab'){res.writeHead(302,{Location:'/lab/','Cache-Control':'no-store'});res.end();return;}
         const asset=url.pathname==='/core.js'?{file:path.join(__dirname,'../core.js'),type:'application/javascript; charset=utf-8'}:{file:path.join(__dirname,'../lab',syntheticLab[url.pathname][0]),type:syntheticLab[url.pathname][1]};
