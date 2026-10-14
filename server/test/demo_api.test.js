@@ -2,7 +2,7 @@
 const test=require('node:test'),assert=require('node:assert/strict');
 const {createServer}=require('../app.js');
 const env={NODE_ENV:'production',F2_BASE_URL:'https://example.test',F2_DASHBOARD_KEY:'k'.repeat(48),F2_DEMO_MODE:'true'};
-async function server(environment){const s=createServer({env:environment,now:()=>new Date('2026-10-14T20:00:00Z').valueOf()});await new Promise(resolve=>s.listen(0,'127.0.0.1',resolve));return {url:`http://127.0.0.1:${s.address().port}`,close:()=>new Promise(resolve=>s.close(resolve))};}
+async function server(environment){const s=createServer({env:environment,client:{getDaily:async()=>{throw Error('Mock only: no live merchant access');}},now:()=>new Date('2026-10-14T20:00:00Z').valueOf()});await new Promise(resolve=>s.listen(0,'127.0.0.1',resolve));return {url:`http://127.0.0.1:${s.address().port}`,close:()=>new Promise(resolve=>s.close(resolve))};}
 const h={'X-Forwarded-Proto':'https'};
 test('demo-only SQLite API returns 60 completed dates and source metadata without merchant data',async()=>{
  const s=await server(env);try{
