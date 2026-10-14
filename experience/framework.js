@@ -96,7 +96,7 @@ function localAnswer(dataset,question){
 function createFramework(clock=()=>new Date().toISOString()){
  const events=[];let seq=0;
  function emit(type,{module=null,source=null,reason=null}={}){
-  if(!['source-connected','source-cleared','module-view','tracker-customized','carousel-change','assistant-question','adaptive-proposal','forecast-hold'].includes(type))throw Error('Unsupported event');
+  if(!['source-connected','source-cleared','module-view','tracker-customized','carousel-change','assistant-question','assistant-response','adaptive-proposal','forecast-hold','audit-export','customize-open','source-connect-attempt','source-connect-error'].includes(type))throw Error('Unsupported event');
   const event=Object.freeze({id:++seq,at:clock(),type,module:module?String(module).slice(0,48):null,source:source?String(source).slice(0,32):null,reason:reason?String(reason).slice(0,120):null,authority:'HOLD'});
   events.push(event);if(events.length>200)events.shift();return event;
  }
