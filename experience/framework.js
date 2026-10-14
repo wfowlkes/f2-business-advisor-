@@ -65,7 +65,7 @@ function createDataset({source='NONE',daily=[],analysis=null,metrics={},provenan
   source:kind,insights:changePoint(rows)?.direction==='down'?'Sales slowdown detected':'Review recent sales trend'
  };
  const registry=MODULES.filter(m=>m.needs.every(need=>feature[need]===true));
- return Object.freeze({version:VERSION,kind,connected:verified,sourceLabel:kind==='SYNTHETIC'?'Synthetic simulation':kind==='IMPORTED'?'Local CSV aggregate':kind==='SHOPIFY'?'Private Shopify snapshot':'No source',
+ return Object.freeze({version:VERSION,kind,connected:verified,sourceLabel:kind==='SYNTHETIC'?(provenance?.database==='SQLite'?'Synthetic SQLite sample':'Synthetic simulation'):kind==='IMPORTED'?'Local CSV aggregate':kind==='SHOPIFY'?'Private Shopify snapshot':'No source',
   disclaimer:kind==='SYNTHETIC'?'Simulated values only — never actual merchant data.':kind==='SHOPIFY'?'Shopify subtotal proxy; financial reconciliation and decisions remain HOLD.':kind==='IMPORTED'?'Local aggregate; not independently reconciled.':'Connect an approved source to enable modules.',
   authority:'HOLD',asOf:rows.at(-1)?.date||null,rows,feature,registry,values:vals,analysis,trend:{revenue:trend('net_sales'),orders:trend('orders')},change:changePoint(rows),provenance});
 }
