@@ -33,3 +33,15 @@ test('local insights refuse unsupported requests',()=>{const d=X.createDataset({
 test('framework tracks sanitized bounded changes, holds learning and never mutates model parameters',()=>{let n=0;const fw=X.createFramework(()=>String(++n));for(let i=0;i<250;i++)fw.emit('carousel-change',{module:'revenue',source:'SYNTHETIC'});assert.equal(fw.events().length,200);assert.equal(fw.events()[0].id,51);assert.throws(()=>fw.emit('auto-promote'),/Unsupported/);assert.equal(fw.proposal('New regime needs testing').authority,'HOLD');});
 
 test('only source-backed features are rendered in registry and missing rows cannot generate unsupported metrics',()=>{const x=make(140);x[5].orders=null;const d=X.createDataset({source:'SYNTHETIC',daily:x});assert(!d.registry.some(m=>m.id==='orders'));assert(d.registry.some(m=>m.id==='revenue'));});
+
+test('customer controls record permitted framework events without runtime errors',()=>{
+ const fw=X.createFramework(()=>new Date('2026-10-13T00:00:00Z').toISOString());
+ const controls=['customize-open','tracker-customized','audit-export','assistant-question','assistant-response','source-connect-attempt','source-connect-error','carousel-change','source-connected'];
+ for(const type of controls){const event=fw.emit(type,{module:'orders',source:'SYNTHETIC',reason:'Internal UI event'});assert.equal(event.type,type);assert.equal(event.authority,'HOLD');}
+ assert.equal(fw.events().length,controls.length);
+ assert.throws(()=>fw.emit('model-auto-approved'),/Unsupported/);
+});
+test('source visibility uses explicit hidden CSS even with navigation and layout display rules',()=>{
+ const css=require('node:fs').readFileSync(require('node:path').join(__dirname,'../experience/style.css'),'utf8');
+ assert.match(css,/\[hidden\]\s*\{\s*display\s*:\s*none\s*!important\s*\}/);
+});
