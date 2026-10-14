@@ -8,7 +8,7 @@ const {makeClient}=require('./shopify.js');
 const Assistant=require('./assistant.js');
 const dashboard=fs.readFileSync(path.join(__dirname,'dashboard.html'));
 const script=fs.readFileSync(path.join(__dirname,'dashboard.js'));
-const experienceAssets=Object.freeze({'/experience/':['index.html','text/html; charset=utf-8'],'/experience/index.html':['index.html','text/html; charset=utf-8'],'/experience/framework.js':['framework.js','application/javascript; charset=utf-8'],'/experience/ui.js':['ui.js','application/javascript; charset=utf-8'],'/experience/style.css':['style.css','text/css; charset=utf-8']});
+const experienceAssets=Object.freeze({'/experience/':['index.html','text/html; charset=utf-8'],'/experience/index.html':['index.html','text/html; charset=utf-8'],'/experience/core.js':['core.js','application/javascript; charset=utf-8'],'/experience/framework.js':['framework.js','application/javascript; charset=utf-8'],'/experience/ui.js':['ui.js','application/javascript; charset=utf-8'],'/experience/style.css':['style.css','text/css; charset=utf-8']});
 // Public static synthetic lab is independent of all Shopify reads or tokens.
 const syntheticLab={
   '/lab/': ['index.html','text/html; charset=utf-8'],
