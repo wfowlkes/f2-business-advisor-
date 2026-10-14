@@ -48,3 +48,23 @@ test('homepage points to LIBERIENT instead of the older private portal',async()=
   assert.equal(legacy.status,200);
  }finally{await new Promise(resolve=>srv.close(resolve));}
 });
+
+test('customer stylesheet is allowed by CSP and served with correct type on iPhone browsers',async()=>{
+ const srv=createServer({env:{F2_DEMO_MODE:'true',F2_DASHBOARD_KEY:'synthetic_secure_test_key_1234567890',F2_BASE_URL:'https://demo.example.test',NODE_ENV:'production'}});
+ await new Promise(resolve=>srv.listen(0,'127.0.0.1',resolve));
+ try{
+  const base='http://127.0.0.1:'+srv.address().port;
+  const opts={headers:{'X-Forwarded-Proto':'https'}};
+  const css=await fetch(base+'/experience/style.css',opts);
+  assert.equal(css.status,200);
+  assert.match(css.headers.get('content-type'),/text\/css/);
+  const csp=css.headers.get('content-security-policy');
+  assert.match(csp,/style-src 'self'/);
+  assert.match(csp,/script-src 'self'/);
+  assert.doesNotMatch(csp,/default-src \*/);
+  assert.match(await css.text(),/\.hero/);
+  const page=await fetch(base+'/experience/',opts);
+  assert.equal(page.status,200);
+  assert.match(await page.text(),/href="\.\/style\.css"/);
+ }finally{await new Promise(resolve=>srv.close(resolve));}
+});
