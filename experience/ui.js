@@ -13,8 +13,8 @@
   let m=ds.change;let j=m?a.findIndex(x=>x.date===m.date):-1;const pt=j>=0?point(a[j],j):null;
   return `<svg class="chart" viewBox="0 0 ${width} ${height}" role="img" aria-label="Revenue trend${m?' with observed change point':''}"><path d="M5 ${height-7} L${width-5} ${height-7}" stroke="#343c87"/><polyline points="${before}"/><polyline class="after" points="${after}"/>${pt?`<line x1="${pt[0]}" x2="${pt[0]}" y1="${height-7}" y2="4" stroke="#b65cff" stroke-dasharray="3 4"/><circle class="mark" cx="${pt[0]}" cy="${pt[1]}" r="5"/>`:''}</svg>`;
  }
- function loadPreferences(){try{let v=JSON.parse(localStorage.getItem('liberient-tracker-v2')||'[]');return Array.isArray(v)?v:[]}catch{return []}}
- function savePreferences(){try{localStorage.setItem('liberient-tracker-v2',JSON.stringify(selected))}catch{}}
+ function loadPreferences(){try{let v=JSON.parse(localStorage.getItem('liberient-tracker-v2')||'null');return v&&v.configured===true&&Array.isArray(v.ids)?v:null}catch{return null}}
+ function savePreferences(){try{localStorage.setItem('liberient-tracker-v2',JSON.stringify({configured:true,ids:selected}))}catch{}}
  function content(id){let map={revenue:{title:'Revenue performance',value:display('revenue'),line:'Last 30 completed days',delta:ds.trend.revenue},orders:{title:'Order flow',value:display('orders'),line:'Completed order counts',delta:ds.trend.orders},forecast7:{title:'Next 7 days',value:display('forecast7'),line:'Exploratory forecast · HOLD'},forecast30:{title:'Next 30 days',value:display('forecast30'),line:'Exploratory forecast · HOLD'},customers:{title:'Customer momentum',value:display('customers'),line:'Connected customer aggregates'},inventory:{title:'Inventory picture',value:display('inventory'),line:'Connected stock quantity'},refunds:{title:'Return pressure',value:display('refunds'),line:'Connected refund totals'},source:{title:'Source & provenance',value:ds.sourceLabel,line:ds.disclaimer},insights:{title:'What changed?',value:ds.change?`${ds.change.percent>0?'+':''}${ds.change.percent}%`:'No material shift',line:ds.change?'Two closed 7-day windows':'No detected inflection (not a guarantee)'}};
  return map[id];}
  function updateSlides(){
@@ -37,17 +37,16 @@
   $('heroMode').textContent=connected?ds.sourceLabel.toUpperCase()+' · DECISIONS HOLD':'AWAITING A DATA SOURCE';$('workspace').hidden=!connected;$('clearBtn').hidden=!connected;
   $('startMessage').textContent=ds.disclaimer;document.querySelectorAll('[data-needs]').forEach(el=>{el.hidden=ds.feature[el.dataset.needs]!==true;});
   if(!connected)return;
-  selected=X.selection(ds,loadPreferences()).selected; // User-selected ordering preserved where source remains available.
-  if(!selected.length)selected=ds.registry.map(x=>x.id);
+  const prefs=loadPreferences();selected=prefs?X.selection(ds,prefs.ids).available.filter(id=>prefs.ids.includes(id)):ds.registry.map(x=>x.id); // Source gate always wins; an intentional empty selection stays empty.
   slideIndex=0;updateSlides();renderTracker();renderChoices();$('authority').textContent=`${ds.sourceLabel} · ${ds.disclaimer} · Decision authority HOLD`;
   $('assistantTitle').textContent=capabilities.chatgptEnabled&&accessKey?'Ask ChatGPT':'Ask your business data';$('assistantLabel').textContent=capabilities.chatgptEnabled&&accessKey?'PRIVATE AI CONNECTION':'LOCAL SNAPSHOT INSIGHTS';
  }
- function load(d){ds=d;emit('source-connected',{source:d.kind,reason:d.disclaimer});render();$('answer').textContent='Ready to answer questions using the enabled source only.';}
+ function load(d,privateSource=false){if(!privateSource)accessKey=null;ds=d;emit('source-connected',{source:d.kind,reason:d.disclaimer});render();$('answer').textContent='Ready to answer questions using the enabled source only.';}
  function reset(){ds=X.createDataset();accessKey=null;selected=[];if(poll){clearInterval(poll);poll=null;}emit('source-cleared',{reason:'Source manually cleared'});render();}
  async function loadPrivate(){const k=$('privateKey').value;if(!k){$('startMessage').textContent='Enter your private dashboard key.';return}try{
   const response=await fetch('/api/snapshot',{headers:{Authorization:'Bearer '+k},cache:'no-store'});if(!response.ok)throw Error('Private source unavailable or authorization rejected');
-  const data=await response.json();const parsed=X.fromSnapshot(data);accessKey=k;$('privateKey').value='';$('privateAccess').hidden=true;load(parsed);
-  if(poll)clearInterval(poll);poll=setInterval(async()=>{if(document.visibilityState==='hidden'||!accessKey)return;try{const r=await fetch('/api/snapshot',{headers:{Authorization:'Bearer '+accessKey},cache:'no-store'});if(r.ok){const next=X.fromSnapshot(await r.json());if(next.asOf!==ds.asOf||next.values.revenue!==ds.values.revenue)load(next);}}catch{}},60000);
+  const data=await response.json();const parsed=X.fromSnapshot(data);accessKey=k;$('privateKey').value='';$('privateAccess').hidden=true;load(parsed,true);
+  if(poll)clearInterval(poll);poll=setInterval(async()=>{if(document.visibilityState==='hidden'||!accessKey)return;try{const r=await fetch('/api/snapshot',{headers:{Authorization:'Bearer '+accessKey},cache:'no-store'});if(r.ok){const next=X.fromSnapshot(await r.json());if(next.asOf!==ds.asOf||next.values.revenue!==ds.values.revenue)load(next,true);}}catch{}},60000);
  }catch(e){$('startMessage').textContent=e.message;accessKey=null;}}
  function exportAudit(){const content=JSON.stringify({version:X.VERSION,source:ds.kind,authority:'HOLD',events:framework.events(),note:'Volatile client session audit only; not a production immutable ledger. No raw business records exported.'},null,2);const a=document.createElement('a');const url=URL.createObjectURL(new Blob([content],{type:'application/json'}));a.href=url;a.download='liberient-session-audit.json';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);}
  $('carouselPrev').addEventListener('click',()=>moveSlide(-1));$('carouselNext').addEventListener('click',()=>moveSlide(1));
