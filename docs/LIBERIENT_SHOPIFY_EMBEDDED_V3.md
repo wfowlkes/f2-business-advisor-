@@ -21,9 +21,11 @@ The customer app URL *after enablement* is `/shopify-app/` (Shopify Admin App Ho
 1. Create or select a Shopify app in Shopify **Dev Dashboard** using Shopify CLI. Use the current official React Router template when building a new app from scratch. For the current custom LIBERIENT Node backend, copy the provided `shopify.app.toml.example` into your Shopify CLI project, replace the public client ID and HTTPS app URL, then use `shopify app deploy` and select a development store for installation.
 2. Configure the app with read-only `read_orders` permission and mandatory compliance webhooks. **Never put Shopify client secret or access/refresh tokens in public GitHub or client-side JavaScript.** A scope for older-than-60-day orders, `read_all_orders`, would require its own approval; it is intentionally not used here.
 3. Provision a secure, reliable, backed-up **PostgreSQL** database (not the existing in-memory SQLite demo). The current Render workspace has no Postgres instance as of implementation. Do not place real merchant data on ephemeral SQLite or an expiring unbacked free database.
-4. Enable proper Node dependency installation during deployment (`npm install --prefix server --omit=dev`) and keep the build's existing regression test command. Add the `pg` package from `server/package.json`.
+4. Enable proper Node dependency installation during deployment (set Render build command to `npm install --prefix server --omit=dev && node --test server/test/*.test.js && node tests/test_core.js`) and keep the full regression tests before activation. Add the `pg` package from `server/package.json`. The isolated Shopify integration deliberately does not import `pg` while disabled, so the existing Render demo builds without a paid database.
 5. Configure these **private Render environment variables**:
    - `LIBERIENT_EMBEDDED_ENABLED=true` (leave off until installation and database are ready)
+   - `F2_DEMO_MODE=false` (embedded mode cannot run with the public demo mode enabled; the demo remains functional while integration is disabled)
+   - `F2_DASHBOARD_KEY` (existing long private key required by the legacy server bootstrap; do not share it)
    - `SHOPIFY_CLIENT_ID` (public Shopify client ID; not a secret)
    - `SHOPIFY_CLIENT_SECRET` (secret, server-side only)
    - `LIBERIENT_DATABASE_URL` (server-side PostgreSQL connection URL; never in public assets)
@@ -49,3 +51,7 @@ The customer app URL *after enablement* is `/shopify-app/` (Shopify Admin App Ho
 - https://shopify.dev/docs/apps/build/webhooks
 - https://shopify.dev/docs/apps/build/compliance/privacy-law-compliance
 - https://shopify.dev/docs/api/app-home/latest
+
+## Public demo separation
+
+The actual `F2_DEMO_MODE=true` Render service is left unchanged while building Shopify integration. The new `/shopify-app` routes return **404** unless `LIBERIENT_EMBEDDED_ENABLED=true`, `F2_DEMO_MODE=false`, and all other required variables are configured. When activated, the older single-shop `/api/snapshot` bridge does not silently become the new multi-tenant data source. Its response stays gated, and the new shop-scoped `/shopify-app/api/snapshot` uses only verified Shopify ID tokens.
