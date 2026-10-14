@@ -5,8 +5,10 @@ const path=require('node:path');
 const crypto=require('node:crypto');
 const F2=require('../core.js');
 const {makeClient}=require('./shopify.js');
+const Assistant=require('./assistant.js');
 const dashboard=fs.readFileSync(path.join(__dirname,'dashboard.html'));
 const script=fs.readFileSync(path.join(__dirname,'dashboard.js'));
+const experienceAssets=Object.freeze({'/experience/':['index.html','text/html; charset=utf-8'],'/experience/index.html':['index.html','text/html; charset=utf-8'],'/experience/framework.js':['framework.js','application/javascript; charset=utf-8'],'/experience/ui.js':['ui.js','application/javascript; charset=utf-8'],'/experience/style.css':['style.css','text/css; charset=utf-8']});
 // Public static synthetic lab is independent of all Shopify reads or tokens.
 const syntheticLab={
   '/lab/': ['index.html','text/html; charset=utf-8'],
@@ -46,7 +48,7 @@ function createServer({env=process.env, client, now=()=>Date.now()}={}) {
     return {...d,provenance:{start:d.daily[0].date,end:d.daily[d.daily.length-1].date,timezone:'UTC',currency:'USD',metric:'SYNTHETIC DEMO DATA — NOT SHOPIFY',mode:'DEMO',reportAsOf:new Date(now()).toISOString()}};
   }};
   const backend=client||(env.F2_DEMO_MODE==='true'?demoClient:makeClient({env,now}));
-  const attempts=new Map();let cached=null,inflight=null;
+  const attempts=new Map(),assistantCalls=new Map();let cached=null,inflight=null;
   function failAuth(req){
     const ip=req.socket.remoteAddress||'unknown';const t=now(),rec=attempts.get(ip)||{count:0,since:t};
     if(t-rec.since>900000){rec.count=0;rec.since=t;}rec.count++;attempts.set(ip,rec);
@@ -77,13 +79,42 @@ function createServer({env=process.env, client, now=()=>Date.now()}={}) {
     })().finally(()=>{inflight=null;});
     return inflight;
   }
+  function assistantRate(req){
+    const ip=req.socket.remoteAddress||'unknown',t=now(),entry=assistantCalls.get(ip)||{since:t,count:0};
+    if(t-entry.since>=60000){entry.since=t;entry.count=0;}
+    entry.count++;assistantCalls.set(ip,entry);
+    if(assistantCalls.size>2000)assistantCalls.clear();
+    return entry.count<=6;
+  }
+  async function readQuestion(req){
+    return new Promise((resolve,reject)=>{
+      let body='',done=false;
+      req.on('data',chunk=>{if(done)return;body+=chunk.toString('utf8');if(Buffer.byteLength(body)>2048){done=true;reject(Error('Input too large'));req.destroy();}});
+      req.on('end',()=>{if(done)return;try{const obj=JSON.parse(body);resolve(obj?.question);}catch{reject(Error('Invalid request'));}});
+      req.on('error',reject);
+    });
+  }
   return http.createServer(async(req,res)=>{
     try{
       // Do not rely on client-supplied X-Forwarded-For for authorization or throttling.
       if(env.NODE_ENV==='production'&&req.url!=='/health'&&req.headers['x-forwarded-proto']!=='https'){send(res,403,{error:'HTTPS required'});return;}
       let url;
       try{url=new URL(req.url,'http://localhost')}catch{send(res,400,{error:'Invalid URL'});return;}
-      if(req.method!=='GET'){send(res,405,{error:'Read-only service: GET only'});return;}
+      const assistantPost=url.pathname==='/api/assistant'&&req.method==='POST';
+      if(req.method!=='GET'&&!assistantPost){send(res,405,{error:'Read-only service: GET only, except authorized assistant queries'});return;}
+      if(assistantPost){
+        if(!Assistant.enabled(env)){send(res,404,{error:'Not found'});return;}
+        if(!allowed(req)){send(res,401,{error:'Unauthorized'});return;}
+        if(!assistantRate(req)){send(res,429,{error:'Assistant rate limit exceeded'});return;}
+        if(!String(req.headers['content-type']||'').startsWith('application/json')){send(res,415,{error:'JSON required'});return;}
+        let question;try{question=await readQuestion(req);}catch{send(res,400,{error:'Invalid question payload'});return;}
+        if(!Assistant.validQuestion(question)){send(res,400,{error:'Question unavailable or includes contact information'});return;}
+        try{const body=await Assistant.respond(question,await snapshot(),{env});send(res,200,body);}catch{send(res,503,{status:'HOLD',error:'Secure ChatGPT currently unavailable'});}
+        return;
+      }
+      if(url.pathname==='/api/capabilities'){send(res,200,{privateSnapshot:true,chatgptEnabled:Assistant.enabled(env),demoMode:env.F2_DEMO_MODE==='true',forecastAuthority:'HOLD'});return;}
+      if(url.pathname==='/experience'){res.writeHead(302,{Location:'/experience/','Cache-Control':'no-store'});res.end();return;}
+      if(experienceAssets[url.pathname]){const asset=experienceAssets[url.pathname];send(res,200,fs.readFileSync(path.join(__dirname,'../experience',asset[0])),asset[1]);return;}
       if(url.pathname==='/health'){send(res,200,{ok:true,service:'F2 Commerce read-only backend',shopify:'not exposed'});return;}
       if(url.pathname==='/'){send(res,200,dashboard,'text/html; charset=utf-8');return;}
       if(url.pathname==='/dashboard.js'){send(res,200,script,'application/javascript; charset=utf-8');return;}
