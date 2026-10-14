@@ -8,7 +8,8 @@ const mockClient={getDaily:async()=>aggregate([],{ianaTimezone:'America/Phoenix'
 async function fixture(fn){const server=createServer({env:{F2_DASHBOARD_KEY:KEY},client:mockClient,now:()=>fixed});await new Promise(resolve=>server.listen(0,'127.0.0.1',resolve));try{return await fn(`http://127.0.0.1:${server.address().port}`)}finally{await new Promise(resolve=>server.close(resolve))}}
 test('requires long dashboard key; mandatory HTTPS in production',()=>{assert.throws(()=>createServer({env:{F2_DASHBOARD_KEY:'short'},client:mockClient}));assert.throws(()=>createServer({env:{NODE_ENV:'production',F2_DASHBOARD_KEY:KEY,F2_BASE_URL:'http://bad.test'},client:mockClient}));});
 test('private API holds with auth, rejects invalid key and write methods, never exposes tokens',async()=>fixture(async(base)=>{
- const page=await fetch(base);assert.equal(page.status,200);assert((await page.text()).includes('Private read-only portal'));
+ const page=await fetch(base,{redirect:'manual'});assert.equal(page.status,302);assert.equal(page.headers.get('location'),'/experience/');
+ const legacy=await fetch(base+'/legacy/');assert.equal(legacy.status,200);assert((await legacy.text()).includes('Private read-only portal'));
  const noAuth=await fetch(base+'/api/snapshot');assert.equal(noAuth.status,401);assert(!(await noAuth.text()).includes(KEY));
  const wrong=await fetch(base+'/api/snapshot',{headers:{Authorization:'Bearer wrong'}});assert.equal(wrong.status,401);
  const ok=await fetch(base+'/api/snapshot',{headers:{Authorization:'Bearer '+KEY}});assert.equal(ok.status,200);assert.equal(ok.headers.get('cache-control'),'no-store, private');let data=await ok.json();assert.equal(data.status,'HOLD');assert.equal(data.metrics.orders,0);assert.equal(data.analysis.tests[7].status,'HOLD');assert(!JSON.stringify(data).includes(KEY));
