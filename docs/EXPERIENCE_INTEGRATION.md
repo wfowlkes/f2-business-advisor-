@@ -8,3 +8,6 @@
 6. **Adaptation governance:** Download a session audit; `adaptive-proposal` is a research suggestion requiring prospective comparison and accountable approval. Do not interpret a local session audit as persistent, tamper-proof logging.
 
 The page and the UI assets can be served unchanged from GitHub Pages, but GitHub Pages cannot execute the secure backend or optional ChatGPT requests. ChatGPT must be activated on the private Render server; otherwise the locally backed “Ask your business data” experience is available.
+
+7. **Consent and event integration:** The owner must check a per-question approval box in addition to the protected server configuration. Only the question and aggregate data are permitted. Each user action creates a small, bounded metadata-only event; observed shifts may create learning proposals but never change the model automatically.
+8. **Browser support:** The dashboard does not load an OpenAI key into the client, and the real chatbot remains disabled until authorized hosting credentials and explicit merchant consent exist. No feature may claim true real-time/live source data when it is synthetic or a CSV import.
