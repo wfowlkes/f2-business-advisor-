@@ -7,6 +7,8 @@ const F2=require('../core.js');
 const {makeClient}=require('./shopify.js');
 const Assistant=require('./assistant.js');
 const {createDemoDatabase}=require('./demo_database.js');
+const {makeEmbedded}=require('./embedded/app.js');
+const {isConfigured: embeddedConfigured}=require('./embedded/security.js');
 const dashboard=fs.readFileSync(path.join(__dirname,'dashboard.html'));
 const script=fs.readFileSync(path.join(__dirname,'dashboard.js'));
 const experienceAssets=Object.freeze({'/experience/':['index.html','text/html; charset=utf-8'],'/experience/index.html':['index.html','text/html; charset=utf-8'],'/experience/core.js':['core.js','application/javascript; charset=utf-8'],'/experience/framework.js':['framework.js','application/javascript; charset=utf-8'],'/experience/ui.js':['ui.js','application/javascript; charset=utf-8'],'/experience/demo60.js':['demo60.js','application/javascript; charset=utf-8'],'/experience/style.css':['style.css','text/css; charset=utf-8']});
@@ -51,6 +53,8 @@ function createServer({env=process.env, client, now=()=>Date.now()}={}) {
   const backend=client||(env.F2_DEMO_MODE==='true'?demoClient:makeClient({env,now}));
   // Separate, synthetic-only SQLite demonstration. Never stores merchant or customer records.
   const demoDB=env.F2_DEMO_MODE==='true'?createDemoDatabase({now:()=>new Date(now())}):null;
+  // Gated Shopify merchant route. Completely disabled on the synthetic demo unless app credentials and secure persistent storage are explicitly configured.
+  const embeddedApp=embeddedConfigured(env)?makeEmbedded({env,now}):null;
   const attempts=new Map(),assistantCalls=new Map();let cached=null,inflight=null;
   function failAuth(req){
     const ip=req.socket.remoteAddress||'unknown';const t=now(),rec=attempts.get(ip)||{count:0,since:t};
@@ -103,6 +107,10 @@ function createServer({env=process.env, client, now=()=>Date.now()}={}) {
       if(env.NODE_ENV==='production'&&req.url!=='/health'&&req.headers['x-forwarded-proto']!=='https'){send(res,403,{error:'HTTPS required'});return;}
       let url;
       try{url=new URL(req.url,'http://localhost')}catch{send(res,400,{error:'Invalid URL'});return;}
+      if(url.pathname.startsWith('/shopify-app')){
+        if(!embeddedApp){send(res,404,{error:'Shopify embedded app is not enabled'});return;}
+        await embeddedApp.handle(req,res,url);return;
+      }
       const assistantPost=url.pathname==='/api/assistant'&&req.method==='POST';
       if(req.method!=='GET'&&!assistantPost){send(res,405,{error:'Read-only service: GET only, except authorized assistant queries'});return;}
       if(assistantPost){
