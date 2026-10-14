@@ -66,7 +66,7 @@ function createServer({env=process.env, client, now=()=>Date.now()}={}) {
     else failAuth(req);
     return ok;
   }
-  function headers(type){return {'Content-Type':type,'Cache-Control':'no-store, private','Referrer-Policy':'no-referrer','X-Content-Type-Options':'nosniff','X-Frame-Options':'DENY','Content-Security-Policy':"default-src 'none'; script-src 'self'; style-src 'unsafe-inline'; connect-src 'self'; img-src 'self'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'",'Permissions-Policy':'camera=(), microphone=(), geolocation=()'};}
+  function headers(type){return {'Content-Type':type,'Cache-Control':'no-store, private','Referrer-Policy':'no-referrer','X-Content-Type-Options':'nosniff','X-Frame-Options':'DENY','Content-Security-Policy':"default-src 'none'; script-src 'self'; style-src 'self' 'unsafe-inline'; connect-src 'self'; img-src 'self'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'",'Permissions-Policy':'camera=(), microphone=(), geolocation=()'};}
   function send(res,status,data,type='application/json; charset=utf-8'){res.writeHead(status,headers(type));res.end(typeof data==='string'||Buffer.isBuffer(data)?data:JSON.stringify(data));}
   async function snapshot(){
     if(cached&&now()-cached.at<10*60*1000)return cached.body;
