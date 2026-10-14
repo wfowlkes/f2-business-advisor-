@@ -22,18 +22,19 @@ function page(clientId){
  .replace('ECLIPSE STUDY','LIBERIENT');
 }
 function response(res,status,body,{type='application/json; charset=utf-8',embedded=false}={}){
- const csp=`default-src 'none'; script-src 'self' https://cdn.shopify.com; style-src 'self' 'unsafe-inline'; connect-src 'self'; img-src 'self'; base-uri 'none'; form-action 'none'; frame-ancestors ${embedded?'https://admin.shopify.com https://*.myshopify.com':"'none'"}`;
+ const csp=`default-src 'none'; script-src 'self' https://cdn.shopify.com; style-src 'self' 'unsafe-inline'; connect-src 'self' https://admin.shopify.com https://*.myshopify.com https://*.shopify.com; img-src 'self'; base-uri 'none'; form-action 'none'; frame-ancestors ${embedded?'https://admin.shopify.com https://*.myshopify.com':"'none'"}`;
  res.writeHead(status,{'Content-Type':type,'Content-Security-Policy':csp,'Cache-Control':'no-store, private','X-Content-Type-Options':'nosniff','Referrer-Policy':'no-referrer','Permissions-Policy':'camera=(), microphone=(), geolocation=()'});
  res.end(typeof body==='string'||Buffer.isBuffer(body)?body:JSON.stringify(body));
 }
 async function bodyBytes(req,limit=256000){return new Promise((resolve,reject)=>{let size=0,parts=[],ended=false;req.on('data',d=>{size+=d.length;if(size>limit){ended=true;reject(Error('Body too large'));req.destroy();}else parts.push(d);});req.on('end',()=>{if(!ended)resolve(Buffer.concat(parts))});req.on('error',reject);});}
 function makeEmbedded({env=process.env,storage,fetchImpl=fetch,now=()=>Date.now()}={}){
  if(!storage){if(!isConfigured(env))return null;storage=postgresStorage(env).storage;}
- const ready=Promise.resolve(storage.init());const inFlight=new Map();
+ const inFlight=new Map();let ready=null;
+ function ensureReady(){if(!ready)ready=Promise.resolve().then(()=>storage.init()).catch(e=>{ready=null;throw e});return ready;}
  async function sync(shop,idToken){
   if(inFlight.has(shop))return inFlight.get(shop);
   const p=(async()=>{
-   await ready;let saved=await storage.getShop(shop);let access=saved?.accessToken;
+   await ensureReady();let saved=await storage.getShop(shop);let access=saved?.accessToken;
    if(!access||!saved.token_expires_at||new Date(saved.token_expires_at).getTime()<now()+60000){
     const out=await exchangeIdToken(idToken,{env,fetchImpl,now:Math.floor(now()/1000)});
     if(out.shop!==shop)throw Error('Shop mismatch');await storage.saveToken(shop,out.token);access=out.token.access_token;
@@ -46,7 +47,7 @@ function makeEmbedded({env=process.env,storage,fetchImpl=fetch,now=()=>Date.now(
  async function backgroundSync(shop){
   if(inFlight.has(shop))return inFlight.get(shop);
   const p=(async()=>{
-    await ready;let saved=await storage.getShop(shop);
+    await ensureReady();let saved=await storage.getShop(shop);
     if(!saved||!saved.dirty)return;
     let access=saved.accessToken;
     if(!access||!saved.token_expires_at||new Date(saved.token_expires_at).getTime()<now()+60000){
@@ -60,7 +61,7 @@ function makeEmbedded({env=process.env,storage,fetchImpl=fetch,now=()=>Date.now(
  }
  async function handle(req,res,url){if(!url.pathname.startsWith('/shopify-app'))return false;
   try{
-   await ready;
+   await ensureReady();
    if(url.pathname==='/shopify-app/'&&req.method==='GET'){response(res,200,page(env.SHOPIFY_CLIENT_ID),{type:'text/html; charset=utf-8',embedded:true});return true;}
    if(url.pathname==='/shopify-app/ui.js'&&req.method==='GET'){response(res,200,UI,{type:'application/javascript; charset=utf-8',embedded:true});return true;}
    if(url.pathname==='/shopify-app/webhooks'&&req.method==='POST'){
