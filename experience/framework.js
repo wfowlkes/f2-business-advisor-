@@ -28,8 +28,9 @@ function checkRows(rows){
  return result;
 }
 function changePoint(rows){
- const ready=rows.filter(x=>x.net_sales!==null);if(ready.length<28)return null;
- // Evaluate only observed closed periods, not a retrospective peak chosen from the entire chart.
+ const ready=rows.slice(-28);if(ready.length<28||ready.some(x=>x.net_sales===null))return null;
+ // Require contiguous calendar days for the last 28 rows; never compress missing dates into a trend.
+ for(let i=1;i<ready.length;i++)if(Date.parse(ready[i].date+'T00:00:00Z')-Date.parse(ready[i-1].date+'T00:00:00Z')!==86400000)return null;
  const latest=ready.slice(-7),previous=ready.slice(-14,-7);
  const old=sum(previous.map(x=>x.net_sales))/7,current=sum(latest.map(x=>x.net_sales))/7;
  if(old<=0)return null;const pct=(current/old-1)*100;
