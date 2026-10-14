@@ -12,8 +12,10 @@ test('synthetic source shows only available aggregate modules, never inventory/c
  assert.match(data.disclaimer,/Simulated/);assert.equal(data.authority,'HOLD');
 });
 test('returns and inventory require actual explicit source capabilities and finite values',()=>{
- const rows=make(140,true),d=X.createDataset({source:'IMPORTED',daily:rows,metrics:{inventoryUnits:12,customers:24},capabilities:{inventory:true,customerActivity:true,refunds:true}});
+ const rows=make(140,true).map(r=>({...r,new_customers:4,returning_customers:6,inventory_units:12})),d=X.createDataset({source:'IMPORTED',daily:rows,metrics:{inventoryUnits:12,customers:24},capabilities:{inventory:true,customerActivity:true,refunds:true}});
  assert(d.registry.some(m=>m.id==='customers'));assert(d.registry.some(m=>m.id==='inventory'));assert(d.registry.some(m=>m.id==='refunds'));
+ const none=X.createDataset({source:'IMPORTED',daily:make(140,true),metrics:{inventoryUnits:12,customers:24},capabilities:{inventory:true,customerActivity:true,refunds:true}});
+ assert(!none.registry.some(m=>['customers','inventory'].includes(m.id)));
  const q=X.createDataset({source:'IMPORTED',daily:rows,metrics:{inventoryUnits:12,customers:24},capabilities:{inventory:false,refunds:false}});
  assert(!q.registry.some(m=>['customers','inventory','refunds'].includes(m.id)));
 });
