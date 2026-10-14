@@ -120,7 +120,9 @@ function createServer({env=process.env, client, now=()=>Date.now()}={}) {
       if(url.pathname==='/experience'){res.writeHead(302,{Location:'/experience/','Cache-Control':'no-store'});res.end();return;}
       if(experienceAssets[url.pathname]){const asset=experienceAssets[url.pathname];send(res,200,fs.readFileSync(path.join(__dirname,'../experience',asset[0])),asset[1]);return;}
       if(url.pathname==='/health'){send(res,200,{ok:true,service:'F2 Commerce read-only backend',shopify:'not exposed'});return;}
-      if(url.pathname==='/'){send(res,200,dashboard,'text/html; charset=utf-8');return;}
+      // The 60-day LIBERIENT customer experience is the primary dashboard. Keep the older read-only portal accessible separately.
+      if(url.pathname==='/'){res.writeHead(302,{Location:'/experience/','Cache-Control':'no-store','Referrer-Policy':'no-referrer'});res.end();return;}
+      if(url.pathname==='/legacy/'||url.pathname==='/legacy'){send(res,200,dashboard,'text/html; charset=utf-8');return;}
       if(url.pathname==='/dashboard.js'){send(res,200,script,'application/javascript; charset=utf-8');return;}
       if(env.F2_DEMO_MODE==='true' && (url.pathname==='/lab' || url.pathname==='/core.js' || syntheticLab[url.pathname])){
         if(url.pathname==='/lab'){res.writeHead(302,{Location:'/lab/','Cache-Control':'no-store'});res.end();return;}
