@@ -35,7 +35,7 @@ test('two Shopify stores have isolated tokens and aggregate histories; no public
  }finally{await app.close()}
 });
 test('signed webhook erases one store only, preserving other store',async()=>{const db=mockStorage();for(const shop of ['alpha-shop.myshopify.com','bravo-shop.myshopify.com'])db.stores.set(shop,{shop});const srv=await serve(db);try{
- const raw='{}',mac=crypto.createHmac('sha256',ENV.SHOPIFY_CLIENT_SECRET).update(raw).digest('base64');
+ const raw=JSON.stringify({shop_domain:'alpha-shop.myshopify.com'}),mac=crypto.createHmac('sha256',ENV.SHOPIFY_CLIENT_SECRET).update(raw).digest('base64');
  let r=await fetch(srv.url+'/shopify-app/webhooks',{method:'POST',headers:{'x-shopify-hmac-sha256':mac,'x-shopify-shop-domain':'alpha-shop.myshopify.com','x-shopify-topic':'shop/redact','x-shopify-webhook-id':'r1'},body:raw});assert.equal(r.status,200);assert(!db.stores.has('alpha-shop.myshopify.com'));assert(db.stores.has('bravo-shop.myshopify.com'));
  r=await fetch(srv.url+'/shopify-app/webhooks',{method:'POST',headers:{'x-shopify-hmac-sha256':'bogus','x-shopify-shop-domain':'bravo-shop.myshopify.com','x-shopify-topic':'shop/redact','x-shopify-webhook-id':'r2'},body:raw});assert.equal(r.status,401);assert(db.stores.has('bravo-shop.myshopify.com'));
  }finally{await srv.close()}
@@ -62,4 +62,16 @@ test('embedded standalone mode requires all secrets, a dedicated database, and d
  assert.equal(isConfigured({...creds,F2_DEMO_MODE:'true'}),false);
  assert.equal(isConfigured({...creds,F2_DEMO_MODE:'false'}),true);
  assert.equal(isConfigured({...creds,F2_DEMO_MODE:'false',SHOPIFY_CLIENT_SECRET:''}),false);
+});
+
+
+test('signed deletion payload from another shop cannot erase an unrelated tenant',async()=>{
+ const db=mockStorage();for(const shop of ['alpha-shop.myshopify.com','bravo-shop.myshopify.com'])db.stores.set(shop,{shop});
+ const srv=await serve(db);try{
+  const raw=JSON.stringify({shop_domain:'alpha-shop.myshopify.com'});
+  const mac=crypto.createHmac('sha256',ENV.SHOPIFY_CLIENT_SECRET).update(raw).digest('base64');
+  const res=await fetch(srv.url+'/shopify-app/webhooks',{method:'POST',headers:{'x-shopify-hmac-sha256':mac,'x-shopify-shop-domain':'bravo-shop.myshopify.com','x-shopify-topic':'shop/redact','x-shopify-webhook-id':'wrong-shop'},body:raw});
+  assert.equal(res.status,401);
+  assert(db.stores.has('alpha-shop.myshopify.com'));assert(db.stores.has('bravo-shop.myshopify.com'));
+ }finally{await srv.close();}
 });
