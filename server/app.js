@@ -50,7 +50,8 @@ function createServer({env=process.env, client, now=()=>Date.now()}={}) {
     const d=F2.makeDemo();
     return {...d,provenance:{start:d.daily[0].date,end:d.daily[d.daily.length-1].date,timezone:'UTC',currency:'USD',metric:'SYNTHETIC DEMO DATA — NOT SHOPIFY',mode:'DEMO',reportAsOf:new Date(now()).toISOString()}};
   }};
-  const backend=client||(env.F2_DEMO_MODE==='true'?demoClient:makeClient({env,now}));
+  // Embedded multi-store access never falls through to the legacy single-store Shopify credentials flow.
+  const backend=client||(env.F2_DEMO_MODE==='true'?demoClient:embeddedConfigured(env)?{getDaily:async()=>{throw Error('Legacy single-store API disabled in embedded mode')}}:makeClient({env,now}));
   // Separate, synthetic-only SQLite demonstration. Never stores merchant or customer records.
   const demoDB=env.F2_DEMO_MODE==='true'?createDemoDatabase({now:()=>new Date(now())}):null;
   // Gated Shopify merchant route. Completely disabled on the synthetic demo unless app credentials and secure persistent storage are explicitly configured.
