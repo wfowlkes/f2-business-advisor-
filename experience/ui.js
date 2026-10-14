@@ -80,7 +80,7 @@
  document.querySelectorAll('nav .nav').forEach(el=>el.addEventListener('click',()=>emit('module-view',{module:el.querySelector('span')?.textContent||'overview',source:ds.kind})));
  $('askForm').addEventListener('submit',async e=>{e.preventDefault();const q=$('question').value.trim();if(!ds.connected||!q)return;emit('assistant-question',{source:ds.kind,reason:'User question submitted, contents not logged'});
   $('answer').textContent='Checking available information…';if(capabilities.chatgptEnabled&&accessKey&&$('aiConsent').checked){try{const response=await fetch('/api/assistant',{method:'POST',headers:{'Content-Type':'application/json',Authorization:'Bearer '+accessKey},body:JSON.stringify({question:q,approved:true})});if(!response.ok)throw Error('Secure AI currently unavailable');const body=await response.json();$('answer').textContent=body.answer+' · Decision authority HOLD';emit('assistant-response',{source:ds.kind,reason:'Approved aggregate-only AI response'});}catch{$('answer').textContent='Secure ChatGPT unavailable. '+X.localAnswer(ds,q);emit('assistant-response',{source:ds.kind,reason:'Local response after unavailable AI'});} }else{$('answer').textContent=X.localAnswer(ds,q);emit('assistant-response',{source:ds.kind,reason:'Local source-backed response'});}});
- fetch('/api/capabilities',{cache:'no-store'}).then(x=>x.ok?x.json():null).then(x=>{capabilities=x||{};if(x?.privateSnapshot)$('privateBtn').hidden=false;render();}).catch(()=>{});
+ const autoLoad=()=>{if($('autoDemo')?.value==='true'&&(capabilities.demoMode===true||!capabilities.privateSnapshot))useDemo60();};
+ fetch('/api/capabilities',{cache:'no-store'}).then(x=>x.ok?x.json():null).then(x=>{capabilities=x||{};if(x?.privateSnapshot)$('privateBtn').hidden=false;if(x?.privateSnapshot&&x?.demoMode!==true)$('demoBtn').hidden=true;render();autoLoad();}).catch(()=>autoLoad());
  render();
- if($('autoDemo')?.value==='true')useDemo60();
 })();
