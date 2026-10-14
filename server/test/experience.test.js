@@ -6,7 +6,7 @@ const env={NODE_ENV:'production',F2_BASE_URL:'https://preview.test',F2_DEMO_MODE
 async function setup(environment=env){const srv=createServer({env:environment});await new Promise(resolve=>srv.listen(0,'127.0.0.1',resolve));return {srv,url:`http://127.0.0.1:${srv.address().port}`,close:()=>new Promise(resolve=>srv.close(resolve))};}
 const opts={headers:{'X-Forwarded-Proto':'https'}};
 test('new customer-facing LIBERIENT experience serves UI, registry, scripts and style',async()=>{
- const x=await setup();try{for(const p of ['/experience/','/experience/framework.js','/experience/ui.js','/experience/style.css']){const r=await fetch(x.url+p,opts);assert.equal(r.status,200,p);assert.match(r.headers.get('content-type'),p.endsWith('.js')?'javascript':p.endsWith('.css')?'css':'html');} }finally{await x.close();}
+ const x=await setup();try{for(const p of ['/experience/','/experience/core.js','/experience/framework.js','/experience/ui.js','/experience/style.css']){const r=await fetch(x.url+p,opts);assert.equal(r.status,200,p);assert.match(r.headers.get('content-type'),p.endsWith('.js')?'javascript':p.endsWith('.css')?'css':'html');} }finally{await x.close();}
 });
 test('assistant absent by default, capability status truthful and nonread methods remain blocked',async()=>{
  const x=await setup();try{
@@ -25,4 +25,16 @@ test('optional server AI sends only aggregates with store:false and returns boun
  const e={...env,F2_ASSISTANT_ENABLED:'true',F2_AI_DATA_SHARING_APPROVED:'true',OPENAI_API_KEY:'s'.repeat(35)};
  let req;const response=await A.respond('What changed?',{metrics:{sales:200,orders:8,days:10,email:'sensitive@example.test'},provenance:{mode:'DEMO',currency:'USD'}},{env:e,fetchImpl:async(_url,opts)=>{req=JSON.parse(opts.body);return {ok:true,json:async()=>({output_text:'Synthetic data is not actual sales.'})}}});
  assert.equal(req.store,false);assert(!JSON.stringify(req).includes('sensitive@example.test'));assert.equal(response.authority,'HOLD');
+});
+
+test('public experience shell is available in private mode but research labs and merchant data are not',async()=>{
+ const x=await setup({...env,F2_DEMO_MODE:'false'});try{
+   for(const p of ['/experience/','/experience/core.js','/experience/framework.js','/experience/ui.js','/experience/style.css']){
+     const r=await fetch(x.url+p,opts);assert.equal(r.status,200,p);
+     assert(!((await r.text()).includes(env.F2_DASHBOARD_KEY)));
+   }
+   assert.equal((await fetch(x.url+'/lab/',opts)).status,404);
+   assert.equal((await fetch(x.url+'/core.js',opts)).status,404);
+   assert.equal((await fetch(x.url+'/api/snapshot',opts)).status,401);
+ }finally{await x.close();}
 });
