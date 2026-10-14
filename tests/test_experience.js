@@ -29,3 +29,5 @@ test('visible inflection requires at least two observed weeks and is historical'
 });
 test('local insights refuse unsupported requests',()=>{const d=X.createDataset({source:'SYNTHETIC',daily:make()});assert.match(X.localAnswer(d,'Restock?'),/isn.t connected/i);assert.match(X.localAnswer(d,'customers'),/not connected/i);assert.match(X.localAnswer(d,'orders'),/aggregated orders/i);});
 test('framework tracks sanitized bounded changes, holds learning and never mutates model parameters',()=>{let n=0;const fw=X.createFramework(()=>String(++n));for(let i=0;i<250;i++)fw.emit('carousel-change',{module:'revenue',source:'SYNTHETIC'});assert.equal(fw.events().length,200);assert.equal(fw.events()[0].id,51);assert.throws(()=>fw.emit('auto-promote'),/Unsupported/);assert.equal(fw.proposal('New regime needs testing').authority,'HOLD');});
+
+test('only source-backed features are rendered in registry and missing rows cannot generate unsupported metrics',()=>{const x=make(140);x[5].orders=null;const d=X.createDataset({source:'SYNTHETIC',daily:x});assert(!d.registry.some(m=>m.id==='orders'));assert(d.registry.some(m=>m.id==='revenue'));});
