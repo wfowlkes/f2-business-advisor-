@@ -6,9 +6,10 @@ const crypto=require('node:crypto');
 const F2=require('../core.js');
 const {makeClient}=require('./shopify.js');
 const Assistant=require('./assistant.js');
+const {createDemoDatabase}=require('./demo_database.js');
 const dashboard=fs.readFileSync(path.join(__dirname,'dashboard.html'));
 const script=fs.readFileSync(path.join(__dirname,'dashboard.js'));
-const experienceAssets=Object.freeze({'/experience/':['index.html','text/html; charset=utf-8'],'/experience/index.html':['index.html','text/html; charset=utf-8'],'/experience/core.js':['core.js','application/javascript; charset=utf-8'],'/experience/framework.js':['framework.js','application/javascript; charset=utf-8'],'/experience/ui.js':['ui.js','application/javascript; charset=utf-8'],'/experience/style.css':['style.css','text/css; charset=utf-8']});
+const experienceAssets=Object.freeze({'/experience/':['index.html','text/html; charset=utf-8'],'/experience/index.html':['index.html','text/html; charset=utf-8'],'/experience/core.js':['core.js','application/javascript; charset=utf-8'],'/experience/framework.js':['framework.js','application/javascript; charset=utf-8'],'/experience/ui.js':['ui.js','application/javascript; charset=utf-8'],'/experience/demo60.js':['demo60.js','application/javascript; charset=utf-8'],'/experience/style.css':['style.css','text/css; charset=utf-8']});
 // Public static synthetic lab is independent of all Shopify reads or tokens.
 const syntheticLab={
   '/lab/': ['index.html','text/html; charset=utf-8'],
@@ -48,6 +49,8 @@ function createServer({env=process.env, client, now=()=>Date.now()}={}) {
     return {...d,provenance:{start:d.daily[0].date,end:d.daily[d.daily.length-1].date,timezone:'UTC',currency:'USD',metric:'SYNTHETIC DEMO DATA — NOT SHOPIFY',mode:'DEMO',reportAsOf:new Date(now()).toISOString()}};
   }};
   const backend=client||(env.F2_DEMO_MODE==='true'?demoClient:makeClient({env,now}));
+  // Separate, synthetic-only SQLite demonstration. Never stores merchant or customer records.
+  const demoDB=env.F2_DEMO_MODE==='true'?createDemoDatabase({now:()=>new Date(now())}):null;
   const attempts=new Map(),assistantCalls=new Map();let cached=null,inflight=null;
   function failAuth(req){
     const ip=req.socket.remoteAddress||'unknown';const t=now(),rec=attempts.get(ip)||{count:0,since:t};
@@ -112,7 +115,8 @@ function createServer({env=process.env, client, now=()=>Date.now()}={}) {
         try{const body=await Assistant.respond(question.question,await snapshot(),{env});send(res,200,body);}catch{send(res,503,{status:'HOLD',error:'Secure ChatGPT currently unavailable'});}
         return;
       }
-      if(url.pathname==='/api/capabilities'){send(res,200,{privateSnapshot:true,chatgptEnabled:Assistant.enabled(env),demoMode:env.F2_DEMO_MODE==='true',forecastAuthority:'HOLD'});return;}
+      if(url.pathname==='/api/capabilities'){send(res,200,{privateSnapshot:true,chatgptEnabled:Assistant.enabled(env),demoMode:env.F2_DEMO_MODE==='true',demoDatabase:!!demoDB,forecastAuthority:'HOLD'});return;}
+      if(url.pathname==='/api/demo60'&&demoDB){const fixture=demoDB.snapshot();send(res,200,{...fixture,daily:fixture.daily.map(({phase,...record})=>record)});return;}
       if(url.pathname==='/experience'){res.writeHead(302,{Location:'/experience/','Cache-Control':'no-store'});res.end();return;}
       if(experienceAssets[url.pathname]){const asset=experienceAssets[url.pathname];send(res,200,fs.readFileSync(path.join(__dirname,'../experience',asset[0])),asset[1]);return;}
       if(url.pathname==='/health'){send(res,200,{ok:true,service:'F2 Commerce read-only backend',shopify:'not exposed'});return;}
