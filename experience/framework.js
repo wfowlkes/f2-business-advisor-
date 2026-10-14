@@ -2,7 +2,7 @@
    No customer data, model weights or adaptation decisions are persisted or transmitted here. */
 (function(root,factory){if(typeof module==='object'&&module.exports)module.exports=factory();else root.LiberientExperience=factory();})(typeof self!=='undefined'?self:this,function(){
 'use strict';
-const VERSION='LIBERIENT Experience 2.0';
+const VERSION='LIBERIENT Experience 2.1 / 60-day synthetic SQLite demonstration';
 const MODULES=Object.freeze([
  {id:'revenue',label:'Revenue',needs:['daily.sales'],group:'Sales'},
  {id:'orders',label:'Orders',needs:['daily.orders'],group:'Sales'},
@@ -23,7 +23,7 @@ function checkRows(rows){
  for(const r of rows){
   if(!r||typeof r.date!=='string'||!/^\d{4}-\d{2}-\d{2}$/.test(r.date)||r.date<=previous)return [];
   previous=r.date;
-  result.push({date:r.date,net_sales:safeNum(r.net_sales),orders:safeNum(r.orders),refunds:safeNum(r.refunds),stockout:r.stockout===true});
+  result.push({date:r.date,net_sales:safeNum(r.net_sales),orders:safeNum(r.orders),refunds:safeNum(r.refunds),new_customers:safeNum(r.new_customers),returning_customers:safeNum(r.returning_customers),inventory_units:safeNum(r.inventory_units),stockout_products:safeNum(r.stockout_products),stockout:r.stockout===true});
  }
  return result;
 }
@@ -41,13 +41,13 @@ function createDataset({source='NONE',daily=[],analysis=null,metrics={},provenan
  const verified=rows.length>0&&kind!=='NONE';
  const hasSales=verified&&rows.every(x=>x.net_sales!==null&&x.net_sales>=0);
  const hasOrders=verified&&rows.every(x=>x.orders!==null&&Number.isInteger(x.orders)&&x.orders>=0);
- const hasForecast=h=>hasSales&&rows.length>=120&&safeNum(analysis?.forecasts?.[h]?.point)!==null;
+ const hasForecast=h=>hasSales&&rows.length>=(kind==='SYNTHETIC'&&provenance?.demo60===true?56:120)&&safeNum(analysis?.forecasts?.[h]?.point)!==null;
  const feature={
   'source.verified':verified,'daily.sales':hasSales,'daily.orders':hasOrders,
   'forecast.7':hasForecast(7),'forecast.30':hasForecast(30),
-  'customers.count':verified&&capabilities.customerActivity===true&&safeNum(metrics.customers)!==null,
-  'inventory.units':verified&&capabilities.inventory===true&&safeNum(metrics.inventoryUnits)!==null,
-  'refunds.amount':verified&&capabilities.refunds===true&&rows.every(x=>x.refunds!==null)
+  'customers.count':verified&&capabilities.customerActivity===true&&safeNum(metrics.customers)!==null&&rows.every(r=>Number.isInteger(r.new_customers)&&Number.isInteger(r.returning_customers)),
+  'inventory.units':verified&&capabilities.inventory===true&&safeNum(metrics.inventoryUnits)!==null&&rows.every(r=>Number.isInteger(r.inventory_units)),
+  'refunds.amount':verified&&capabilities.refunds===true&&rows.every(x=>x.refunds!==null&&x.refunds>=0)
  };
  const n=Math.min(30,rows.length),recent=rows.slice(-n),prior=rows.slice(-2*n,-n);
  const trend=(key)=>{
@@ -59,8 +59,8 @@ function createDataset({source='NONE',daily=[],analysis=null,metrics={},provenan
   orders:hasOrders?sum(recent.map(x=>x.orders)):null,
   forecast7:feature['forecast.7']?round(analysis.forecasts[7].point):null,
   forecast30:feature['forecast.30']?round(analysis.forecasts[30].point):null,
-  customers:feature['customers.count']?metrics.customers:null,
-  inventory:feature['inventory.units']?metrics.inventoryUnits:null,
+  customers:feature['customers.count']?sum(recent.map(x=>x.new_customers+x.returning_customers)):null,
+  inventory:feature['inventory.units']?recent.at(-1).inventory_units:null,
   refunds:feature['refunds.amount']?round(sum(recent.map(x=>x.refunds))):null,
   source:kind,insights:changePoint(rows)?.direction==='down'?'Sales slowdown detected':'Review recent sales trend'
  };
@@ -78,6 +78,18 @@ function fromSnapshot(snapshot){
  // No client-side promotion to verified revenue or forecast: real Shopify amounts are subtotal proxies.
  return createDataset({source:mode,daily,provenance:snapshot.provenance,metrics:snapshot.metrics});
 }
+function fromDemo60(F2,source){
+ if(!F2||typeof F2.forecast!=='function')throw Error('F2 core required');
+ if(source?.source!=='SYNTHETIC DATABASE'||source?.status!=='HOLD'||!Array.isArray(source?.daily)||source.daily.length!==60||source.provenance?.mode!=='DEMO')throw Error('Invalid synthetic database payload');
+ const rows=checkRows(source.daily);
+ if(rows.length!==60||rows.some((r,i)=>!Number.isFinite(r.net_sales)||r.net_sales<0||!Number.isInteger(r.orders)||r.orders<0||!Number.isInteger(r.new_customers)||r.new_customers<0||!Number.isInteger(r.returning_customers)||r.returning_customers<0||!Number.isInteger(r.inventory_units)||r.inventory_units<0||!Number.isInteger(r.stockout_products)||r.stockout_products<0||!Number.isFinite(r.refunds)||r.refunds<0))throw Error('Incomplete 60-day synthetic rows');
+ for(let i=1;i<rows.length;i++)if(Date.parse(rows[i].date)-Date.parse(rows[i-1].date)!==86400000)throw Error('Synthetic records must be contiguous');
+ const predicted={};
+ for(const h of [7,30]){const x=F2.forecast(rows,h,'same weekday');if(x)predicted[h]={point:round(sum(x.map(a=>a.value))),daily:x,method:'same weekday',status:'EXPLORATORY · HOLD'};}
+ const metrics={customers:sum(rows.map(x=>x.new_customers+x.returning_customers)),inventoryUnits:rows.at(-1).inventory_units};
+ return createDataset({source:'SYNTHETIC',daily:rows,analysis:{forecasts:predicted,tests:{7:{status:'HOLD'},30:{status:'HOLD'}}},metrics,
+ capabilities:{customerActivity:true,inventory:true,refunds:true},provenance:{...source.provenance,demo60:true,database:source.database?.engine==='SQLite'?'SQLite':'local synthetic generator',seriesVersion:source.version,decisionAuthority:'HOLD'}});
+}
 function selection(dataset,preferred=[]){const available=dataset.registry.map(x=>x.id);const known=MODULES.map(x=>x.id);const clean=Array.isArray(preferred)?[...new Set(preferred.filter(x=>known.includes(x)))]:[];
  const chosen=clean.length?clean.filter(x=>available.includes(x)):available;
  return {selected:chosen,available,hidden:known.filter(x=>!available.includes(x)),missingSelections:clean.filter(x=>!available.includes(x))};
@@ -85,8 +97,11 @@ function selection(dataset,preferred=[]){const available=dataset.registry.map(x=
 function localAnswer(dataset,question){
  const q=String(question||'').trim().toLowerCase();if(!q||q.length>400)return 'Ask a short question about the loaded business snapshot.';
  if(!dataset.connected)return 'Connect a source before requesting insights.';
- if(/reorder|restock|inventory|supply/.test(q)&&!dataset.feature['inventory.units'])return 'Inventory isn’t connected. I can’t confirm restock needs from sales totals alone.';
+ if(/reorder|restock|inventory|supply|stockout/.test(q)&&!dataset.feature['inventory.units'])return 'Inventory isn’t connected. I can’t confirm restock needs from sales totals alone.';
  if(/customer|retention|returning/.test(q)&&!dataset.feature['customers.count'])return 'Customer activity is not connected. Only aggregate sales and orders are available.';
+ if(/reorder|restock|inventory|supply|stockout/.test(q)&&dataset.feature['inventory.units'])return `The simulated inventory has ${dataset.values.inventory.toLocaleString()} units on the last completed day. There were ${dataset.rows.slice(-30).filter(r=>r.stockout_products>0).length} days with simulated stockout observations in the last 30 days. Future restocks cannot be verified. HOLD.`;
+ if(/refund|returns?\b/.test(q)&&dataset.feature['refunds.amount'])return `The latest 30 completed days recorded $${dataset.values.refunds.toLocaleString()} in synthetic refunds. This is not a merchant financial report.`;
+ if(/customer|retention|returning/.test(q)&&dataset.feature['customers.count'])return `The last 30 completed days contain ${dataset.values.customers.toLocaleString()} synthetic customer-order activities (not unique customers). Decisions remain on HOLD.`;
  if(/forecast|ahead|next week/.test(q))return dataset.feature['forecast.7']?`The exploratory 7-day outlook is ${dataset.values.forecast7.toLocaleString()}. All forecast decisions remain on HOLD until validation.`:'A forecast is not available from the connected data.';
  if(/attention|risk|change|wrong/.test(q))return dataset.change?`Observed sales ${dataset.change.direction==='up'?'rose':'fell'} ${Math.abs(dataset.change.percent)}% between the two most recent 7-day windows. This is an observation, not a confirmed cause. Decisions remain on HOLD.`:'No qualifying sales change was detected in the last two 7-day windows; this does not establish there is no business risk.';
  if(/order/.test(q)&&dataset.feature['daily.orders'])return `The latest 30 available days contain ${dataset.values.orders.toLocaleString()} aggregated orders. Authority: HOLD.`;
@@ -96,11 +111,11 @@ function localAnswer(dataset,question){
 function createFramework(clock=()=>new Date().toISOString()){
  const events=[];let seq=0;
  function emit(type,{module=null,source=null,reason=null}={}){
-  if(!['source-connected','source-cleared','module-view','tracker-customized','carousel-change','assistant-question','assistant-response','adaptive-proposal','forecast-hold','audit-export','customize-open','source-connect-attempt','source-connect-error'].includes(type))throw Error('Unsupported event');
+  if(!['source-connected','source-cleared','module-view','tracker-customized','carousel-change','assistant-question','adaptive-proposal','forecast-hold'].includes(type))throw Error('Unsupported event');
   const event=Object.freeze({id:++seq,at:clock(),type,module:module?String(module).slice(0,48):null,source:source?String(source).slice(0,32):null,reason:reason?String(reason).slice(0,120):null,authority:'HOLD'});
   events.push(event);if(events.length>200)events.shift();return event;
  }
  return {emit,events:()=>events.slice(),proposal(reason){return emit('adaptive-proposal',{reason})},authority:'HOLD'};
 }
-return {VERSION,MODULES,createDataset,fromDemo,fromImport,fromSnapshot,selection,localAnswer,changePoint,createFramework};
+return {VERSION,MODULES,createDataset,fromDemo,fromDemo60,fromImport,fromSnapshot,selection,localAnswer,changePoint,createFramework};
 });
