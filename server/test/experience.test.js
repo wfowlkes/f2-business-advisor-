@@ -48,3 +48,17 @@ test('enabled assistant refuses a question unless a private user expressly appro
   assert.match((await r.text()),/approval/i);
  }finally{await service.close();}
 });
+
+test('strict CSP permits LIBERIENT self-hosted CSS without permitting third-party styles',async()=>{
+ const x=await setup();try{
+  const r=await fetch(x.url+'/experience/',opts);assert.equal(r.status,200);
+  const policy=r.headers.get('content-security-policy');
+  assert.match(policy,/style-src 'self' 'unsafe-inline'/);
+  assert.match(policy,/script-src 'self'/);
+  assert.match(policy,/frame-ancestors 'none'/);
+  assert.doesNotMatch(policy,/style-src[^;]*https?:\/\//);
+  const css=await fetch(x.url+'/experience/style.css',opts);
+  assert.equal(css.status,200);assert.match(css.headers.get('content-type'),/text\/css/);
+  assert.match(await css.text(),/\.shell/);
+ }finally{await x.close();}
+});
