@@ -90,7 +90,7 @@ function createServer({env=process.env, client, now=()=>Date.now()}={}) {
     return new Promise((resolve,reject)=>{
       let body='',done=false;
       req.on('data',chunk=>{if(done)return;body+=chunk.toString('utf8');if(Buffer.byteLength(body)>2048){done=true;reject(Error('Input too large'));req.destroy();}});
-      req.on('end',()=>{if(done)return;try{const obj=JSON.parse(body);resolve(obj?.question);}catch{reject(Error('Invalid request'));}});
+      req.on('end',()=>{if(done)return;try{const obj=JSON.parse(body);resolve({question:obj?.question,approved:obj?.approved===true});}catch{reject(Error('Invalid request'));}});
       req.on('error',reject);
     });
   }
@@ -108,8 +108,8 @@ function createServer({env=process.env, client, now=()=>Date.now()}={}) {
         if(!assistantRate(req)){send(res,429,{error:'Assistant rate limit exceeded'});return;}
         if(!String(req.headers['content-type']||'').startsWith('application/json')){send(res,415,{error:'JSON required'});return;}
         let question;try{question=await readQuestion(req);}catch{send(res,400,{error:'Invalid question payload'});return;}
-        if(!Assistant.validQuestion(question)){send(res,400,{error:'Question unavailable or includes contact information'});return;}
-        try{const body=await Assistant.respond(question,await snapshot(),{env});send(res,200,body);}catch{send(res,503,{status:'HOLD',error:'Secure ChatGPT currently unavailable'});}
+        if(!question?.approved||!Assistant.validQuestion(question.question)){send(res,400,{error:'Explicit per-question approval required; no personal data allowed'});return;}
+        try{const body=await Assistant.respond(question.question,await snapshot(),{env});send(res,200,body);}catch{send(res,503,{status:'HOLD',error:'Secure ChatGPT currently unavailable'});}
         return;
       }
       if(url.pathname==='/api/capabilities'){send(res,200,{privateSnapshot:true,chatgptEnabled:Assistant.enabled(env),demoMode:env.F2_DEMO_MODE==='true',forecastAuthority:'HOLD'});return;}
