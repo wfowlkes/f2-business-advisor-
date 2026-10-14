@@ -8,7 +8,7 @@ const {makeClient}=require('./shopify.js');
 const Assistant=require('./assistant.js');
 const dashboard=fs.readFileSync(path.join(__dirname,'dashboard.html'));
 const script=fs.readFileSync(path.join(__dirname,'dashboard.js'));
-const experienceAssets=Object.freeze({'/experience/':['index.html','text/html; charset=utf-8'],'/experience/index.html':['index.html','text/html; charset=utf-8'],'/experience/core.js':['core.js','application/javascript; charset=utf-8'],'/experience/framework.js':['framework.js','application/javascript; charset=utf-8'],'/experience/ui.js':['ui.js','application/javascript; charset=utf-8'],'/experience/style.css':['style.css','text/css; charset=utf-8']});
+const experienceAssets=Object.freeze({'/experience/':['index.html','text/html; charset=utf-8'],'/experience/index.html':['index.html','text/html; charset=utf-8'],'/experience/core.js':['core.js','application/javascript; charset=utf-8'],'/experience/core.js':['../core.js','application/javascript; charset=utf-8'],'/experience/framework.js':['framework.js','application/javascript; charset=utf-8'],'/experience/ui.js':['ui.js','application/javascript; charset=utf-8'],'/experience/style.css':['style.css','text/css; charset=utf-8']});
 // Public static synthetic lab is independent of all Shopify reads or tokens.
 const syntheticLab={
   '/lab/': ['index.html','text/html; charset=utf-8'],
@@ -118,8 +118,6 @@ function createServer({env=process.env, client, now=()=>Date.now()}={}) {
       if(url.pathname==='/health'){send(res,200,{ok:true,service:'F2 Commerce read-only backend',shopify:'not exposed'});return;}
       if(url.pathname==='/'){send(res,200,dashboard,'text/html; charset=utf-8');return;}
       if(url.pathname==='/dashboard.js'){send(res,200,script,'application/javascript; charset=utf-8');return;}
-      // F2 Core is public mathematical logic only; never includes tokens or private merchant records.
-      if(url.pathname==='/core.js'){send(res,200,fs.readFileSync(path.join(__dirname,'../core.js')),'application/javascript; charset=utf-8');return;}
       if(env.F2_DEMO_MODE==='true' && (url.pathname==='/lab' || url.pathname==='/core.js' || syntheticLab[url.pathname])){
         if(url.pathname==='/lab'){res.writeHead(302,{Location:'/lab/','Cache-Control':'no-store'});res.end();return;}
         const asset=url.pathname==='/core.js'?{file:path.join(__dirname,'../core.js'),type:'application/javascript; charset=utf-8'}:{file:path.join(__dirname,'../lab',syntheticLab[url.pathname][0]),type:syntheticLab[url.pathname][1]};
