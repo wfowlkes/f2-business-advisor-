@@ -70,6 +70,13 @@ function makeEmbedded({env=process.env,storage,fetchImpl=fetch,now=()=>Date.now(
     let shop,topic;try{shop=shopHost(req.headers['x-shopify-shop-domain']);topic=String(req.headers['x-shopify-topic']||'').toLowerCase();}catch{response(res,400,{error:'Invalid shop'});return true;}
     const permitted=new Set(['app/uninstalled','shop/redact','customers/data_request','customers/redact','orders/create','orders/updated']);
     if(!permitted.has(topic)){response(res,200,{acknowledged:true});return true;}
+    // HMAC signs the raw payload, not the shop-domain header. Bind destructive operations to the payload's own shop domain to prevent signed cross-shop replay.
+    let event;try{event=JSON.parse(raw.toString('utf8'));if(!event||typeof event!=='object'||Array.isArray(event))throw Error('Not an object')}catch{response(res,400,{error:'Invalid webhook body'});return true;}
+    const reported=event.shop_domain||event.myshopify_domain;
+    if((topic==='shop/redact'&&!event.shop_domain)||(topic==='app/uninstalled'&&!event.myshopify_domain)){response(res,400,{error:'Missing verified shop identity in deletion webhook'});return true;}
+    if(reported){let actual;try{actual=shopHost(reported)}catch{response(res,400,{error:'Invalid shop in webhook'});return true;}
+      if(actual!==shop){response(res,401,{error:'Shop identity mismatch'});return true;}}
+
     const receipt=String(req.headers['x-shopify-webhook-id']||'').slice(0,128);
     if(!receipt){response(res,400,{error:'Missing webhook id'});return true;}
     // Uninstall and redaction must erase a store even if receipt tracking is absent.
