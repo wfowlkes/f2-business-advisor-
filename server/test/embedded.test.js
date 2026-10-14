@@ -46,3 +46,20 @@ test('order webhook marks only installed shop dirty, never accepts unauthorized 
 });
 test('partial Shopify cursor pagination is refused instead of saving incomplete figures',async()=>{await assert.rejects(()=>readShopDaily('alpha-shop.myshopify.com','fake',{env:ENV,maxPages:1,now:new Date(NOW),fetchImpl:async()=>({ok:true,json:async()=>({data:{shop:{ianaTimezone:'America/Phoenix',currencyCode:'USD'},orders:{nodes:[],pageInfo:{hasNextPage:true,endCursor:'A'}}}})})}),/pagination exceeded/i);});
 test('postgres schema keys every aggregate and webhook by shop, public mode remains disabled',()=>{assert.match(SCHEMA,/PRIMARY KEY\(shop,day\)/);assert.match(SCHEMA,/PRIMARY KEY\(shop,receipt_id\)/);assert.equal(isConfigured({...ENV,LIBERIENT_EMBEDDED_ENABLED:'false'}),false);});
+
+test('Shopify app routes are invisible when the public synthetic demo is running',async()=>{
+ const {createServer}=require('../app.js');
+ const env={F2_DASHBOARD_KEY:'a'.repeat(48),F2_DEMO_MODE:'true',LIBERIENT_EMBEDDED_ENABLED:'true',SHOPIFY_CLIENT_ID:ENV.SHOPIFY_CLIENT_ID,SHOPIFY_CLIENT_SECRET:ENV.SHOPIFY_CLIENT_SECRET,LIBERIENT_DATABASE_URL:'postgres://localhost/disabled',LIBERIENT_TOKEN_ENCRYPTION_KEY:'f'.repeat(64)};
+ const srv=createServer({env,now:()=>NOW});await new Promise(r=>srv.listen(0,'127.0.0.1',r));
+ try{const origin='http://127.0.0.1:'+srv.address().port;
+  const no=await fetch(origin+'/shopify-app/');assert.equal(no.status,404);
+  const demo=await fetch(origin+'/api/demo60');assert.equal(demo.status,200);
+  const ui=await fetch(origin+'/experience/');assert.equal(ui.status,200);
+ }finally{await new Promise(r=>srv.close(r));}
+});
+test('embedded standalone mode requires all secrets, a dedicated database, and demo off',()=>{
+ const creds={...ENV,LIBERIENT_EMBEDDED_ENABLED:'true',LIBERIENT_DATABASE_URL:'postgres://local:pass@localhost/example',LIBERIENT_TOKEN_ENCRYPTION_KEY:'b'.repeat(64)};
+ assert.equal(isConfigured({...creds,F2_DEMO_MODE:'true'}),false);
+ assert.equal(isConfigured({...creds,F2_DEMO_MODE:'false'}),true);
+ assert.equal(isConfigured({...creds,F2_DEMO_MODE:'false',SHOPIFY_CLIENT_SECRET:''}),false);
+});
