@@ -1,0 +1,27 @@
+# Template only. Create a real app in Shopify Dev Dashboard / Shopify CLI,
+# copy to shopify.app.toml, and replace the PUBLIC client_id and application_url.
+# Never enter the client secret or database URL into this file or public GitHub.
+client_id = "REPLACE_WITH_PUBLIC_SHOPIFY_CLIENT_ID"
+name = "LIBERIENT"
+application_url = "https://YOUR_RENDER_HOST.onrender.com/shopify-app/"
+embedded = true
+
+[build]
+automatically_update_urls_on_dev = false
+
+[access_scopes]
+scopes = "read_orders"
+
+[auth]
+redirect_urls = [ "https://YOUR_RENDER_HOST.onrender.com/shopify-app/" ]
+
+[webhooks]
+api_version = "2026-10"
+
+[[webhooks.subscriptions]]
+compliance_topics = ["customers/data_request", "customers/redact", "shop/redact"]
+uri = "/shopify-app/webhooks"
+
+[[webhooks.subscriptions]]
+topics = ["orders/create", "orders/updated", "app/uninstalled"]
+uri = "/shopify-app/webhooks"
