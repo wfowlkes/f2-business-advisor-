@@ -24,3 +24,9 @@ The new [synthetic bridge scorecard](lab/bridge.html) inspects promotion fatigue
 ## F2 Learning Lab 1.5 — Supply Availability Research (synthetic-only)
 
 Open the [Supply Availability Research dashboard](lab/availability.html) (`/lab/availability.html` on a synthetic-mode Render service). It separates hypothetical full-availability revenue from inventory-constrained sales, estimates future stockout risk only from completed observations, tests two different approaches to hazard/recurrence, and uses historical skill-gating for a shadow-only experimental forecast. Includes 19 independent and same-generator synthetic evaluation cases with documented failures. Read [the evidence and data contract](docs/SUPPLY_AVAILABILITY_V15.md). This does not change the authorized Shopify backend or permit real-business recommendations; decision authority remains HOLD.
+
+## LIBERIENT customer experience 2.0 (source-gated development preview)
+
+Open the [LIBERIENT dashboard](experience/) on GitHub Pages or `/experience/` on the private Render service. Its accessible cosmic interface provides a horizontal carousel, customizable streaming tracker, and local question-answering backed by available aggregate source fields. Synthetic and imported data are clearly distinguished; unsupported customer, inventory and returns features remain hidden. The existing Learning Lab remains the internal evaluator.
+
+A secure ChatGPT proxy is implemented but **off by default**, requiring an authorized session, private API credentials, administrator approval and explicit per-question approval. All forecasts and adaptations remain research-only / HOLD. See [product contract](docs/LIBERIENT_EXPERIENCE_2_0.md) and [integration steps](docs/EXPERIENCE_INTEGRATION.md).
