@@ -38,3 +38,13 @@ test('public experience shell is available in private mode but research labs and
    assert.equal((await fetch(x.url+'/api/snapshot',opts)).status,401);
  }finally{await x.close();}
 });
+
+test('enabled assistant refuses a question unless a private user expressly approves that request',async()=>{
+ const enabled={...env,F2_ASSISTANT_ENABLED:'true',F2_AI_DATA_SHARING_APPROVED:'true',OPENAI_API_KEY:'z'.repeat(40)};
+ const service=await setup(enabled);
+ try{
+  const r=await fetch(service.url+'/api/assistant',{method:'POST',headers:{'X-Forwarded-Proto':'https','Content-Type':'application/json',Authorization:'Bearer '+env.F2_DASHBOARD_KEY},body:JSON.stringify({question:'How are orders doing?'})});
+  assert.equal(r.status,400);
+  assert.match((await r.text()),/approval/i);
+ }finally{await service.close();}
+});
