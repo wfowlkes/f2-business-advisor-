@@ -1,11 +1,12 @@
 {
-  "name": "f2-commerce-readonly-bridge",
-  "version": "0.1.0",
+  "name": "liberient-f2-commerce-backend",
+  "version": "3.0.0",
   "private": true,
-  "description": "F2 Commerce secure read-only Shopify bridge and Learning Lab HOLD controls",
+  "description": "LIBERIENT read-only Shopify embedded integration and synthetic Learning Lab",
   "engines": {"node": ">=22"},
   "scripts": {
     "start": "node app.js",
     "test": "node --test test/*.test.js"
-  }
+  },
+  "dependencies": {"pg": "^8.16.0"}
 }
