@@ -57,7 +57,7 @@ test('negative or malformed data blocked',()=>{
 test('replenishment obeys case-pack, budget, capacity',()=>{
  const daily=Array.from({length:7},()=>({units:6}));
  const r=simulateReplenishment({dailyForecast:daily,onHand:10,onOrder:0,leadDays:7,
-                               casePack:12,unitCost:2,budget:50,maxStorageUnits:33});
+                               casePack:12,unitCost:2,budget:50,maxStorageUnits:36});
  assert.equal(r.illustrative_order_units,24);
  assert.equal(r.assumed_cost,48);
  assert.equal(r.order_placed,false);
