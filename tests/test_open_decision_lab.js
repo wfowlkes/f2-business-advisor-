@@ -82,3 +82,8 @@ test('no real store access or customer records',()=>{
  assert(!src.includes('access_token'));
  assert(!src.includes('fetch('));
 });
+
+test('must never infer zero true demand with insufficient in-stock exposure',()=>{
+ const x=series(42,{unknownAt:Array.from({length:38},(_,i)=>i)});
+ assert.throws(()=>weekdayBaseline(x,7),/HOLD: fewer than 14/);
+});
