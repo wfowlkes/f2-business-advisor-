@@ -31,11 +31,11 @@ function weekdayBaseline(history,horizon){
  for(const v of hist){
   // Only use confirmed in-stock observations for observed-demand proxy.
   const dow=new Date(v.date+'T00:00:00Z').getUTCDay();
-  if(v.stockout===true)continue;
+  if(v.stockout!==false)continue;
   if(!weekly.has(dow))weekly.set(dow,[]);
   weekly.get(dow).push(v.units_sold);
  }
- const clean=hist.filter(v=>v.stockout!==true).map(v=>v.units_sold);
+ const clean=hist.filter(v=>v.stockout===false).map(v=>v.units_sold);
  const global=median(clean);
  const unknownStockouts=hist.filter(v=>v.stockout===undefined).length;
  const missingWeekdays=[...Array(7).keys()].filter(i=>(weekly.get(i)||[]).length<2);
@@ -88,10 +88,10 @@ function backtest(history,{horizon=7,minTrain=28}={}){
   const train=history.slice(0,cutoff);
   const test=history.slice(cutoff,cutoff+horizon);
   const candidate=weekdayBaseline(train,horizon);
-  const historical=median(train.filter(d=>d.stockout!==true).map(d=>d.units_sold));
+  const historical=median(train.filter(d=>d.stockout===false).map(d=>d.units_sold));
   if(historical===null){missed.push(cutoff);continue;}
   const naive=Array(horizon).fill(historical);
-  if(test.some(d=>d.stockout===true||d.stockout===undefined)){
+  if(test.some(d=>d.stockout!==false)){
    missed.push(cutoff);continue;
   }
   const f2err=test.reduce((a,d,i)=>a+Math.abs(d.units_sold-candidate.forecast_daily[i].units),0);
