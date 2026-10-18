@@ -36,6 +36,7 @@ function weekdayBaseline(history,horizon){
   weekly.get(dow).push(v.units_sold);
  }
  const clean=hist.filter(v=>v.stockout===false).map(v=>v.units_sold);
+ if(clean.length<14)throw Error("HOLD: fewer than 14 confirmed in-stock historical days");
  const global=median(clean);
  const unknownStockouts=hist.filter(v=>v.stockout===undefined).length;
  const missingWeekdays=[...Array(7).keys()].filter(i=>(weekly.get(i)||[]).length<2);
