@@ -1,0 +1,24 @@
+name: LIBERIENT Open Decision Lab Validation
+on:
+  push:
+    branches: [open-demand-inventory-intelligence-20261017]
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
+      - name: Replenishment and chronological validation tests
+        run: |
+          node --test tests/test_open_decision_lab.js
+      - name: Verify module is research-only
+        run: |
+          node - <<'JS'
+          const x=require('./lab/open_decision_lab.js');
+          if(typeof x.backtest!=='function'||typeof x.simulateReplenishment!=='function')throw Error('required exports missing');
+          console.log('Offline methods available; no merchant action authorized');
+          JS
