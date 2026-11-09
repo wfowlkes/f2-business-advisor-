@@ -81,4 +81,60 @@ function diagnoseBusinessReadOnly(rows,{maxCycles=MAX_CYCLES,maxMilliseconds=150
     protectedP9LawChanges:false,protectedSampleTChanges:false
   };
 }
-module.exports={diagnoseBusinessReadOnly};
+
+/**
+ * Research -> plan -> execute authorized read-only diagnostics -> verify/HOLD.
+ * Never creates external jobs, writes Shopify, changes a model, or uses
+ * caller-provided flags to authorize a protected action.
+ */
+function executeBusinessResearchFindings(rows,{requestedActions=[]}={}) {
+  if(!Array.isArray(requestedActions)||requestedActions.length>8||
+     requestedActions.some(a=>typeof a!=='string'))
+    throw Error('Bounded declared business findings required');
+  const raw=clone(rows),hash=digest(raw);
+  const kinds=['SOURCE_QUALITY_RECHECK',...requestedActions];
+  const plan=kinds.map((kind,index)=>({
+    id:'LIBERIENT-RLL-'+(index+1),action:kind,
+    owner:kind==='SOURCE_QUALITY_RECHECK'?'BUSINESS_DATA_QA':'EXTERNAL_GOVERNANCE',
+    acceptance:kind==='SOURCE_QUALITY_RECHECK'
+      ?'Measure input quality and repair only copied display duplicates'
+      :'Independent authorization and real evidence required',
+    stage:'PLANNED',productionAuthorized:false
+  }));
+  const output=[];
+  let audit=null;
+  for(const action of plan) {
+    const receipt={id:action.id,action:action.action,stage:'HOLD',
+                   sourceHash:hash,productionAuthorized:false};
+    if(action.action==='SOURCE_QUALITY_RECHECK') {
+      try {
+        audit=diagnoseBusinessReadOnly(raw);
+        receipt.stage='EXECUTED_RESEARCH';
+        receipt.verified='LOCAL_STRUCTURAL_ONLY';
+        receipt.reason=audit.reason;
+        receipt.problems=audit.outstandingIssueCodes;
+        receipt.shadowRows=audit.shadowRows;
+        receipt.resultHash=digest(audit);
+      } catch(e) {
+        receipt.reason='RLL_EVIDENCE_OR_BUDGET_HOLD';
+      }
+    } else {
+      receipt.reason='USER_AND_GOVERNANCE_APPROVAL_REQUIRED';
+    }
+    output.push(receipt);
+  }
+  if(digest(rows)!==hash)throw Error('RLL source changed unexpectedly');
+  const executed=output.filter(r=>r.stage==='EXECUTED_RESEARCH').length;
+  return {
+    system:'LIBERIENT-RESEARCH-ACTION-1.0',
+    status:executed===output.length?'EXECUTED_RESEARCH_ONLY':
+      executed?'EXECUTED_RESEARCH_WITH_HOLDS':'HOLD_ACTIONS_PENDING',
+    actionsPlanned:output.length,actionsExecuted:executed,
+    actionsHeld:output.length-executed,plan,receipts:output,
+    sourceHash:hash,productionAuthorized:false,modelPromotion:'HOLD',
+    shopifyWrites:0,forecastChanges:0,
+    p9Modified:false,sampletModified:false,backgroundTasksStarted:false
+  };
+}
+module.exports={diagnoseBusinessReadOnly,executeBusinessResearchFindings};
+
