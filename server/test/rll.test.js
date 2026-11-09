@@ -1,7 +1,7 @@
 'use strict';
 const test=require('node:test');
 const assert=require('node:assert/strict');
-const {diagnoseBusinessReadOnly}=require('../resolution_learning_loop.js');
+const {diagnoseBusinessReadOnly,executeBusinessResearchFindings}=require('../resolution_learning_loop.js');
 
 const day=(date,orders=1,net_sales=40)=>({date,orders,net_sales});
 
@@ -57,4 +57,35 @@ test('RLL enforces bounds and source immutability',()=>{
   const r=diagnoseBusinessReadOnly([day('2026-11-05',0,0)],{maxCycles:1});
   assert.equal(r.status,'SHADOW_RESOLVED');
   assert.equal(r.sourceAuthenticated,false);
+});
+
+
+test('research findings create and execute a concrete safe business action',()=>{
+  const rows=[day('2026-11-04',1,10),day('2026-11-04',1,10)];
+  const before=JSON.stringify(rows);
+  const out=executeBusinessResearchFindings(rows);
+  assert.equal(rows.length,2);
+  assert.equal(JSON.stringify(rows),before);
+  assert.equal(out.actionsPlanned,1);
+  assert.equal(out.actionsExecuted,1);
+  assert.equal(out.receipts[0].stage,'EXECUTED_RESEARCH');
+  assert.equal(out.receipts[0].shadowRows,1);
+  assert.equal(out.modelPromotion,'HOLD');
+  assert.equal(out.backgroundTasksStarted,false);
+});
+
+test('user-supplied authorization never bypasses LIBERIENT production hold',()=>{
+  const rows=[day('2026-11-05',3,60)];
+  const result=executeBusinessResearchFindings(rows,{
+    requestedActions:['SHOPIFY_WRITE','FORECAST_MODEL_CHANGE','APPROVE_P9_RULE']
+  });
+  assert.equal(result.actionsPlanned,4);
+  assert.equal(result.actionsExecuted,1);
+  assert.equal(result.actionsHeld,3);
+  assert.equal(result.status,'EXECUTED_RESEARCH_WITH_HOLDS');
+  assert(result.receipts.slice(1).every(r=>r.reason===
+    'USER_AND_GOVERNANCE_APPROVAL_REQUIRED'));
+  assert.equal(result.productionAuthorized,false);
+  assert.equal(result.shopifyWrites,0);
+  assert.equal(result.forecastChanges,0);
 });
