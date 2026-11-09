@@ -45,6 +45,12 @@ test('RLL does not synthesize missing customer or financial facts',()=>{
   assert.equal(r.releaseAuthorized,false);
 });
 
+test('RLL allows signed net-sales totals after legitimate refunds',()=>{
+  const r=diagnoseBusinessReadOnly([day('2026-11-06',1,-12.5)]);
+  assert.equal(r.status,'SHADOW_RESOLVED');
+  assert.equal(r.modelPromotion,'HOLD');
+});
+
 test('RLL enforces bounds and source immutability',()=>{
   assert.throws(()=>diagnoseBusinessReadOnly([], {maxCycles:999}));
   assert.throws(()=>diagnoseBusinessReadOnly(Array(4001).fill(day('2026-11-04'))));
