@@ -83,12 +83,16 @@ function createServer({env=process.env, client, now=()=>Date.now()}={}) {
       // Shadow-only diagnostic; no forecast/merchant changes or persistence.
       let resolution_learning;
       try {
-        const audit=RLL.diagnoseBusinessReadOnly(data.daily);
+        const execution=RLL.executeBusinessResearchFindings(data.daily);
+        const outcome=execution.receipts[0];
         resolution_learning={
-          status:audit.status,reason:audit.reason,cycles:audit.cycles,
-          unresolved:audit.outstandingIssueCodes,
+          status:execution.status,reason:outcome.reason,
+          researchActionsPlanned:execution.actionsPlanned,
+          researchActionsExecuted:execution.actionsExecuted,
+          researchActionsHeld:execution.actionsHeld,
+          unresolved:outcome.problems||[],
           sourceAuthenticated:false,releaseAuthorized:false,
-          sourceUnchanged:audit.shopifyWrites===0,
+          sourceUnchanged:execution.shopifyWrites===0,
           forecastModified:false,modelPromotion:'HOLD'};
       } catch(ex) {
         resolution_learning={
