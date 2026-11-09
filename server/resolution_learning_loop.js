@@ -31,7 +31,8 @@ function checkRows(data) {
     // Financial source errors cannot be repaired by research inference.
     for(const name of ['orders','net_sales']) {
       if(Object.hasOwn(row,name) &&
-         (typeof row[name]!=='number'||!Number.isFinite(row[name])||row[name]<0))
+         (typeof row[name]!=='number'||!Number.isFinite(row[name])||
+          (name==='orders' && (!Number.isInteger(row[name])||row[name]<0))))
         issues.push({code:'INVALID_FINANCIAL_UNIT',row:i});
     }
   }
