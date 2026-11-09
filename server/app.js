@@ -6,6 +6,7 @@ const crypto=require('node:crypto');
 const F2=require('../core.js');
 const {makeClient}=require('./shopify.js');
 const Assistant=require('./assistant.js');
+const RLL=require('./resolution_learning_loop.js');
 const {createDemoDatabase}=require('./demo_database.js');
 const {makeEmbedded}=require('./embedded/app.js');
 const {isConfigured: embeddedConfigured}=require('./embedded/security.js');
@@ -79,9 +80,25 @@ function createServer({env=process.env, client, now=()=>Date.now()}={}) {
     inflight=(async()=>{
       const data=await backend.getDaily();
       const analysis=F2.analyze(data);
+      // Shadow-only diagnostic; no forecast/merchant changes or persistence.
+      let resolution_learning;
+      try {
+        const audit=RLL.diagnoseBusinessReadOnly(data.daily);
+        resolution_learning={
+          status:audit.status,reason:audit.reason,cycles:audit.cycles,
+          unresolved:audit.outstandingIssueCodes,
+          sourceAuthenticated:false,releaseAuthorized:false,
+          sourceUnchanged:audit.shopifyWrites===0,
+          forecastModified:false,modelPromotion:'HOLD'};
+      } catch(ex) {
+        resolution_learning={
+          status:'HOLD',reason:'RLL_DIAGNOSTIC_UNAVAILABLE',
+          sourceAuthenticated:false,releaseAuthorized:false,
+          forecastModified:false,modelPromotion:'HOLD'};
+      }
       // Never promote unverified sales or forecasts, even if backtest seems promising.
       const body={status:'HOLD',source:data.source,refreshedAt:new Date(now()).toISOString(),metrics:data.metrics,provenance:data.provenance,warnings:data.warnings,
-        analysis:{status:analysis.status,hold:analysis.hold,tests:Object.fromEntries([7,30].map(n=>[n,{status:'HOLD',reasons:analysis.tests[n].reasons,bestBaseline:analysis.tests[n].bestBaseline,folds:analysis.tests[n].holdout?.trend?.folds??0}])),ledger:analysis.ledger},
+        resolution_learning,analysis:{status:analysis.status,hold:analysis.hold,tests:Object.fromEntries([7,30].map(n=>[n,{status:'HOLD',reasons:analysis.tests[n].reasons,bestBaseline:analysis.tests[n].bestBaseline,folds:analysis.tests[n].holdout?.trend?.folds??0}])),ledger:analysis.ledger},
         sample: data.daily.map(x=>({date:x.date,subtotalProxy:x.net_sales,orders:x.orders}))};
       cached={at:now(),body};return body;
     })().finally(()=>{inflight=null;});
